@@ -1,0 +1,6 @@
+[book]
+authors = ["taroosg"]
+language = "en"
+multilingual = false
+src = "src"
+title = "web-application-bootcamp"
