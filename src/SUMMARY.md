@@ -6,18 +6,21 @@
 
 - [Day02](./day02/readme.md)
   - [DBとは]()
-  - [DB連携]()
+  - [INSERT]()
+  - [SELECT]()
 
 - [Day03](./day03/readme.md)
   - [共通処理の関数化]()
-  - [セッションとログイン]()
+  - [UPDATE]()
+  - [DELETE]()
 
 - [Day04](./day04/readme.md)
-  - [RDBの扱い]()
-  - [多対多の実装]()
+  - [SESSION]()
+  - [認証機能]()
 
 - [Day05](./day05/readme.md)
-  - [ファイルアップロード]()
+  - [RDBの扱い]()
+  - [多対多の実装]()
 
 - [Day06](./day06/readme.md)
   - [MVCとは]()
@@ -33,7 +36,9 @@
 
 - [Day09](./day09/readme.md)
   - [認証とルーティング連携]()
+  - [1対多の実装]()
 
 - [Day10](./day10/readme.md)
+  - [Like機能]()
   - [多対多の実装]()
 
