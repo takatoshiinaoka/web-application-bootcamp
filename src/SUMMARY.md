@@ -1,7 +1,7 @@
 # Summary
 
 - [Day01](./day01/readme.md)
-  - [PHPとは]()
+  - [PHPとは，Web アプリケーションのしくみ]()
   - [サーバとのデータ送受信]()
 
 - [Day02](./day02/readme.md)
@@ -25,20 +25,17 @@
 - [Day06](./day06/readme.md)
   - [MVCとは]()
   - [ルーティング（必要な画面）]()
-
-- [Day07](./day07/readme.md)
   - [Create]()
   - [Read]()
 
-- [Day08](./day08/readme.md)
+- [Day07](./day07/readme.md)
   - [Update]()
   - [Delete]()
 
-- [Day09](./day09/readme.md)
+- [Day08](./day08/readme.md)
   - [認証とルーティング連携]()
   - [1対多の実装]()
-
-- [Day10](./day10/readme.md)
   - [Like機能]()
   - [多対多の実装]()
+
 
