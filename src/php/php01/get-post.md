@@ -25,7 +25,7 @@ htmlファイルやphpファイルから別のphpファイルへデータを送�
 
 `<form></form>`を用いてデータを送信する．必ず以下の3項目を設定する．
 
-- データの送信宛先（`action="todo_get_receive.php"`）．
+- データの送信宛先（`action="data_get_confirm.php"`）．
 - データの送信方法（`method="GET"`）．
 - データの項目名（`name="hoge"`）．
 
@@ -38,11 +38,11 @@ htmlファイルやphpファイルから別のphpファイルへデータを送�
 ### 送信側のコード
 
 ```php
-// todo_get.php
+// data_get.php
 
 // formタグに`action`と`method`を記述
 // 個々の項目（inputタグ）に`name`を指定する
-<form action="todo_get_confirm.php" method="GET">
+<form action="data_get_confirm.php" method="GET">
   <div>
     todo: <input type="text" name="todo">
   </div>
@@ -61,7 +61,7 @@ htmlファイルやphpファイルから別のphpファイルへデータを送�
 - `exit()`は以降の処理を中止する．
 
 ```php
-// todo_get_confirm.php
+// data_get_confirm.php
 
 <?php
 
@@ -92,7 +92,7 @@ $deadline = $_GET['deadline'];
 
 `<form></form>`を用いてデータを送信する．必ず以下の3項目を設定する．
 
-- データの送信宛先（`action="todo_post_confirm.php"`）．
+- データの送信宛先（`action="data_post_confirm.php"`）．
 - データの送信方法（`method="POST"`）．
 - データの項目名（`name="hoge"`）．
 
@@ -105,11 +105,11 @@ $deadline = $_GET['deadline'];
 ### 送信側のコード
 
 ```php
-// todo_post.php
+// data_post.php
 
 // formタグに`action`と`method`を記述
 // 個々の項目（inputタグ）に`name`を指定する
-<form action="todo_post_confirm.php" method="POST">
+<form action="data_post_confirm.php" method="POST">
   <div>
     todo: <input type="text" name="todo">
   </div>
@@ -126,7 +126,7 @@ $deadline = $_GET['deadline'];
 - 以降の流れは`GET`の場合と同様．
 
 ```php
-// todo_post_confirm.php
+// data_post_confirm.php
 
 <?php
 
@@ -173,11 +173,4 @@ $hoge = $_POST['hoge'];
 
 ```
 
-
-## 練習
-
-1. `todo_get.php`と`todo_get_confirm.php`でGET方式のデータ送受信を実装しよう．
-2. `todo_post.php`と`todo_post_confirm.php`でPOST方式のデータ送受信を実装しよう．
-
-双方とも，データを受け取ったらHTML部分に受信内容を表示しよう．
-
+次の項では，データ送信機能を用いて検索処理を実装してみよう．
