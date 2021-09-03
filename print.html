@@ -481,7 +481,7 @@ $result = '大吉';
 <h4 id="送信側の処理"><a class="header" href="#送信側の処理">送信側の処理</a></h4>
 <p><code>&lt;form&gt;&lt;/form&gt;</code>を用いてデータを送信する．必ず以下の3項目を設定する．</p>
 <ul>
-<li>データの送信宛先（<code>action=&quot;todo_get_receive.php&quot;</code>）．</li>
+<li>データの送信宛先（<code>action=&quot;data_get_confirm.php&quot;</code>）．</li>
 <li>データの送信方法（<code>method=&quot;GET&quot;</code>）．</li>
 <li>データの項目名（<code>name=&quot;hoge&quot;</code>）．</li>
 </ul>
@@ -492,11 +492,11 @@ $result = '大吉';
 <li>個別の値を取り出して変数に格納すれば，後は通常の変数として処理可能．</li>
 </ul>
 <h3 id="送信側のコード"><a class="header" href="#送信側のコード">送信側のコード</a></h3>
-<pre><code class="language-php">// todo_get.php
+<pre><code class="language-php">// data_get.php
 
 // formタグに`action`と`method`を記述
 // 個々の項目（inputタグ）に`name`を指定する
-&lt;form action=&quot;todo_get_confirm.php&quot; method=&quot;GET&quot;&gt;
+&lt;form action=&quot;data_get_confirm.php&quot; method=&quot;GET&quot;&gt;
   &lt;div&gt;
     todo: &lt;input type=&quot;text&quot; name=&quot;todo&quot;&gt;
   &lt;/div&gt;
@@ -513,7 +513,7 @@ $result = '大吉';
 <li>（情報が受け取れないと以降どうしようもない）</li>
 <li><code>exit()</code>は以降の処理を中止する．</li>
 </ul>
-<pre><code class="language-php">// todo_get_confirm.php
+<pre><code class="language-php">// data_get_confirm.php
 
 &lt;?php
 
@@ -539,7 +539,7 @@ $deadline = $_GET['deadline'];
 <h4 id="送信側の処理-1"><a class="header" href="#送信側の処理-1">送信側の処理</a></h4>
 <p><code>&lt;form&gt;&lt;/form&gt;</code>を用いてデータを送信する．必ず以下の3項目を設定する．</p>
 <ul>
-<li>データの送信宛先（<code>action=&quot;todo_post_confirm.php&quot;</code>）．</li>
+<li>データの送信宛先（<code>action=&quot;data_post_confirm.php&quot;</code>）．</li>
 <li>データの送信方法（<code>method=&quot;POST&quot;</code>）．</li>
 <li>データの項目名（<code>name=&quot;hoge&quot;</code>）．</li>
 </ul>
@@ -550,11 +550,11 @@ $deadline = $_GET['deadline'];
 <li>個別の値を取り出して変数に格納すれば，後は通常の変数として処理可能．</li>
 </ul>
 <h3 id="送信側のコード-1"><a class="header" href="#送信側のコード-1">送信側のコード</a></h3>
-<pre><code class="language-php">// todo_post.php
+<pre><code class="language-php">// data_post.php
 
 // formタグに`action`と`method`を記述
 // 個々の項目（inputタグ）に`name`を指定する
-&lt;form action=&quot;todo_post_confirm.php&quot; method=&quot;POST&quot;&gt;
+&lt;form action=&quot;data_post_confirm.php&quot; method=&quot;POST&quot;&gt;
   &lt;div&gt;
     todo: &lt;input type=&quot;text&quot; name=&quot;todo&quot;&gt;
   &lt;/div&gt;
@@ -569,7 +569,7 @@ $deadline = $_GET['deadline'];
 <li>POSTで送信された情報は<code>$_POST</code>に入って送られる．</li>
 <li>以降の流れは<code>GET</code>の場合と同様．</li>
 </ul>
-<pre><code class="language-php">// todo_post_confirm.php
+<pre><code class="language-php">// data_post_confirm.php
 
 &lt;?php
 
@@ -609,12 +609,7 @@ $hoge = $_POST['hoge'];
 &lt;/html&gt;
 
 </code></pre>
-<h2 id="練習"><a class="header" href="#練習">練習</a></h2>
-<ol>
-<li><code>todo_get.php</code>と<code>todo_get_confirm.php</code>でGET方式のデータ送受信を実装しよう．</li>
-<li><code>todo_post.php</code>と<code>todo_post_confirm.php</code>でPOST方式のデータ送受信を実装しよう．</li>
-</ol>
-<p>双方とも，データを受け取ったらHTML部分に受信内容を表示しよう．</p>
+<p>次の項では，データ送信機能を用いて検索処理を実装してみよう．</p>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="パラメータ送信による検索機能の実装"><a class="header" href="#パラメータ送信による検索機能の実装">パラメータ送信による検索機能の実装</a></h1>
 <p>サーバへのデータ送信を用いて，ユーザの入力値によるデータ検索を実装してみよう．</p>
 <h2 id="処理の流れ"><a class="header" href="#処理の流れ">処理の流れ</a></h2>
@@ -712,7 +707,7 @@ foreach ($results as $result) {
 // 省略
 
 </code></pre>
-<h2 id="練習-1"><a class="header" href="#練習-1">練習</a></h2>
+<h2 id="練習"><a class="header" href="#練習">練習</a></h2>
 <p><code>data_input.php</code>と<code>data_select.php</code>に上記の処理を記述して動作を確認しよう！</p>
 <ul>
 <li>キーワードが含まれるデータのみ抽出された表示されれば OK！</li>
@@ -1010,7 +1005,7 @@ DELETE FROM todo_table WHERE id = 2;
 <h2 id="参考sqlの練習"><a class="header" href="#参考sqlの練習">【参考】SQLの練習</a></h2>
 <p><a href="https://sqlzoo.net/">https://sqlzoo.net/</a></p>
 <p>初歩から応用までSQL問題が出題．当面は最初の方の基本的なデータ取得ができればOK．</p>
-<h2 id="練習-2"><a class="header" href="#練習-2">練習</a></h2>
+<h2 id="練習-1"><a class="header" href="#練習-1">練習</a></h2>
 <p>SQLはphpmyadminの「SQLタブ」から記述&amp;実行できる．</p>
 <ol>
 <li>INSERT文を用いて<code>todo_table</code>にデータを10件程度作成しよう．</li>
@@ -1177,7 +1172,7 @@ if ($status == false) {
 }
 
 </code></pre>
-<h2 id="練習-3"><a class="header" href="#練習-3">練習</a></h2>
+<h2 id="練習-2"><a class="header" href="#練習-2">練習</a></h2>
 <p>DBにデータを追加する処理を実装しよう！</p>
 <ol>
 <li><code>todo_input.php</code>にフォームを作成</li>
@@ -1305,7 +1300,7 @@ if ($status == false) {
 
 
 </code></pre>
-<h2 id="練習-4"><a class="header" href="#練習-4">練習</a></h2>
+<h2 id="練習-3"><a class="header" href="#練習-3">練習</a></h2>
 <p>DBのデータを読み出して表示する処理を実装しよう！</p>
 <p><code>todo_read.php</code>で</p>
 <ul>
@@ -1403,7 +1398,7 @@ $pdo = connect_to_db();
 // 他のDB接続が必要なファイルでも上記の2行でOK！
 
 </code></pre>
-<h2 id="練習-5"><a class="header" href="#練習-5">練習</a></h2>
+<h2 id="練習-4"><a class="header" href="#練習-4">練習</a></h2>
 <ol>
 <li><code>functions.php</code>にDB接続の関数を定義しよう！</li>
 <li><code>todo_create.php</code>と<code>todo_read.php</code>で<code>functions.php</code>を<code>include()</code>し，関数を実行しよう！</li>
@@ -1501,7 +1496,7 @@ if ($status == false) {
 </code></pre>
 <p>下図のように現在のデータが画面に表示されればOK．</p>
 <p><img src="php/php03/./img/php_crud02_todo_edit.png" alt="編集画面データ表示" /></p>
-<h2 id="練習-6"><a class="header" href="#練習-6">練習</a></h2>
+<h2 id="練習-5"><a class="header" href="#練習-5">練習</a></h2>
 <p>以下の処理を実装しよう！</p>
 <ol>
 <li>一覧画面に<code>todo_edit.php</code>へのリンクを追加！（<code>todo_delete.php</code>へのリンクも一緒に！）</li>
@@ -1567,7 +1562,7 @@ if ($status == false) {
 }
 
 </code></pre>
-<h2 id="練習-7"><a class="header" href="#練習-7">練習</a></h2>
+<h2 id="練習-6"><a class="header" href="#練習-6">練習</a></h2>
 <p><code>todo_update.php</code>でUPDATEの処理を実装しよう！</p>
 <p>更新処理実行後，一覧ページでデータが更新されていればOK！</p>
 <p>（phpmyadminでも確認しよう）</p>
@@ -1626,7 +1621,7 @@ if ($status == false) {
 }
 
 </code></pre>
-<h2 id="練習-8"><a class="header" href="#練習-8">練習</a></h2>
+<h2 id="練習-7"><a class="header" href="#練習-7">練習</a></h2>
 <p>以下の処理を実装しよう！</p>
 <ol>
 <li>✅ 一覧画面に<code>todo_delete.php</code>へのリンクを追加！</li>
@@ -1833,7 +1828,7 @@ setcookie(session_name(), '', time() - 42000, '/');
 session_destroy();
 </code></pre>
 <p><a href="https://www.php.net/manual/ja/function.session-destroy.php">参考</a></p>
-<h2 id="練習-9"><a class="header" href="#練習-9">練習</a></h2>
+<h2 id="練習-8"><a class="header" href="#練習-8">練習</a></h2>
 <p>下記の処理を実装してセッションとsession_idの挙動を確認しよう．</p>
 <ul>
 <li>idを発行して確認しよう！</li>
@@ -1899,7 +1894,7 @@ exit();
 ?&gt;
 
 </code></pre>
-<h2 id="練習-10"><a class="header" href="#練習-10">練習</a></h2>
+<h2 id="練習-9"><a class="header" href="#練習-9">練習</a></h2>
 <p>下記の処理を記述して，セッション変数の動き方を確認しよう．</p>
 <ul>
 <li><code>session01.php</code>でsession変数を定義しよう！</li>
@@ -2021,7 +2016,7 @@ header('Location:todo_login.php');
 exit();
 
 </code></pre>
-<h2 id="練習-11"><a class="header" href="#練習-11">練習</a></h2>
+<h2 id="練習-10"><a class="header" href="#練習-10">練習</a></h2>
 <p>ログインとログアウトの処理を実装しよう！</p>
 <ol>
 <li>ログインフォームを実装！（<code>todo_login.php</code>）</li>
@@ -2099,7 +2094,7 @@ check_session_id();
 <p>ログインしているユーザだけがアクセスできる画面と誰でもアクセスできる画面がそれぞれどの画面なのかを明確にすることが大切．</p>
 <p>同様に管理者ユーザのみがアクセス可能な画面を切り分けることも同様の方法で可能．</p>
 </blockquote>
-<h2 id="練習-12"><a class="header" href="#練習-12">練習</a></h2>
+<h2 id="練習-11"><a class="header" href="#練習-11">練習</a></h2>
 <p>メインのコンテンツは未ログインだとアクセスできないようにしよう！</p>
 <ul>
 <li>ログイン状態を確認する関数をつくろう！（functions.php）</li>
@@ -2336,7 +2331,7 @@ if ($status == false) {
 }
 
 </code></pre>
-<h2 id="練習-13"><a class="header" href="#練習-13">練習</a></h2>
+<h2 id="練習-12"><a class="header" href="#練習-12">練習</a></h2>
 <p>todoリストにLike機能を追加しよう．</p>
 <ul>
 <li><code>todo_read.php</code>にLikeボタンを追加．</li>
@@ -2412,7 +2407,7 @@ if ($status == false) {
 
 </code></pre>
 <p>このように記述することで，1ユーザ1Likeの状態を実現することができる．</p>
-<h2 id="練習-14"><a class="header" href="#練習-14">練習</a></h2>
+<h2 id="練習-13"><a class="header" href="#練習-13">練習</a></h2>
 <p>todoリストのLike機能を編集しよう．</p>
 <ul>
 <li><code>like_create.php</code>でLike数カウント -&gt; 条件分岐してDELETE or INSERT．</li>
@@ -2599,7 +2594,7 @@ $sql = 'SELECT * FROM todo_table LEFT OUTER JOIN (SELECT todo_id, COUNT(id) AS l
 $output .= &quot;&lt;td&gt;&lt;a href='like_create.php?user_id={$user_id}&amp;todo_id={$record[&quot;id&quot;]}'&gt;like{$record['like_count']}&lt;/a&gt;&lt;/td&gt;&quot;;
 
 </code></pre>
-<h2 id="練習-15"><a class="header" href="#練習-15">練習</a></h2>
+<h2 id="練習-14"><a class="header" href="#練習-14">練習</a></h2>
 <p>下記の処理を実装しよう！</p>
 <ol>
 <li><code>GROUP BY</code>を使ってlike_tableのデータを集計しよう（phpmyadminで確認）．</li>

@@ -184,7 +184,7 @@
 <h4 id="送信側の処理"><a class="header" href="#送信側の処理">送信側の処理</a></h4>
 <p><code>&lt;form&gt;&lt;/form&gt;</code>を用いてデータを送信する．必ず以下の3項目を設定する．</p>
 <ul>
-<li>データの送信宛先（<code>action=&quot;todo_get_receive.php&quot;</code>）．</li>
+<li>データの送信宛先（<code>action=&quot;data_get_confirm.php&quot;</code>）．</li>
 <li>データの送信方法（<code>method=&quot;GET&quot;</code>）．</li>
 <li>データの項目名（<code>name=&quot;hoge&quot;</code>）．</li>
 </ul>
@@ -195,11 +195,11 @@
 <li>個別の値を取り出して変数に格納すれば，後は通常の変数として処理可能．</li>
 </ul>
 <h3 id="送信側のコード"><a class="header" href="#送信側のコード">送信側のコード</a></h3>
-<pre><code class="language-php">// todo_get.php
+<pre><code class="language-php">// data_get.php
 
 // formタグに`action`と`method`を記述
 // 個々の項目（inputタグ）に`name`を指定する
-&lt;form action=&quot;todo_get_confirm.php&quot; method=&quot;GET&quot;&gt;
+&lt;form action=&quot;data_get_confirm.php&quot; method=&quot;GET&quot;&gt;
   &lt;div&gt;
     todo: &lt;input type=&quot;text&quot; name=&quot;todo&quot;&gt;
   &lt;/div&gt;
@@ -216,7 +216,7 @@
 <li>（情報が受け取れないと以降どうしようもない）</li>
 <li><code>exit()</code>は以降の処理を中止する．</li>
 </ul>
-<pre><code class="language-php">// todo_get_confirm.php
+<pre><code class="language-php">// data_get_confirm.php
 
 &lt;?php
 
@@ -242,7 +242,7 @@ $deadline = $_GET['deadline'];
 <h4 id="送信側の処理-1"><a class="header" href="#送信側の処理-1">送信側の処理</a></h4>
 <p><code>&lt;form&gt;&lt;/form&gt;</code>を用いてデータを送信する．必ず以下の3項目を設定する．</p>
 <ul>
-<li>データの送信宛先（<code>action=&quot;todo_post_confirm.php&quot;</code>）．</li>
+<li>データの送信宛先（<code>action=&quot;data_post_confirm.php&quot;</code>）．</li>
 <li>データの送信方法（<code>method=&quot;POST&quot;</code>）．</li>
 <li>データの項目名（<code>name=&quot;hoge&quot;</code>）．</li>
 </ul>
@@ -253,11 +253,11 @@ $deadline = $_GET['deadline'];
 <li>個別の値を取り出して変数に格納すれば，後は通常の変数として処理可能．</li>
 </ul>
 <h3 id="送信側のコード-1"><a class="header" href="#送信側のコード-1">送信側のコード</a></h3>
-<pre><code class="language-php">// todo_post.php
+<pre><code class="language-php">// data_post.php
 
 // formタグに`action`と`method`を記述
 // 個々の項目（inputタグ）に`name`を指定する
-&lt;form action=&quot;todo_post_confirm.php&quot; method=&quot;POST&quot;&gt;
+&lt;form action=&quot;data_post_confirm.php&quot; method=&quot;POST&quot;&gt;
   &lt;div&gt;
     todo: &lt;input type=&quot;text&quot; name=&quot;todo&quot;&gt;
   &lt;/div&gt;
@@ -272,7 +272,7 @@ $deadline = $_GET['deadline'];
 <li>POSTで送信された情報は<code>$_POST</code>に入って送られる．</li>
 <li>以降の流れは<code>GET</code>の場合と同様．</li>
 </ul>
-<pre><code class="language-php">// todo_post_confirm.php
+<pre><code class="language-php">// data_post_confirm.php
 
 &lt;?php
 
@@ -312,12 +312,7 @@ $hoge = $_POST['hoge'];
 &lt;/html&gt;
 
 </code></pre>
-<h2 id="練習"><a class="header" href="#練習">練習</a></h2>
-<ol>
-<li><code>todo_get.php</code>と<code>todo_get_confirm.php</code>でGET方式のデータ送受信を実装しよう．</li>
-<li><code>todo_post.php</code>と<code>todo_post_confirm.php</code>でPOST方式のデータ送受信を実装しよう．</li>
-</ol>
-<p>双方とも，データを受け取ったらHTML部分に受信内容を表示しよう．</p>
+<p>次の項では，データ送信機能を用いて検索処理を実装してみよう．</p>
 
                     </main>
 
