@@ -120,4 +120,8 @@ foreach ($results as $result) {
 
 `data_input.php`と`data_select.php`に上記の処理を記述して動作を確認しよう！
 
-- キーワードが含まれるデータのみ抽出された表示されれば OK！
+1. `data_input.php`のフォーム部分にデータ送信のためのコードを記述しよう．
+2. `data_select.php`でデータが受け取れることを確認！
+3. `data_select.php`で受け取ったデータを用いてデータを検索し，画面に表示する処理を記述！
+
+`data_input.php`から検索キーワードを送信し，キーワードが含まれるデータのみ抽出されて表示されれば OK！

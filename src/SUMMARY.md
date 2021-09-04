@@ -9,7 +9,7 @@
   - [PHP基礎](./php/php01/php-start.md)
   - [クライアント - サーバ間の通信](./php/php01/get-post.md)
   - [パラメータ送信による検索機能の実装](./php/php01/data-select.md)
-  - [課題](./php/php01/work.md)
+  <!-- - [課題](./php/php01/work.md) -->
 
 - [Day02](./php/php02/README.md)
 
