@@ -106,6 +106,7 @@ foreach ($results as $result) {
         </tr>
       </thead>
       <tbody>
+        <!-- ここに`<tr><td>'id'</td><td>'name'</td><td>'hero'</td><td>'rival'</td></tr>`の形式でデータが表示する -->
         <?= $output ?>
       </tbody>
     </table>

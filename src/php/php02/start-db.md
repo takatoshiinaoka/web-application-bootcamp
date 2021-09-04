@@ -9,8 +9,7 @@
 
 - [http://localhost/phpmyadmin/](http://localhost/phpmyadmin/)にアクセス
 - 「`Databases`」タブをクリック
-- 「`Database name`」に「gsacf_クラス種別&番号2桁_受講番号2桁」を入力（DB名）
-    - 例：LAB5期受講番号00の場合 => `gsacf_l05_00`
+- 「`Database name`」に「`dec_todo`」を入力（DB名）
 - 「`utf8mb4_unicode_ci`」を選択→「作成」をクリック
 
 正常に作成されると，画面左側に作成したDB名が表示される．

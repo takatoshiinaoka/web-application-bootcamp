@@ -18,10 +18,7 @@
   - [SQLによるDB操作](./php/php02/db-sql.md)
   - [PHPとDBの連携1（データ作成処理）](./php/php02/sql-create.md)
   - [PHPとDBの連携2（データ参照処理）](./php/php02/sql-read.md)
-  - [課題と提出時の注意点](./php/php02/work.md)
-  - [DBとは]()
-  - [INSERT]()
-  - [SELECT]()
+  <!-- - [課題と提出時の注意点](./php/php02/work.md) -->
 
 - [Day03](./php/php03/README.md)
 
