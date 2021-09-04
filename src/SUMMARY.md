@@ -43,9 +43,7 @@
   - [Like機能の実装2（データの追加2）](./php/php05/like-delete.md)
   - [Like機能の実装3（データの集計）](./php/php05/like-groupby.md)
   - [Like機能の実装4（データの結合）](./php/php05/like-join.md)
-  - [課題](./php/php05/work.md)
-  - [RDBの扱い]()
-  - [多対多の実装]()
+  <!-- - [課題](./php/php05/work.md) -->
 
 - [Day06](./day06/readme.md)
   - [MVCとは]()
