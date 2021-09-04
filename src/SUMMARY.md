@@ -34,9 +34,7 @@
   - [セッション変数](./php/php04/session-variables.md)
   - [認証処理の実装1（ログインとログアウト）](./php/php04/auth-01.md)
   - [認証処理の実装2（認証状態の確認）](./php/php04/auth-02.md)
-  - [課題](./php/php04/work.md)
-  - [SESSION]()
-  - [認証機能]()
+  <!-- - [課題](./php/php04/work.md) -->
 
 - [Day05](./php/php05/README.md)
 

@@ -144,6 +144,7 @@ setcookie(session_name(), '', time() - 42000, '/');
 
 // session領域自体をを破壊
 session_destroy();
+
 ```
 
 [参考](https://www.php.net/manual/ja/function.session-destroy.php)
