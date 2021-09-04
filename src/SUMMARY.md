@@ -26,10 +26,7 @@
   - [PHPとDBの連携3（編集画面の作成）](./php/php03/sql-edit.md)
   - [PHPとDBの連携4（データ更新処理の作成）](./php/php03/sql-update.md)
   - [PHPとDBの連携5（データ削除処理）](./php/php03/sql-delete.md)
-  - [課題](./php/php03/work.md)
-  - [共通処理の関数化]()
-  - [UPDATE]()
-  - [DELETE]()
+  <!-- - [課題](./php/php03/work.md) -->
 
 - [Day04](./php/php04/README.md)
 
