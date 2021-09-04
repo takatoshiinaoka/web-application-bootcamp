@@ -1,6 +1,6 @@
 # Summary
 
-- [事前準備](./php/php_setup/README.md)
+- [PHP事前準備](./php/php_setup/README.md)
 
 - [Day01](./php/php01/README.md)
 
@@ -44,6 +44,8 @@
   - [Like機能の実装3（データの集計）](./php/php05/like-groupby.md)
   - [Like機能の実装4（データの結合）](./php/php05/like-join.md)
   <!-- - [課題](./php/php05/work.md) -->
+
+- [Laravel事前準備](./php/laravel_setup/README.md)
 
 - [Day06](./day06/readme.md)
   - [MVCとは]()
