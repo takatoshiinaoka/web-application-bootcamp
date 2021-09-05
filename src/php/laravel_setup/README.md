@@ -7,3 +7,5 @@
 5. PC再起動
 6. Docker DesktopのSetting -> Resources -> WSL INTEGRATIONのEnable Integration ...にチェックを入れ，Ubuntu 20.04のトグルをオンにする
 7. Windowsターミナルをubuntu20.04で動かしてプロジェクト作成コマンド実行
+
+Docker Desctopをインストールする内容を追記する．
