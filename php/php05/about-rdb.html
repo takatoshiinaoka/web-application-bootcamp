@@ -179,81 +179,88 @@
 <li>大事なのはデータの構造を見極めること！！</li>
 </ul>
 <p>まずは下記2種類のデータ構造をマスターしよう！</p>
-<h2 id="one-to-manyカテゴリテーブルとユーザテーブル"><a class="header" href="#one-to-manyカテゴリテーブルとユーザテーブル">One to Many（カテゴリテーブルとユーザテーブル）</a></h2>
-<p>一つのカテゴリには複数のユーザが在籍するが，ユーザの所属は一つ．</p>
-<h3 id="カテゴリテーブル"><a class="header" href="#カテゴリテーブル">カテゴリテーブル</a></h3>
-<table><thead><tr><th align="right">category_id</th><th>name</th></tr></thead><tbody>
-<tr><td align="right">1</td><td>ファントムブラッド</td></tr>
-<tr><td align="right">2</td><td>戦闘潮流</td></tr>
-<tr><td align="right">3</td><td>スターダストクルセイダース</td></tr>
-<tr><td align="right">4</td><td>ダイヤモンドは砕けない</td></tr>
-<tr><td align="right">5</td><td>黄金の風</td></tr>
-<tr><td align="right">6</td><td>ストーンオーシャン</td></tr>
-<tr><td align="right">7</td><td>スティール・ボール・ラン</td></tr>
+<h2 id="one-to-many学部テーブルと学生テーブル"><a class="header" href="#one-to-many学部テーブルと学生テーブル">One to Many（学部テーブルと学生テーブル）</a></h2>
+<p>一つの学部には複数の学生が在籍するが，学生の所属は一つ．</p>
+<h3 id="学部テーブルdepartment_table"><a class="header" href="#学部テーブルdepartment_table">学部テーブル（department_table）</a></h3>
+<table><thead><tr><th align="right">id</th><th>name</th></tr></thead><tbody>
+<tr><td align="right">1</td><td>工学部</td></tr>
+<tr><td align="right">2</td><td>理学部</td></tr>
+<tr><td align="right">3</td><td>医学部</td></tr>
+<tr><td align="right">4</td><td>歯学部</td></tr>
+<tr><td align="right">5</td><td>農学部</td></tr>
+<tr><td align="right">6</td><td>文学部</td></tr>
+<tr><td align="right">7</td><td>経済学部</td></tr>
 </tbody></table>
-<h3 id="ユーザテーブル"><a class="header" href="#ユーザテーブル">ユーザテーブル</a></h3>
-<table><thead><tr><th align="right">user_id</th><th>name</th></tr></thead><tbody>
-<tr><td align="right">1</td><td>ディオ</td></tr>
+<h3 id="学生テーブルstudent_table"><a class="header" href="#学生テーブルstudent_table">学生テーブル（student_table）</a></h3>
+<table><thead><tr><th align="right">id</th><th>name</th></tr></thead><tbody>
+<tr><td align="right">1</td><td>ディオ・ブランドー</td></tr>
 <tr><td align="right">2</td><td>ツェペリ</td></tr>
 <tr><td align="right">3</td><td>リサリサ</td></tr>
 <tr><td align="right">4</td><td>カーズ</td></tr>
-<tr><td align="right">5</td><td>花京院</td></tr>
+<tr><td align="right">5</td><td>花京院典明</td></tr>
 <tr><td align="right">6</td><td>DIO</td></tr>
 <tr><td align="right">7</td><td>吉良吉影</td></tr>
-<tr><td align="right">8</td><td>早人</td></tr>
-<tr><td align="right">9</td><td>フーゴ</td></tr>
+<tr><td align="right">8</td><td>川尻早人</td></tr>
+<tr><td align="right">9</td><td>パンナコッタ・フーゴ</td></tr>
 <tr><td align="right">10</td><td>ディアボロ</td></tr>
-<tr><td align="right">11</td><td>エルメス</td></tr>
-<tr><td align="right">12</td><td>プッチ</td></tr>
-<tr><td align="right">13</td><td>ジャイロ</td></tr>
-<tr><td align="right">14</td><td>ヴァレンタイン</td></tr>
+<tr><td align="right">11</td><td>エルメェス・コステロ</td></tr>
+<tr><td align="right">12</td><td>エンリコ・プッチ</td></tr>
+<tr><td align="right">13</td><td>ジャイロ・ツェペリ</td></tr>
+<tr><td align="right">14</td><td>ファニー・ヴァレンタイン</td></tr>
 </tbody></table>
 <p>「多」の側に対応するidを入れる構造にすればOK．</p>
 <p>誰がどこに所属しているかがわかるようになる！</p>
-<table><thead><tr><th align="right">user_id</th><th>name</th><th align="right">category_id</th></tr></thead><tbody>
-<tr><td align="right">1</td><td>ディオ</td><td align="right">1</td></tr>
+<table><thead><tr><th align="right">id</th><th>name</th><th align="right">department_id</th></tr></thead><tbody>
+<tr><td align="right">1</td><td>ディオ・ブランドー</td><td align="right">1</td></tr>
 <tr><td align="right">2</td><td>ツェペリ</td><td align="right">1</td></tr>
 <tr><td align="right">3</td><td>リサリサ</td><td align="right">2</td></tr>
 <tr><td align="right">4</td><td>カーズ</td><td align="right">2</td></tr>
-<tr><td align="right">5</td><td>花京院</td><td align="right">3</td></tr>
+<tr><td align="right">5</td><td>花京院典明</td><td align="right">3</td></tr>
 <tr><td align="right">6</td><td>DIO</td><td align="right">3</td></tr>
 <tr><td align="right">7</td><td>吉良吉影</td><td align="right">4</td></tr>
-<tr><td align="right">8</td><td>早人</td><td align="right">4</td></tr>
-<tr><td align="right">9</td><td>フーゴ</td><td align="right">5</td></tr>
+<tr><td align="right">8</td><td>川尻早人</td><td align="right">4</td></tr>
+<tr><td align="right">9</td><td>パンナコッタ・フーゴ</td><td align="right">5</td></tr>
 <tr><td align="right">10</td><td>ディアボロ</td><td align="right">5</td></tr>
-<tr><td align="right">11</td><td>エルメス</td><td align="right">6</td></tr>
-<tr><td align="right">12</td><td>プッチ</td><td align="right">6</td></tr>
-<tr><td align="right">13</td><td>ジャイロ</td><td align="right">7</td></tr>
-<tr><td align="right">14</td><td>ヴァレンタイン</td><td align="right">7</td></tr>
+<tr><td align="right">11</td><td>エルメェス・コステロ</td><td align="right">6</td></tr>
+<tr><td align="right">12</td><td>エンリコ・プッチ</td><td align="right">6</td></tr>
+<tr><td align="right">13</td><td>ジャイロ・ツェペリ</td><td align="right">7</td></tr>
+<tr><td align="right">14</td><td>ファニー・ヴァレンタイン</td><td align="right">7</td></tr>
 </tbody></table>
-<h2 id="many-to-manyカテゴリテーブルと擬音語テーブル"><a class="header" href="#many-to-manyカテゴリテーブルと擬音語テーブル">Many to Many（カテゴリテーブルと擬音語テーブル）</a></h2>
-<p>カテゴリは複数の擬音語が登場し，擬音語も複数のカテゴリで使われる．</p>
-<h3 id="カテゴリテーブル-1"><a class="header" href="#カテゴリテーブル-1">カテゴリテーブル</a></h3>
-<table><thead><tr><th align="right">category_id</th><th>name</th></tr></thead><tbody>
-<tr><td align="right">1</td><td>ファントムブラッド</td></tr>
-<tr><td align="right">2</td><td>戦闘潮流</td></tr>
-<tr><td align="right">3</td><td>スターダストクルセイダース</td></tr>
-<tr><td align="right">4</td><td>ダイヤモンドは砕けない</td></tr>
-<tr><td align="right">5</td><td>黄金の風</td></tr>
-<tr><td align="right">6</td><td>ストーンオーシャン</td></tr>
-<tr><td align="right">7</td><td>スティール・ボール・ラン</td></tr>
+<h2 id="many-to-many学生テーブルと講義テーブル"><a class="header" href="#many-to-many学生テーブルと講義テーブル">Many to Many（学生テーブルと講義テーブル）</a></h2>
+<p>学生は複数の講義を選択し，講義も複数の学生に提供される．</p>
+<h3 id="学生テーブルstudent_table-1"><a class="header" href="#学生テーブルstudent_table-1">学生テーブル（student_table）</a></h3>
+<table><thead><tr><th align="right">student_id</th><th>name</th></tr></thead><tbody>
+<tr><td align="right">1</td><td>ディオ・ブランドー</td></tr>
+<tr><td align="right">2</td><td>ツェペリ</td></tr>
+<tr><td align="right">3</td><td>リサリサ</td></tr>
+<tr><td align="right">4</td><td>カーズ</td></tr>
+<tr><td align="right">5</td><td>花京院典明</td></tr>
+<tr><td align="right">6</td><td>DIO</td></tr>
+<tr><td align="right">7</td><td>吉良吉影</td></tr>
+<tr><td align="right">8</td><td>川尻早人</td></tr>
+<tr><td align="right">9</td><td>パンナコッタ・フーゴ</td></tr>
+<tr><td align="right">10</td><td>ディアボロ</td></tr>
+<tr><td align="right">11</td><td>エルメェス・コステロ</td></tr>
+<tr><td align="right">12</td><td>エンリコ・プッチ</td></tr>
+<tr><td align="right">13</td><td>ジャイロ・ツェペリ</td></tr>
+<tr><td align="right">14</td><td>ファニー・ヴァレンタイン</td></tr>
 </tbody></table>
-<h3 id="擬音語テーブル"><a class="header" href="#擬音語テーブル">擬音語テーブル</a></h3>
-<table><thead><tr><th align="right">sound_id</th><th>name</th></tr></thead><tbody>
-<tr><td align="right">1</td><td>ドドドドド</td></tr>
-<tr><td align="right">2</td><td>ゴゴゴゴゴ</td></tr>
-<tr><td align="right">3</td><td>ドォーン</td></tr>
-<tr><td align="right">4</td><td>バァーン</td></tr>
-<tr><td align="right">5</td><td>ドグシャア</td></tr>
-<tr><td align="right">6</td><td>ズキュウゥゥン</td></tr>
-<tr><td align="right">7</td><td>メメタァ</td></tr>
-<tr><td align="right">8</td><td>ガオン</td></tr>
-<tr><td align="right">9</td><td>ズアッ</td></tr>
+<h3 id="講義テーブルclass_table"><a class="header" href="#講義テーブルclass_table">講義テーブル（class_table）</a></h3>
+<table><thead><tr><th align="right">class_id</th><th>name</th></tr></thead><tbody>
+<tr><td align="right">1</td><td>線形代数学</td></tr>
+<tr><td align="right">2</td><td>微分積分学</td></tr>
+<tr><td align="right">3</td><td>電子回路</td></tr>
+<tr><td align="right">4</td><td>電気回路</td></tr>
+<tr><td align="right">5</td><td>情報学</td></tr>
+<tr><td align="right">6</td><td>情報数学</td></tr>
+<tr><td align="right">7</td><td>統計学</td></tr>
+<tr><td align="right">8</td><td>信号処理</td></tr>
+<tr><td align="right">9</td><td>電磁気学</td></tr>
 </tbody></table>
 <h3 id="中間テーブル"><a class="header" href="#中間テーブル">中間テーブル</a></h3>
-<p>この場合，「どのカテゴリに」「どの擬音語が登場するか」を表す別のテーブルを作成する．</p>
+<p>この場合，「どの講義を」「どの学生が選択するか」を表す別のテーブルを作成する．</p>
 <p>このテーブルのことを「中間テーブル」と呼ぶ．</p>
-<table><thead><tr><th align="right">category_id</th><th align="right">sound_id</th></tr></thead><tbody>
+<table><thead><tr><th align="right">class_id</th><th align="right">student_id</th></tr></thead><tbody>
 <tr><td align="right">1</td><td align="right">1</td></tr>
 <tr><td align="right">1</td><td align="right">2</td></tr>
 <tr><td align="right">1</td><td align="right">7</td></tr>
