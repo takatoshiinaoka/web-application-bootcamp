@@ -45,19 +45,19 @@
   - [Like機能の実装4（データの結合）](./php/php05/like-join.md)
   <!-- - [課題](./php/php05/work.md) -->
 
-- [Laravel事前準備](./php/laravel_setup/README.md)
+- [Laravel事前準備](./laravel/laravel_setup/README.md)
 
-- [Day06](./day06/readme.md)
+- [Day06](./laravel/laravel01/readme.md)
   - [MVCとは]()
   - [ルーティング（必要な画面）]()
   - [Create]()
   - [Read]()
 
-- [Day07](./day07/readme.md)
+- [Day07](./laravel/laravel02/readme.md)
   - [Update]()
   - [Delete]()
 
-- [Day08](./day08/readme.md)
+- [Day08](./laravel/laravel03/readme.md)
   - [認証とルーティング連携]()
   - [1対多の実装]()
   - [Like機能]()
