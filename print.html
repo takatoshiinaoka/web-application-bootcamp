@@ -2471,15 +2471,22 @@ $output .= &quot;&lt;td&gt;&lt;a href='like_create.php?user_id={$user_id}&amp;to
 </ol>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="laravel事前準備"><a class="header" href="#laravel事前準備">Laravel事前準備</a></h1>
 <ol>
-<li>Docker Desktopのインストール</li>
-<li>ストア的なところからubuntu20.04とWindowsターミナルをインストール</li>
-<li>wsl2をダウンロードしてインストール（https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package）</li>
-<li>powershellでwsl2をデフォルトにする（wsl --set-default-version 2）</li>
-<li>PC再起動</li>
-<li>Docker DesktopのSetting -&gt; Resources -&gt; WSL INTEGRATIONのEnable Integration ...にチェックを入れ，Ubuntu 20.04のトグルをオンにする</li>
-<li>Windowsターミナルをubuntu20.04で動かしてプロジェクト作成コマンド実行</li>
+<li>Docker Desktopをインストールする．</li>
+<li>Misrosoft Store から <code>ubuntu20.04</code> と <code>Windows Terminal</code> をインストール</li>
+<li>下記の URL から WSL2 をダウンロードしてインストール
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package">https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package</a></li>
+</ul>
+</li>
+<li>Powershell で以下のコマンドを実行し，WSL2 をデフォルトにする
+<ul>
+<li><code>wsl --set-default-version 2</code></li>
+</ul>
+</li>
+<li>PC を再起動する．</li>
+<li>Docker Desktopを起動し，「Setting」 -&gt; 「Resources」 -&gt; 「WSL INTEGRATION」の<code>Enable Integration ...</code>にチェックを入れ，「Ubuntu 20.04」のトグルをオンにする．</li>
+<li>Windows Terminal を Ubuntu20.04 で動かしてプロジェクト作成コマンドを実行する．</li>
 </ol>
-<p>Docker Desctopをインストールする内容を追記する．</p>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="day06"><a class="header" href="#day06">Day06</a></h1>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="day07"><a class="header" href="#day07">Day07</a></h1>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="day08"><a class="header" href="#day08">Day08</a></h1>
