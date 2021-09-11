@@ -8,4 +8,4 @@ PHPではWebアプリケーションの仕組みや用いられている基礎�
 
 講義で使用するサンプルコードは全て下記URLに保存します．毎回の講義前にダウンロードをお願いします！
 
-https://bit.ly/2X9TaPC
+[https://bit.ly/2X9TaPC](https://bit.ly/2X9TaPC)
