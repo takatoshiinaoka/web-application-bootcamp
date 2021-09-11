@@ -166,6 +166,40 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="php概要"><a class="header" href="#php概要">PHP概要</a></h1>
+<h2 id="webアプリケーションの仕組み動き方"><a class="header" href="#webアプリケーションの仕組み動き方">Webアプリケーションの仕組み（動き方）</a></h2>
+<p>Webアプリケーション（のソースコード）は世界のどこかにある「サーバ」に置かれている．</p>
+<p><img src="./img/php_file_web01.svg" alt="webの仕組み" /></p>
+<p>Webアプリケーションを使用するときは，Webブラウザに「URL」を指定する．</p>
+<ul>
+<li>Webブラウザから「http」方式でURLに「リクエスト」を送る．</li>
+<li>URLはWeb上にたくさんあるファイルを必ず1つ指定できるようになっている（ユニークな文字列）．</li>
+</ul>
+<p>URLの構造は下記のようになっている．</p>
+<pre><code class="language-txt">https://www.emperor-crimson.com/data/status.php
+  ^       ^                      ^      ^
+  |       |                      |      |
+scheme hostname（サーバ名）    directory filename
+</code></pre>
+<h2 id="サーバ---クライアント型のアプリケーション"><a class="header" href="#サーバ---クライアント型のアプリケーション">サーバ - クライアント型のアプリケーション</a></h2>
+<h3 id="サーバで動作する言語サーバサイド"><a class="header" href="#サーバで動作する言語サーバサイド">サーバで動作する言語（サーバサイド）</a></h3>
+<p>サーバ上でプログラムが実行される．</p>
+<p><img src="./img/php_web_server.svg" alt="サーバサイド言語の動き方" /></p>
+<ul>
+<li>PHP</li>
+<li>Ruby</li>
+<li>Python</li>
+<li>JAVA</li>
+<li>Node.js</li>
+<li>etc...</li>
+</ul>
+<h3 id="クライアントwebブラウザで動作する言語クライアントサイド"><a class="header" href="#クライアントwebブラウザで動作する言語クライアントサイド">クライアント（webブラウザ）で動作する言語（クライアントサイド）</a></h3>
+<p><img src="./img/php_web_client.svg" alt="クライアントサイド言語の動き方" /></p>
+<p>webブラウザがプログラムを実行する．</p>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
 <h2 id="サーバサイドの役割"><a class="header" href="#サーバサイドの役割">サーバサイドの役割</a></h2>
 <p>様々なWebアプリケーションが存在するが，基本のサーバサイド処理は同様である．</p>
 <p>基本の機能は何らかのデータを扱うことである．</p>
