@@ -29,6 +29,10 @@
 
 まずは検索フォームを用意し，POST でサーバにデータを送信する．
 
+送信側では下記を設定！
+- 宛先（`action="data_select.php"`）
+- メソッド（`method="post"`）
+- データ名（`name="keyword"`）
 
 ```php
 // data_input.php
