@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PHP事前準備 - web-application-bootcamp</title>
+        <title>PHP基礎 - web-application-bootcamp</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html" class="active"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html" class="active"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,88 +165,169 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="php事前準備"><a class="header" href="#php事前準備">PHP事前準備</a></h1>
-<h2 id="サーバとクライアント"><a class="header" href="#サーバとクライアント">サーバとクライアント</a></h2>
-<p>サーバで動作する言語（サーバサイド）</p>
+                        <h1 id="php基礎"><a class="header" href="#php基礎">PHP基礎</a></h1>
+<h2 id="phpの記述"><a class="header" href="#phpの記述">PHPの記述</a></h2>
+<p>PHPは「PHPファイル」に記述する．</p>
+<h3 id="phpファイルの作成"><a class="header" href="#phpファイルの作成">PHPファイルの作成</a></h3>
 <ul>
-<li>webサーバ上でプログラムが実行される．</li>
-<li>PHP, Ruby, Python, JAVA, (node.js), etc…</li>
+<li>拡張子を「<code>.php</code>」にする．</li>
+<li>例：「<code>index.php</code>」「<code>create.php</code>」など．</li>
 </ul>
-<p>クライアント（webブラウザ）で動作する言語（クライアントサイド）</p>
+<h3 id="開始タグと終了タグ"><a class="header" href="#開始タグと終了タグ">開始タグと終了タグ</a></h3>
 <ul>
-<li>webブラウザでプログラムが実行される．</li>
-<li>html, css, JavaScript</li>
+<li>「<code>&lt;?php</code>」で始まり「<code>?&gt;</code>」で終了（phpしか書かない場合，終了タグは省略可）．</li>
+<li>開始タグと終了タグの間に書かれた処理がサーバ上で実行される！</li>
+<li>タグ以外の部分（HTMLなど記述した場合）はサーバでは実行されない（そのままソースコードがブラウザに送信される）．</li>
 </ul>
-<p>=&gt;サーバサイド言語の開発にはサーバ上で動作させるアプリケーション（xamppなど）が必要！</p>
-<p>（自分のPC上でサーバを動かすイメージ）</p>
-<h2 id="サーバのしくみとxamppの役割"><a class="header" href="#サーバのしくみとxamppの役割">サーバのしくみとXAMPPの役割</a></h2>
-<h3 id="サーバの役割及び構成"><a class="header" href="#サーバの役割及び構成">サーバの役割及び構成</a></h3>
-<p>Webアプリケーションはクライアントとサーバの組み合わせで構成されている．</p>
-<p>サーバには「アプリケーションサーバ」と「DBサーバ」が存在し，相互に連携することでアプリケーションを構築している．</p>
-<p>（詳しい仕組みの理解は後からでOK．）</p>
-<p><img src="./img/php_file_about_server.svg" alt="サーバのしくみ" /></p>
-<h3 id="サーバサイド言語での開発とxamppの役割"><a class="header" href="#サーバサイド言語での開発とxamppの役割">サーバサイド言語での開発とXAMPPの役割</a></h3>
-<p>上記のとおり，PHP（及び他のサーバサイド言語）を動作させるには「サーバ」が必要となる．</p>
-<p>しかし，自身のPCで開発を行う場合に都度サーバを用意することは効率的ではない．</p>
-<p>このような場合に自身のPC内で擬似的なサーバを用意してPHPを動作させることができるのが「xampp」である．</p>
-<p>xamppは以下の役割を提供する．</p>
+<pre><code class="language-php">&lt;?php
+// ここにPHPの処理を書く
+// ...
+?&gt;
+
+// ここから下に書いたコードはサーバで実行されない
+// （HTMLなどを書く）
+</code></pre>
+<h2 id="変数と文字列"><a class="header" href="#変数と文字列">変数と文字列</a></h2>
+<p>変数の扱いはJavaScriptと大きく変わらないが，以下の点に注意する．</p>
 <ul>
-<li>PHPを動作させるアプリケーションサーバ（<code>Apatch web server</code>）を用意する．</li>
-<li>データを保存するためのデータベース（<code>MySQL Database</code>）を用意する．</li>
-<li>その他いろいろ（今回の開発では使用しない）．</li>
+<li>変数名は必ず「<code>$****</code>」←$で始めるルール！</li>
+<li>文字列はシングルクォーテーションかダブルクォーテーションで囲む．</li>
+<li><code>$</code>の次に数字はNG（JavaScriptと同様）．</li>
+<li><code>_</code>などの記号はOK．</li>
 </ul>
-<p><img src="./img/php_file_about_xampp.svg" alt="xampp概要" /></p>
-<h2 id="xampp環境構築"><a class="header" href="#xampp環境構築">XAMPP環境構築</a></h2>
-<h3 id="ダウンロード"><a class="header" href="#ダウンロード">ダウンロード</a></h3>
-<p>下記URLにアクセスする．</p>
-<p><a href="https://www.apachefriends.org/jp/download.html">https://www.apachefriends.org/jp/download.html</a></p>
+<pre><code class="language-php">// 数値
+$number = 100;
+
+// 文字列
+$name = 'engineer';
+
+// 数値スタートはNG
+$1lang = 'php';
+
+// 後の数字はOK
+$lang2 = 'javascript';
+
+// 記号もOK
+$_lang = 'Rust';
+</code></pre>
+<p>変数と文字列は「<code>.</code>」でつなげる．</p>
+<p>ダブルクォーテーションを用いる場合は<code>{}</code>で変数を埋め込むことができる（JavaScriptの<code>``</code>と<code>${}</code>に相当）．</p>
+<pre><code class="language-php">$str1 = 'ジーズで' . $lang2 . 'を勉強中！';
+
+// こっちのほうが楽かな．．！
+$str2 = &quot;ジーズで{$lang2}を勉強中！&quot;;
+</code></pre>
+<h2 id="配列と連想配列"><a class="header" href="#配列と連想配列">配列と連想配列</a></h2>
+<h3 id="配列"><a class="header" href="#配列">配列</a></h3>
+<p>JavaScriptと同様の形式．</p>
+<p>データを確認する際には<code>echo</code>または<code>var_dump()</code>を用いる．</p>
+<ul>
+<li><code>echo</code>で値自体を出力する．</li>
+<li><code>var_dump()</code>では配列などの構造も見られる．</li>
+<li>デバッグの基本は<code>var_dump()</code>（JavaScriptの<code>console.log()</code>的な）！！！</li>
+</ul>
+<pre><code class="language-php">// 配列
+$array = ['JavaScript', 'PHP', 'Rust', 'COBOL'];
+
+// `echo`で画面上にデータを表示できる．
+echo $array[2]; // Rust
+
+// 変数や配列の中身や構造を表示
+var_dump($array);
+
+</code></pre>
+<h3 id="連想配列"><a class="header" href="#連想配列">連想配列</a></h3>
+<p>連想配列はJavaScriptにおける「オブジェクト」に相当する．</p>
+<ul>
+<li>「キー」「バリュー」のセット．</li>
+<li>キー名を指定して値を取り出すことができる．</li>
+</ul>
+<pre><code class="language-php">// 連想配列
+$array2 = [
+  &quot;フロント&quot; =&gt; &quot;JavaScript&quot;,
+  &quot;サーバ&quot; =&gt; &quot;PHP&quot;,
+  &quot;iOS&quot; =&gt; &quot;Swift&quot;,
+  &quot;関数型&quot; =&gt; &quot;Haskell&quot;
+];
+
+// キー名を指定して値を取り出す
+echo $array2['サーバ'];
+</code></pre>
+<h2 id="条件分岐"><a class="header" href="#条件分岐">条件分岐</a></h2>
+<p>条件分岐の構文はJavaScriptと同様．</p>
+<pre><code class="language-php">// 0から1のランダムな数を発生させる
+$number = rand(0, 1);
+
+// 1かそれ以外で条件分岐
+if ($number == 1) {
+  echo '値は1です';
+} else {
+  echo '値は1以外です';
+}
+
+</code></pre>
+<p>条件分岐を使用したおみくじの例</p>
+<pre><code class="language-php">// 1から5の乱数を作成
+$random_number = rand(1, 5);
+
+// 乱数の値で条件分岐
+if ($random_number == 1) {
+  $result =  '大吉';
+} elseif ($random_number == ...) {
+  $result = ...
+} elseif (...) {
+  // ...
+}
+echo $result;
+
+</code></pre>
+<h2 id="phpとhtmlの組み合わせ"><a class="header" href="#phpとhtmlの組み合わせ">PHPとHTMLの組み合わせ</a></h2>
+<p><code>echo</code>で処理結果を出力できるが，ブラウザに値が表示されるだけで気が利いていない．</p>
+<p>そこで，PHPとHTMLを組み合わせて画面を作成する機能を利用してみる．</p>
+<ul>
+<li>html内に<code>&lt;?=変数名?&gt;</code>と記述することでPHPの変数を埋め込める．</li>
+<li>PHPで処理した結果からHTMLをつくるイメージ．</li>
+</ul>
+<pre><code class="language-php">&lt;?php
+// いろいろな処理
+$result = '大吉';
+?&gt;
+
+// ここからhtmlの記述
+&lt;!DOCTYPE html&gt;
+  &lt;head&gt;
+    // 省略
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;今日の運勢は&lt;?=$result?&gt;です！&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="-key-point"><a class="header" href="#-key-point">💡 Key Point</a></h3>
 <blockquote>
-<p><strong>！！注意！！</strong></p>
-<p>資料作成時時点では<code>7.3.6 / PHP 7.3.6</code>となっているが，現時点（2021/09/12）では<code>8.0.9 / PHP 8.0.9</code>が最新なのでこちらを用いること！！</p>
-<p>上記バージョンより新しいものが表示される場合は最新版をインストールしてください！</p>
+<p>PHPとHTMLが動く順序を把握しよう！</p>
+<ol>
+<li>PHPの処理が実行される．</li>
+<li>処理の結果作成された値がHTMLに埋め込まれ，HTMLが完成する．</li>
+<li>HTMLのデータがブラウザに送信される．</li>
+<li>ブラウザがHTMLの内容を画面に表示する．</li>
+</ol>
 </blockquote>
-<p>↓アクセス画面
-<img src="./img/php_setup_xampp_download_01.svg" alt="xamppダウンロード画面" /></p>
-<p>Macの人は下記からダウンロード．</p>
-<p><img src="./img/php_setup_xampp_download_02.svg" alt="xamppダウンロード画面" /></p>
-<p>Windowsの人は下記からダウンロード．</p>
-<p><img src="./img/php_setup_xampp_download_03.svg" alt="xamppダウンロード画面" /></p>
-<h3 id="インストール"><a class="header" href="#インストール">インストール</a></h3>
-<p>ダウンロードしたらインストールを進める．</p>
-<p><img src="./img/php_setup_xampp_download_04.svg" alt="xamppダウンロード画面" /></p>
-<h3 id="動作確認サーバ起動"><a class="header" href="#動作確認サーバ起動">動作確認（サーバ起動）</a></h3>
-<p>インストールが済んだらアプリケーションを立ち上げる．</p>
-<p>Macの人は以下のようにサーバを起動させる．</p>
-<p><img src="./img/php_setup_xampp_download_05.svg" alt="xamppダウンロード画面" /></p>
-<p>Windowsの人は以下の画面．</p>
-<p><img src="./img/php_setup_xampp_download_06.svg" alt="xamppダウンロード画面" /></p>
-<h3 id="動作確認画面表示"><a class="header" href="#動作確認画面表示">動作確認（画面表示）</a></h3>
-<h4 id="アプリケーションサーバ動作確認"><a class="header" href="#アプリケーションサーバ動作確認">アプリケーションサーバ動作確認</a></h4>
-<p>ブラウザで<a href="https://localhost/">https://localhost/</a>にアクセスして下記画面が表示されればOK．</p>
-<p><img src="./img/php_setup_xampp_confirm_01.svg" alt="アプリケーションサーバ動作確認" /></p>
-<h4 id="dbサーバ動作確認"><a class="header" href="#dbサーバ動作確認">DBサーバ動作確認</a></h4>
-<p>ブラウザで<a href="https://localhost/phpmyadmin">https://localhost/phpmyadmin</a>にアクセスして下記画面が表示されればOK．</p>
-<p><img src="./img/php_setup_xampp_confirm_02.svg" alt="DBサーバ動作確認" /></p>
-<h2 id="まとめ"><a class="header" href="#まとめ">まとめ</a></h2>
-<p>下記3点が実施できていることを確認しよう！</p>
-<ul>
-<li>XAMPPの起動確認</li>
-<li><a href="http://localhost/">http://localhost/</a>のアクセス確認</li>
-<li><a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a>のアクセス確認</li>
-</ul>
+<h2 id="phpの練習"><a class="header" href="#phpの練習">PHPの練習</a></h2>
+<p><code>omikuji.php</code>におみくじの処理を作成し，HTMLと組み合わせて画面に結果を表示しよう．</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../../work.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../php/php01/get-started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../../php/php01/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../php/php01/get-post.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -258,13 +339,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../../work.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../php/php01/get-started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../../php/php01/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../php/php01/get-post.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

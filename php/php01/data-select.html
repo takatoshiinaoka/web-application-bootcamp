@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PHP事前準備 - web-application-bootcamp</title>
+        <title>パラメータ送信による検索機能の実装 - web-application-bootcamp</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html" class="active"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html" class="active"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,90 +165,142 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="php事前準備"><a class="header" href="#php事前準備">PHP事前準備</a></h1>
-<h2 id="サーバとクライアント"><a class="header" href="#サーバとクライアント">サーバとクライアント</a></h2>
-<p>サーバで動作する言語（サーバサイド）</p>
+                        <h1 id="パラメータ送信による検索機能の実装"><a class="header" href="#パラメータ送信による検索機能の実装">パラメータ送信による検索機能の実装</a></h1>
+<p>サーバへのデータ送信を用いて，ユーザの入力値によるデータ検索を実装してみよう．</p>
+<p>細かい処理はググりながら書けるので，まずは全体の流れを押さえるのが大事ッ！！</p>
+<h2 id="処理の流れ"><a class="header" href="#処理の流れ">処理の流れ</a></h2>
+<ol>
+<li>ユーザがデータを入力する画面を準備する．</li>
+<li>検索ボタンクリックでサーバにユーザが入力したデータを送信する．</li>
+<li>サーバ側では，受け取ったキーワードを用いて予め用意されたデータの中から該当するものを抽出し，画面を構成する．</li>
+</ol>
+<h2 id="データの確認"><a class="header" href="#データの確認">データの確認</a></h2>
+<p>今回は下記のデータを使用する（すでにファイル内にデータ用意済）．</p>
+<p>入力画面でキーワードを入力し，下記のデータの中からキーワードが含まれるものだけを抽出して画面に表示する．</p>
+<table><thead><tr><th>id</th><th>name</th><th>hero</th><th>rival</th></tr></thead><tbody>
+<tr><td>1</td><td>ファントムブラッド</td><td>ジョナサン・ジョースター</td><td>ディオ・ブランドー</td></tr>
+<tr><td>2</td><td>戦闘潮流</td><td>ジョセフ・ジョースター</td><td>カーズ</td></tr>
+<tr><td>3</td><td>スターダストクルセイダース</td><td>空条承太郎</td><td>DIO</td></tr>
+<tr><td>4</td><td>ダイヤモンドは砕けない</td><td>東方仗助</td><td>吉良吉影</td></tr>
+<tr><td>5</td><td>黄金の風</td><td>ジョルノ・ジョバァーナ</td><td>ディアボロ</td></tr>
+<tr><td>6</td><td>ストーンオーシャン</td><td>空条徐倫</td><td>エンリコ・プッチ</td></tr>
+<tr><td>7</td><td>スティール・ボール・ラン</td><td>ジョニィ・ジョースター</td><td>ファニー・ヴァレンタイン</td></tr>
+<tr><td>8</td><td>ジョジョリオン</td><td>東方定助</td><td>透龍</td></tr>
+</tbody></table>
+<h2 id="ユーザ入力データの送信"><a class="header" href="#ユーザ入力データの送信">ユーザ入力データの送信</a></h2>
+<p>まずは検索フォームを用意し，GET でサーバにデータを送信する．</p>
+<p>送信側では下記を設定！</p>
 <ul>
-<li>webサーバ上でプログラムが実行される．</li>
-<li>PHP, Ruby, Python, JAVA, (node.js), etc…</li>
+<li>宛先（<code>action=&quot;data_select.php&quot;</code>）</li>
+<li>メソッド（<code>method=&quot;get&quot;</code>）</li>
+<li>データ名（<code>name=&quot;keyword&quot;</code>）</li>
 </ul>
-<p>クライアント（webブラウザ）で動作する言語（クライアントサイド）</p>
-<ul>
-<li>webブラウザでプログラムが実行される．</li>
-<li>html, css, JavaScript</li>
-</ul>
-<p>=&gt;サーバサイド言語の開発にはサーバ上で動作させるアプリケーション（xamppなど）が必要！</p>
-<p>（自分のPC上でサーバを動かすイメージ）</p>
-<h2 id="サーバのしくみとxamppの役割"><a class="header" href="#サーバのしくみとxamppの役割">サーバのしくみとXAMPPの役割</a></h2>
-<h3 id="サーバの役割及び構成"><a class="header" href="#サーバの役割及び構成">サーバの役割及び構成</a></h3>
-<p>Webアプリケーションはクライアントとサーバの組み合わせで構成されている．</p>
-<p>サーバには「アプリケーションサーバ」と「DBサーバ」が存在し，相互に連携することでアプリケーションを構築している．</p>
-<p>（詳しい仕組みの理解は後からでOK．）</p>
-<p><img src="./img/php_file_about_server.svg" alt="サーバのしくみ" /></p>
-<h3 id="サーバサイド言語での開発とxamppの役割"><a class="header" href="#サーバサイド言語での開発とxamppの役割">サーバサイド言語での開発とXAMPPの役割</a></h3>
-<p>上記のとおり，PHP（及び他のサーバサイド言語）を動作させるには「サーバ」が必要となる．</p>
-<p>しかし，自身のPCで開発を行う場合に都度サーバを用意することは効率的ではない．</p>
-<p>このような場合に自身のPC内で擬似的なサーバを用意してPHPを動作させることができるのが「xampp」である．</p>
-<p>xamppは以下の役割を提供する．</p>
-<ul>
-<li>PHPを動作させるアプリケーションサーバ（<code>Apatch web server</code>）を用意する．</li>
-<li>データを保存するためのデータベース（<code>MySQL Database</code>）を用意する．</li>
-<li>その他いろいろ（今回の開発では使用しない）．</li>
-</ul>
-<p><img src="./img/php_file_about_xampp.svg" alt="xampp概要" /></p>
-<h2 id="xampp環境構築"><a class="header" href="#xampp環境構築">XAMPP環境構築</a></h2>
-<h3 id="ダウンロード"><a class="header" href="#ダウンロード">ダウンロード</a></h3>
-<p>下記URLにアクセスする．</p>
-<p><a href="https://www.apachefriends.org/jp/download.html">https://www.apachefriends.org/jp/download.html</a></p>
+<pre><code class="language-php">// data_input.php
+
+&lt;form action=&quot;data_select.php&quot; method=&quot;get&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;検索キーワード入力画面&lt;/legend&gt;
+    &lt;div&gt;
+      keyword: &lt;input type=&quot;text&quot; name=&quot;keyword&quot;&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;button&gt;検索&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+
+</code></pre>
+<h2 id="データの受け取り"><a class="header" href="#データの受け取り">データの受け取り</a></h2>
+<p>データを受け取る場合には必ず<code>var_dump()</code>を用いてデータを受け取れていることを確認する．</p>
+<pre><code class="language-php">// data_select.php
+
+var_dump($_GET);
+exit();
+
+</code></pre>
+<h2 id="キーワードを用いた検索と画面の構成"><a class="header" href="#キーワードを用いた検索と画面の構成">キーワードを用いた検索と画面の構成</a></h2>
+<ol>
+<li>受け取ったキーワードを用いて，該当するデータのみ含まれる配列を作成する．<code>id</code>，<code>name</code>，<code>hero</code>，<code>rival</code>いずれかにキーワードが含まれていれば OK とする．</li>
+<li>作成した配列から，画面を構成するためのタグを構成する．</li>
+</ol>
+<pre><code class="language-php">// data_select.php
+
+$keyword = $_GET['keyword'];
+
+// 用意されたデータからキーワードがヒットするものを抽出する処理
+$results = array_filter($data, function ($x) use ($keyword) {
+  return str_contains($x['id'], $keyword)
+    || str_contains($x['name'], $keyword)
+    || str_contains($x['hero'], $keyword)
+    || str_contains($x['rival'], $keyword);
+});
+
+$output = '';
+
+foreach ($results as $result) {
+  $output .= &quot;&lt;tr&gt;&lt;td&gt;{$result['id']}&lt;/td&gt;&lt;td&gt;{$result['name']}&lt;/td&gt;&lt;td&gt;{$result['hero']}&lt;/td&gt;&lt;td&gt;{$result['rival']}&lt;/td&gt;&lt;/tr&gt;&quot;;
+}
+
+</code></pre>
+<p>構成したタグを HTML 部分に埋め込み．</p>
+<pre><code class="language-php">// data_select.php
+
+// 省略
+
+&lt;body&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;検索結果&lt;/legend&gt;
+    &lt;a href=&quot;data_input.php&quot;&gt;入力画面&lt;/a&gt;
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;id&lt;/th&gt;
+          &lt;th&gt;name&lt;/th&gt;
+          &lt;th&gt;hero&lt;/th&gt;
+          &lt;th&gt;rival&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;!-- ここに`&lt;tr&gt;&lt;td&gt;'id'&lt;/td&gt;&lt;td&gt;'name'&lt;/td&gt;&lt;td&gt;'hero'&lt;/td&gt;&lt;td&gt;'rival'&lt;/td&gt;&lt;/tr&gt;`の形式でデータが表示する --&gt;
+        &lt;?= $output ?&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/fieldset&gt;
+&lt;/body&gt;
+
+// 省略
+
+</code></pre>
+<h3 id="-key-point"><a class="header" href="#-key-point">💡 Key Point</a></h3>
 <blockquote>
-<p><strong>！！注意！！</strong></p>
-<p>資料作成時時点では<code>7.3.6 / PHP 7.3.6</code>となっているが，現時点（2021/09/12）では<code>8.0.9 / PHP 8.0.9</code>が最新なのでこちらを用いること！！</p>
-<p>上記バージョンより新しいものが表示される場合は最新版をインストールしてください！</p>
+<p>処理の流れを把握するのが大事！！</p>
+<ol>
+<li>ユーザが画面に入力したキーワードをサーバに送信する．</li>
+<li>サーバでキーワードを受け取り，もともと存在するデータからヒットするものを抽出する．</li>
+<li>ヒットしたデータを元にHTMLをつくる．</li>
+<li>HTMLのデータがブラウザに送信される．</li>
+<li>画面にHTMLが表示される．</li>
+</ol>
 </blockquote>
-<p>↓アクセス画面
-<img src="./img/php_setup_xampp_download_01.svg" alt="xamppダウンロード画面" /></p>
-<p>Macの人は下記からダウンロード．</p>
-<p><img src="./img/php_setup_xampp_download_02.svg" alt="xamppダウンロード画面" /></p>
-<p>Windowsの人は下記からダウンロード．</p>
-<p><img src="./img/php_setup_xampp_download_03.svg" alt="xamppダウンロード画面" /></p>
-<h3 id="インストール"><a class="header" href="#インストール">インストール</a></h3>
-<p>ダウンロードしたらインストールを進める．</p>
-<p><img src="./img/php_setup_xampp_download_04.svg" alt="xamppダウンロード画面" /></p>
-<h3 id="動作確認サーバ起動"><a class="header" href="#動作確認サーバ起動">動作確認（サーバ起動）</a></h3>
-<p>インストールが済んだらアプリケーションを立ち上げる．</p>
-<p>Macの人は以下のようにサーバを起動させる．</p>
-<p><img src="./img/php_setup_xampp_download_05.svg" alt="xamppダウンロード画面" /></p>
-<p>Windowsの人は以下の画面．</p>
-<p><img src="./img/php_setup_xampp_download_06.svg" alt="xamppダウンロード画面" /></p>
-<h3 id="動作確認画面表示"><a class="header" href="#動作確認画面表示">動作確認（画面表示）</a></h3>
-<h4 id="アプリケーションサーバ動作確認"><a class="header" href="#アプリケーションサーバ動作確認">アプリケーションサーバ動作確認</a></h4>
-<p>ブラウザで<a href="https://localhost/">https://localhost/</a>にアクセスして下記画面が表示されればOK．</p>
-<p><img src="./img/php_setup_xampp_confirm_01.svg" alt="アプリケーションサーバ動作確認" /></p>
-<h4 id="dbサーバ動作確認"><a class="header" href="#dbサーバ動作確認">DBサーバ動作確認</a></h4>
-<p>ブラウザで<a href="https://localhost/phpmyadmin">https://localhost/phpmyadmin</a>にアクセスして下記画面が表示されればOK．</p>
-<p><img src="./img/php_setup_xampp_confirm_02.svg" alt="DBサーバ動作確認" /></p>
-<h2 id="まとめ"><a class="header" href="#まとめ">まとめ</a></h2>
-<p>下記3点が実施できていることを確認しよう！</p>
-<ul>
-<li>XAMPPの起動確認</li>
-<li><a href="http://localhost/">http://localhost/</a>のアクセス確認</li>
-<li><a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a>のアクセス確認</li>
-</ul>
+<h2 id="練習"><a class="header" href="#練習">練習</a></h2>
+<p><code>data_input.php</code>と<code>data_select.php</code>に上記の処理を記述して動作を確認しよう！</p>
+<ol>
+<li><code>data_input.php</code>のフォーム部分にデータ送信のためのコードを記述しよう．</li>
+<li><code>data_select.php</code>でデータが受け取れることを確認！</li>
+<li><code>data_select.php</code>で受け取ったデータを用いてデータを検索し，画面に表示する処理を記述！</li>
+</ol>
+<p><code>data_input.php</code>から検索キーワードを送信し，キーワードが含まれるデータのみ抽出されて表示されれば OK！</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../../work.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../php/php01/get-post.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="../../php/php01/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -258,15 +310,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../../work.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../php/php01/get-post.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a rel="next" href="../../php/php01/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
