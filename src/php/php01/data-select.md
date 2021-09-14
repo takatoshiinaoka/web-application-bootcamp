@@ -2,6 +2,8 @@
 
 サーバへのデータ送信を用いて，ユーザの入力値によるデータ検索を実装してみよう．
 
+細かい処理はググりながら書けるので，まずは全体の流れを押さえるのが大事ッ！！
+
 ## 処理の流れ
 
 1. ユーザがデータを入力する画面を準備する．
@@ -12,7 +14,7 @@
 
 今回は下記のデータを使用する（すでにファイル内にデータ用意済）．
 
-入力画面でキーワードを入力し，このデータの中からキーワードが含まれるものだけを抽出して画面に表示する．
+入力画面でキーワードを入力し，下記のデータの中からキーワードが含まれるものだけを抽出して画面に表示する．
 
 |id|name|hero|rival|
 |-|-|-|-|
@@ -27,17 +29,17 @@
 
 ## ユーザ入力データの送信
 
-まずは検索フォームを用意し，POST でサーバにデータを送信する．
+まずは検索フォームを用意し，GET でサーバにデータを送信する．
 
 送信側では下記を設定！
 - 宛先（`action="data_select.php"`）
-- メソッド（`method="post"`）
+- メソッド（`method="get"`）
 - データ名（`name="keyword"`）
 
 ```php
 // data_input.php
 
-<form action="data_select.php" method="post">
+<form action="data_select.php" method="get">
   <fieldset>
     <legend>検索キーワード入力画面</legend>
     <div>
@@ -59,7 +61,7 @@
 ```php
 // data_select.php
 
-var_dump($_POST);
+var_dump($_GET);
 exit();
 
 ```
@@ -72,8 +74,9 @@ exit();
 ```php
 // data_select.php
 
-$keyword = $_POST['keyword'];
+$keyword = $_GET['keyword'];
 
+// 用意されたデータからキーワードがヒットするものを抽出する処理
 $results = array_filter($data, function ($x) use ($keyword) {
   return str_contains($x['id'], $keyword)
     || str_contains($x['name'], $keyword)
@@ -120,6 +123,17 @@ foreach ($results as $result) {
 // 省略
 
 ```
+
+### 💡 Key Point
+
+>処理の流れを把握するのが大事！！
+>
+>1. ユーザが画面に入力したキーワードをサーバに送信する．
+>2. サーバでキーワードを受け取り，もともと存在するデータからヒットするものを抽出する．
+>3. ヒットしたデータを元にHTMLをつくる．
+>4. HTMLのデータがブラウザに送信される．
+>5. 画面にHTMLが表示される．
+
 
 ## 練習
 

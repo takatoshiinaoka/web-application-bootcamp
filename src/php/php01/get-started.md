@@ -24,10 +24,16 @@ xamppはPC内に`localhost`というサーバを用意してくれる．
 
 PC内では予め指定されたディレクトリ（`htdocs`）がサーバの役割をするよう決められているため，まずPHPファイルを指定のディレクトリに配置する作業が必要となる．
 
-サンプルフォルダを下記のディレクトリへ移動する！
+サンプルフォルダを下記のディレクトリへ移動するとPHPを動かせる！
 
 - windows : `C\xampp\htdocs\`
 - mac : `/Applications/xampp/xamppfiles/htdocs/`
+
+## 便利な設定
+
+- `htdocs`はよく使うのでショートカットを用意しておくと便利！！
+- `htdocs`内に講義用のフォルダを用意しておくと管理しやすい！
+- `htdocs`内の`index.php`の名前を`index.php.old`に変更しておくとブラウザ画面から`htdocs`内のファイルが確認できて便利！！
 
 ### 💡 Key Point
 

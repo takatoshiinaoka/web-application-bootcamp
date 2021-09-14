@@ -2,15 +2,17 @@
 
 - [はじめに](./readme.md)
 
+- [Phase01の課題について](./work.md)
+
 - [PHP事前準備](./php/php_setup/README.md)
 
-<!-- - [Day01](./php/php01/README.md)
+- [Day01](./php/php01/README.md)
 
   - [PHP概要](./php/php01/about-php.md)
   - [開発の手順](./php/php01/get-started.md)
   - [PHP基礎](./php/php01/php-start.md)
   - [クライアント - サーバ間の通信](./php/php01/get-post.md)
-  - [パラメータ送信による検索機能の実装](./php/php01/data-select.md) -->
+  - [パラメータ送信による検索機能の実装](./php/php01/data-select.md)
   <!-- - [課題](./php/php01/work.md) -->
 
 <!-- - [Day02](./php/php02/README.md)
