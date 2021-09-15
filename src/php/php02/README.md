@@ -14,6 +14,7 @@
 - SQLでDBを操作する基本を理解する！
 - PHPでDBを操作できるようになる！
 
+**今回の内容を実装できるようになると，Webアプリケーションのかなりの部分が実現できる！！**
 
 ## 準備
 
@@ -22,4 +23,4 @@
 - XAMPPの起動確認
 - [http://localhost/](http://localhost/)のアクセス確認
 - [http://localhost/phpmyadmin](http://localhost/phpmyadmin)のアクセス確認
-- サンプルフォルダを「htdocs」フォルダに入れる
+- サンプルフォルダを「htdocs」フォルダに入れる（前回と同じ要領）
