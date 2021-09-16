@@ -96,6 +96,7 @@ DBに接続するコードは決まった形式（`PDO`）．
 
 接続の際には以下の情報が必要になる．今回は`dbname`のみ設定が必要．
 
+- `mysql`：DBの種類（他に`PostgreSQL`，`Oracle Database`，などが存在する）
 - `dbname`：DBの名前（今回はここを`dec_todo`に設定する！）
 - `port`：接続ポート
 - `host`：DBのホスト名
