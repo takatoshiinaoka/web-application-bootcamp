@@ -15,13 +15,13 @@
   - [パラメータ送信による検索機能の実装](./php/php01/data-select.md)
   <!-- - [課題](./php/php01/work.md) -->
 
-<!-- - [Day02](./php/php02/README.md)
+- [Day02](./php/php02/README.md)
 
   - [DBの基本](./php/php02/about-db.md)
   - [DB / テーブルの作成](./php/php02/start-db.md)
   - [SQLによるDB操作](./php/php02/db-sql.md)
   - [PHPとDBの連携1（データ作成処理）](./php/php02/sql-create.md)
-  - [PHPとDBの連携2（データ参照処理）](./php/php02/sql-read.md) -->
+  - [PHPとDBの連携2（データ参照処理）](./php/php02/sql-read.md)
   <!-- - [課題と提出時の注意点](./php/php02/work.md) -->
 
 <!-- - [Day03](./php/php03/README.md)
