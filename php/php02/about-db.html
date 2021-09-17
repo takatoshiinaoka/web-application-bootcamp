@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>開発の手順 - web-application-bootcamp</title>
+        <title>DBの基本 - web-application-bootcamp</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html" class="active"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php02/index.html"><strong aria-hidden="true">5.</strong> Day02</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php02/about-db.html"><strong aria-hidden="true">5.1.</strong> DBの基本</a></li><li class="chapter-item expanded "><a href="../../php/php02/start-db.html"><strong aria-hidden="true">5.2.</strong> DB / テーブルの作成</a></li><li class="chapter-item expanded "><a href="../../php/php02/db-sql.html"><strong aria-hidden="true">5.3.</strong> SQLによるDB操作</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-create.html"><strong aria-hidden="true">5.4.</strong> PHPとDBの連携1（データ作成処理）</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-read.html"><strong aria-hidden="true">5.5.</strong> PHPとDBの連携2（データ参照処理）</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php02/index.html"><strong aria-hidden="true">5.</strong> Day02</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php02/about-db.html" class="active"><strong aria-hidden="true">5.1.</strong> DBの基本</a></li><li class="chapter-item expanded "><a href="../../php/php02/start-db.html"><strong aria-hidden="true">5.2.</strong> DB / テーブルの作成</a></li><li class="chapter-item expanded "><a href="../../php/php02/db-sql.html"><strong aria-hidden="true">5.3.</strong> SQLによるDB操作</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-create.html"><strong aria-hidden="true">5.4.</strong> PHPとDBの連携1（データ作成処理）</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-read.html"><strong aria-hidden="true">5.5.</strong> PHPとDBの連携2（データ参照処理）</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,45 +165,65 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="php基礎"><a class="header" href="#php基礎">PHP基礎</a></h1>
-<h2 id="サーバサイド言語での開発"><a class="header" href="#サーバサイド言語での開発">サーバサイド言語での開発</a></h2>
-<p>PHP（及び他のサーバサイド言語）を動作させるには「サーバ」が必要となる．</p>
-<p>しかし，自身のPCで開発を行う場合に都度サーバを用意することは効率的ではない．</p>
-<p>このような場合に自身のPC内で擬似的なサーバを用意してPHPを動作させることができるのが「xampp」である．</p>
-<p>xamppは以下の役割を提供する．</p>
+                        <h1 id="dbの基本"><a class="header" href="#dbの基本">DBの基本</a></h1>
+<h2 id="dbとは"><a class="header" href="#dbとは">DBとは</a></h2>
 <ul>
-<li>PHPを動作させるアプリケーションサーバ（<code>Apatch web server</code>）を用意する．</li>
-<li>データを保存するためのデータベース（<code>MySQL Database</code>）を用意する．</li>
-<li>その他いろいろ（今回の開発では使用しない）．</li>
+<li>web上にデータを保存するためのもの．</li>
+<li>構造はエクセルなどと対比するとイメージしやすい！</li>
+<li>データを操作するにはSQL（言語）を用いる．</li>
 </ul>
-<p><img src="./img/php_file_about_xampp.svg" alt="xampp概要" /></p>
-<h2 id="開発の手順"><a class="header" href="#開発の手順">開発の手順</a></h2>
-<p>xamppはPC内に<code>localhost</code>というサーバを用意してくれる．</p>
-<p>このサーバ内にPHPファイルを配置することでPHPのコードを動かすことができる．</p>
-<p>PC内では予め指定されたディレクトリ（<code>htdocs</code>）がサーバの役割をするよう決められているため，まずPHPファイルを指定のディレクトリに配置する作業が必要となる．</p>
-<p>サンプルフォルダを下記のディレクトリへ移動するとPHPを動かせる！</p>
+<h2 id="使い所"><a class="header" href="#使い所">使い所</a></h2>
 <ul>
-<li>windows : <code>C\xampp\htdocs\</code></li>
-<li>mac : <code>/Applications/xampp/xamppfiles/htdocs/</code></li>
+<li>webアプリケーションでデータを保存する場合のほとんど．</li>
 </ul>
-<h2 id="便利な設定"><a class="header" href="#便利な設定">便利な設定</a></h2>
+<h3 id="利用シーンの例"><a class="header" href="#利用シーンの例">利用シーンの例</a></h3>
 <ul>
-<li><code>htdocs</code>はよく使うのでショートカットを用意しておくと便利！！</li>
-<li><code>htdocs</code>内に講義用のフォルダを用意しておくと管理しやすい！</li>
-<li><code>htdocs</code>内の<code>index.php</code>の名前を<code>index.php.old</code>に変更しておくとブラウザ画面から<code>htdocs</code>内のファイルが確認できて便利！！</li>
+<li>ECサイトの商品データ（商品名，画像，説明文）</li>
+<li>サービスに登録しているユーザの情報（ユーザ名，アドレス，etc）</li>
+<li>ブログの投稿内容（投稿日時，タイトル，画像，本文，etc）</li>
 </ul>
+<h2 id="dbのデータ構造と概念"><a class="header" href="#dbのデータ構造と概念">DBのデータ構造と概念</a></h2>
+<p>エクセルと同様のデータ構造となっている．実際にデータが格納されるのは「テーブル」であり，テーブルをどう設計するかがアプリケーションの根幹となる．</p>
+<table><thead><tr><th>DBの概念</th><th>エクセルの概念</th></tr></thead><tbody>
+<tr><td>データベース</td><td>エクセルファイル</td></tr>
+<tr><td>テーブル</td><td>シート</td></tr>
+<tr><td>レコード</td><td>行</td></tr>
+<tr><td>カラム</td><td>列</td></tr>
+</tbody></table>
 <h3 id="-key-point"><a class="header" href="#-key-point">💡 Key Point</a></h3>
 <blockquote>
-<p><strong>【重要】開発の手順は以下の流れとなる．</strong></p>
+<p>テーブル設計を行う際には，エクセルやスプレッドシートに書き出しながら作業すると視覚的に確認できるのでオススメ．</p>
+</blockquote>
+<h3 id="データ構造の例"><a class="header" href="#データ構造の例">データ構造の例</a></h3>
+<p>ECサイトの商品データをイメージしたテーブルを下記に示す．</p>
+<p>（下記のデーブル構造はまだ改善点があるが，後の講義で解説する．）</p>
+<table><thead><tr><th align="right">id</th><th>product_name</th><th align="right">price</th><th>category</th><th>image_url</th></tr></thead><tbody>
+<tr><td align="right">1</td><td>Laphroaig</td><td align="right">40</td><td>whisky</td><td>./images/laphroaig.png</td></tr>
+<tr><td align="right">2</td><td>Ardbeg</td><td align="right">45</td><td>whisky</td><td>./images/ardbeg.png</td></tr>
+<tr><td align="right">3</td><td>Caolila</td><td align="right">50</td><td>whisky</td><td>./images/caolila.png</td></tr>
+<tr><td align="right">4</td><td>Kilchoman</td><td align="right">50</td><td>whisky</td><td>./images/kilchoman.png</td></tr>
+<tr><td align="right">5</td><td>Bowmore</td><td align="right">45</td><td>whisky</td><td>./images/bowmore.png</td></tr>
+<tr><td align="right">6</td><td>PortCharlotte</td><td align="right">55</td><td>whisky</td><td>./images/portcharlotte.png</td></tr>
+<tr><td align="right">...</td><td>...</td><td align="right">..</td><td>...</td><td>...</td></tr>
+</tbody></table>
+<h3 id="dbの動き方のイメージ"><a class="header" href="#dbの動き方のイメージ">DBの動き方のイメージ</a></h3>
+<p>「サーバ」には3種類存在し，相互に連携しながらWebアプリケーションを動作させている．ただし，Webサーバとアプリケーションサーバは区別の概念が難しいため，一旦「DBサーバとそれ以外」という理解で進めてしまってOK．</p>
+<ul>
+<li>「Webサーバ」：ブラウザにデータを返す．</li>
+<li>「アプリケーションサーバ」：PHPなどのサーバサイド言語を動かす．</li>
+<li>「DBサーバ」：データを提供する．</li>
+</ul>
+<p>ブラウザ，PHP，DBが連携するイメージを以下に示す．</p>
+<p><img src="./img/php_crud01_about-db.svg" alt="DBの動き方イメージ" /></p>
+<h3 id="-key-point-1"><a class="header" href="#-key-point-1">💡 Key Point</a></h3>
+<blockquote>
+<p>処理の流れを把握しよう！</p>
+<p>例えば，PHPとDBを連携させ，保存されているデータを画面に表示する流れは以下のとおりとなる．</p>
 <ol>
-<li>xamppを起動する</li>
-<li>phpファイルが入ったフォルダをhtdocsに配置</li>
-<li>vs codeでhtdocsの上記フォルダを開く</li>
-<li>phpのコードを書く</li>
-<li>ブラウザでlocalhostにアクセスして動作確認</li>
+<li>PHPからDBサーバに接続する．</li>
+<li>DBを操作するSQLを実行し，必要なデータを取得する．</li>
+<li>取得したデータをHTML上に反映させ，画面に表示する．</li>
 </ol>
-<p>以降，3-5の繰り返し！</p>
-<p>※一通り終わったらxamppを終了させることを推奨（次回起動でコケる）</p>
 </blockquote>
 
                     </main>
@@ -211,13 +231,13 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../../php/php01/about-php.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../php/php02/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../../php/php01/php-start.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../php/php02/start-db.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -229,13 +249,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../../php/php01/about-php.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../php/php02/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../../php/php01/php-start.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../php/php02/start-db.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

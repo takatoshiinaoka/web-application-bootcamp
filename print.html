@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li><li class="chapter-item expanded "><a href="php/php02/index.html"><strong aria-hidden="true">5.</strong> Day02</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="php/php02/about-db.html"><strong aria-hidden="true">5.1.</strong> DBの基本</a></li><li class="chapter-item expanded "><a href="php/php02/start-db.html"><strong aria-hidden="true">5.2.</strong> DB / テーブルの作成</a></li><li class="chapter-item expanded "><a href="php/php02/db-sql.html"><strong aria-hidden="true">5.3.</strong> SQLによるDB操作</a></li><li class="chapter-item expanded "><a href="php/php02/sql-create.html"><strong aria-hidden="true">5.4.</strong> PHPとDBの連携1（データ作成処理）</a></li><li class="chapter-item expanded "><a href="php/php02/sql-read.html"><strong aria-hidden="true">5.5.</strong> PHPとDBの連携2（データ参照処理）</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -818,6 +818,546 @@ foreach ($results as $result) {
 <li><code>data_select.php</code>で受け取ったデータを用いてデータを検索し，画面に表示する処理を記述！</li>
 </ol>
 <p><code>data_input.php</code>から検索キーワードを送信し，キーワードが含まれるデータのみ抽出されて表示されれば OK！</p>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="php_db連携_crud処理前半"><a class="header" href="#php_db連携_crud処理前半">PHP_DB連携_CRUD処理前半</a></h1>
+<h2 id="本講義の内容とゴール-1"><a class="header" href="#本講義の内容とゴール-1">本講義の内容とゴール</a></h2>
+<h3 id="本講義の内容-1"><a class="header" href="#本講義の内容-1">本講義の内容</a></h3>
+<ul>
+<li>DBの基本的な扱い．</li>
+<li>SQLを用いたDB操作（データ作成，データ参照）．</li>
+<li>PHP上でのSQL実行とtodoリスト（Webアプリケーション）の連携を実装．</li>
+</ul>
+<h3 id="本講義のゴール-1"><a class="header" href="#本講義のゴール-1">本講義のゴール</a></h3>
+<ul>
+<li>DBの構成や動き方を理解する！</li>
+<li>SQLでDBを操作する基本を理解する！</li>
+<li>PHPでDBを操作できるようになる！</li>
+</ul>
+<p><strong>今回の内容を実装できるようになると，Webアプリケーションのかなりの部分が実現できる！！</strong></p>
+<h2 id="準備-1"><a class="header" href="#準備-1">準備</a></h2>
+<p>以下4点ができているか確認しよう！</p>
+<ul>
+<li>XAMPPの起動確認</li>
+<li><a href="http://localhost/">http://localhost/</a>のアクセス確認</li>
+<li><a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a>のアクセス確認</li>
+<li>サンプルフォルダを「htdocs」フォルダに入れる（前回と同じ要領）</li>
+</ul>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="dbの基本"><a class="header" href="#dbの基本">DBの基本</a></h1>
+<h2 id="dbとは"><a class="header" href="#dbとは">DBとは</a></h2>
+<ul>
+<li>web上にデータを保存するためのもの．</li>
+<li>構造はエクセルなどと対比するとイメージしやすい！</li>
+<li>データを操作するにはSQL（言語）を用いる．</li>
+</ul>
+<h2 id="使い所"><a class="header" href="#使い所">使い所</a></h2>
+<ul>
+<li>webアプリケーションでデータを保存する場合のほとんど．</li>
+</ul>
+<h3 id="利用シーンの例"><a class="header" href="#利用シーンの例">利用シーンの例</a></h3>
+<ul>
+<li>ECサイトの商品データ（商品名，画像，説明文）</li>
+<li>サービスに登録しているユーザの情報（ユーザ名，アドレス，etc）</li>
+<li>ブログの投稿内容（投稿日時，タイトル，画像，本文，etc）</li>
+</ul>
+<h2 id="dbのデータ構造と概念"><a class="header" href="#dbのデータ構造と概念">DBのデータ構造と概念</a></h2>
+<p>エクセルと同様のデータ構造となっている．実際にデータが格納されるのは「テーブル」であり，テーブルをどう設計するかがアプリケーションの根幹となる．</p>
+<table><thead><tr><th>DBの概念</th><th>エクセルの概念</th></tr></thead><tbody>
+<tr><td>データベース</td><td>エクセルファイル</td></tr>
+<tr><td>テーブル</td><td>シート</td></tr>
+<tr><td>レコード</td><td>行</td></tr>
+<tr><td>カラム</td><td>列</td></tr>
+</tbody></table>
+<h3 id="-key-point-5"><a class="header" href="#-key-point-5">💡 Key Point</a></h3>
+<blockquote>
+<p>テーブル設計を行う際には，エクセルやスプレッドシートに書き出しながら作業すると視覚的に確認できるのでオススメ．</p>
+</blockquote>
+<h3 id="データ構造の例"><a class="header" href="#データ構造の例">データ構造の例</a></h3>
+<p>ECサイトの商品データをイメージしたテーブルを下記に示す．</p>
+<p>（下記のデーブル構造はまだ改善点があるが，後の講義で解説する．）</p>
+<table><thead><tr><th align="right">id</th><th>product_name</th><th align="right">price</th><th>category</th><th>image_url</th></tr></thead><tbody>
+<tr><td align="right">1</td><td>Laphroaig</td><td align="right">40</td><td>whisky</td><td>./images/laphroaig.png</td></tr>
+<tr><td align="right">2</td><td>Ardbeg</td><td align="right">45</td><td>whisky</td><td>./images/ardbeg.png</td></tr>
+<tr><td align="right">3</td><td>Caolila</td><td align="right">50</td><td>whisky</td><td>./images/caolila.png</td></tr>
+<tr><td align="right">4</td><td>Kilchoman</td><td align="right">50</td><td>whisky</td><td>./images/kilchoman.png</td></tr>
+<tr><td align="right">5</td><td>Bowmore</td><td align="right">45</td><td>whisky</td><td>./images/bowmore.png</td></tr>
+<tr><td align="right">6</td><td>PortCharlotte</td><td align="right">55</td><td>whisky</td><td>./images/portcharlotte.png</td></tr>
+<tr><td align="right">...</td><td>...</td><td align="right">..</td><td>...</td><td>...</td></tr>
+</tbody></table>
+<h3 id="dbの動き方のイメージ"><a class="header" href="#dbの動き方のイメージ">DBの動き方のイメージ</a></h3>
+<p>「サーバ」には3種類存在し，相互に連携しながらWebアプリケーションを動作させている．ただし，Webサーバとアプリケーションサーバは区別の概念が難しいため，一旦「DBサーバとそれ以外」という理解で進めてしまってOK．</p>
+<ul>
+<li>「Webサーバ」：ブラウザにデータを返す．</li>
+<li>「アプリケーションサーバ」：PHPなどのサーバサイド言語を動かす．</li>
+<li>「DBサーバ」：データを提供する．</li>
+</ul>
+<p>ブラウザ，PHP，DBが連携するイメージを以下に示す．</p>
+<p><img src="php/php02/./img/php_crud01_about-db.svg" alt="DBの動き方イメージ" /></p>
+<h3 id="-key-point-6"><a class="header" href="#-key-point-6">💡 Key Point</a></h3>
+<blockquote>
+<p>処理の流れを把握しよう！</p>
+<p>例えば，PHPとDBを連携させ，保存されているデータを画面に表示する流れは以下のとおりとなる．</p>
+<ol>
+<li>PHPからDBサーバに接続する．</li>
+<li>DBを操作するSQLを実行し，必要なデータを取得する．</li>
+<li>取得したデータをHTML上に反映させ，画面に表示する．</li>
+</ol>
+</blockquote>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="db--テーブルの作成"><a class="header" href="#db--テーブルの作成">DB / テーブルの作成</a></h1>
+<h2 id="dbの作成"><a class="header" href="#dbの作成">DBの作成</a></h2>
+<p>まずは基本単位となるDBを作成する．</p>
+<p>1つのアプリケーションに対して1つのDB，というイメージでOK．</p>
+<ul>
+<li><a href="http://localhost/phpmyadmin/">http://localhost/phpmyadmin/</a>にアクセス</li>
+<li>「<code>Databases</code>」タブをクリック</li>
+<li>「<code>Database name</code>」に「<code>dec_todo</code>」を入力（DB名）</li>
+<li>「<code>utf8mb4_unicode_ci</code>」を選択→「作成」をクリック</li>
+</ul>
+<p>正常に作成されると，画面左側に作成したDB名が表示される．</p>
+<h2 id="テーブルとカラムの作成"><a class="header" href="#テーブルとカラムの作成">テーブルとカラムの作成</a></h2>
+<p>今回実装するtodoリストのデータ用テーブルを準備する．</p>
+<p>テーブルは1つのDB内に複数作成し，相互に連携してWebアプリケーションのデータを構築する．</p>
+<h3 id="テーブルの作成"><a class="header" href="#テーブルの作成">テーブルの作成</a></h3>
+<p>以下の手順でテーブルを作成しよう．</p>
+<ol>
+<li>左側のDB一覧から前項で作成したDBを選択する．</li>
+<li>名前欄に「<code>todo_table</code>」を入力（テーブル名）．</li>
+<li>カラム数を「5」に設定する．</li>
+<li>「Go」ボタンをクリック．</li>
+</ol>
+<h3 id="カラムの設定"><a class="header" href="#カラムの設定">カラムの設定</a></h3>
+<p>テーブルに格納されるデータは定められた形式（文字列，数値，日付など）で保存しなければならない．</p>
+<p>カラム設定時，各カラムに「名前」と「データ型」を設定する必要がある．下記の表に従ってカラム名とデータ型を設定しよう．</p>
+<table><thead><tr><th>カラム名</th><th>データ型</th><th>長さ</th><th>その他設定項目</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td>INT</td><td>12</td><td>インデックスを「PRIMARY」に設定．</br>「A_I」にチェック．</td></tr>
+<tr><td><code>todo</code></td><td>VARCHAR</td><td>128</td><td></td></tr>
+<tr><td><code>deadline</code></td><td>DATE</td><td>-</td><td></td></tr>
+<tr><td><code>created_at</code></td><td>DATETIME</td><td>-</td><td></td></tr>
+<tr><td><code>updated_at</code></td><td>DATETIME</td><td>-</td><td></td></tr>
+</tbody></table>
+<ul>
+<li>idは単一のデータを取得するためのもので，インデックスを「PRIMARY」に設定する必要がある．</li>
+<li>また，idは自動的に数値を1から順に振るため，「A_I（Auto Increment）」にチェックしておく</li>
+</ul>
+<p>全て入力したら右下の「保存する」をクリック！！</p>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="sqlによるdb操作"><a class="header" href="#sqlによるdb操作">SQLによるDB操作</a></h1>
+<h2 id="sqlとは"><a class="header" href="#sqlとは">SQLとは</a></h2>
+<p>DBの操作には「SQL（言語）」を使用する．</p>
+<p>PHPでDBを操作するときは，コード内でSQL文を実行する．</p>
+<p>フレームワークなどではコード内では実行しない場合もある．ただし，フレームワークが関数の実行結果としてSQLを生成して実行するため，DB操作は必ずSQLで行われる．</p>
+<h2 id="基本のsql4種"><a class="header" href="#基本のsql4種">基本のSQL4種</a></h2>
+<p>まずはデータ操作の基本となる4種類を押さえましょう！</p>
+<ul>
+<li><code>INSERT</code>：データの「作成」</li>
+<li><code>SELECT</code>：データの「参照」</li>
+<li><code>UPDATE</code>：データの「更新」</li>
+<li><code>DELETE</code>：データの「削除」</li>
+</ul>
+<p>※SQL文は大文字で記載していますが，小文字でも動作する．他の言語（本講座ではPHP）と組み合わせる際に区別しやすいよう大文字で記載している．他の言語でも大文字で扱うことが多い．</p>
+<h2 id="insertデータの作成"><a class="header" href="#insertデータの作成">INSERT（データの作成）</a></h2>
+<p>指定したテーブルに対して新規データの作成を行う．</p>
+<p>ポイントは以下！</p>
+<ul>
+<li>「カラム名の数と順序」と「値の数と順序」を一致させる必要がある．</li>
+<li><code>id</code>カラムはDB側でAuto incrementの設定をしているため<code>NULL</code>を送信する．</li>
+<li>作成日時や更新日時は<code>now()</code>を使用して実行時の日付時刻が入力されるようにする．</li>
+</ul>
+<pre><code class="language-sql">
+-- INSERT文の基本構造
+INSERT INTO テーブル名 (カラム1, カラム2, ...) VALUES (値1, 値2, ...);
+
+-- 例
+INSERT INTO todo_table (id, todo, deadline, created_at, updated_at) VALUES(NULL, 'SQL練習', '2021-12-31', now(), now());
+
+</code></pre>
+<h2 id="selectデータの参照"><a class="header" href="#selectデータの参照">SELECT（データの参照）</a></h2>
+<p>SELECT文はデータの参照に使用されるが，フィルタリングやソートなど多様なオプションが用意されている．</p>
+<h3 id="select文の基本"><a class="header" href="#select文の基本">SELECT文の基本</a></h3>
+<pre><code class="language-sql">-- SELECT文の基本構造
+SELECT 表示するカラム名 FROM テーブル名;
+
+-- 例
+
+-- 「*」で全て指定
+SELECT * FROM todo_table;
+
+-- 1つのカラムを指定
+SELECT todo FROM todo_table;
+
+-- 複数カラム指定
+SELECT todo, deadline FROM todo_table;
+
+</code></pre>
+<h3 id="フィルタリング"><a class="header" href="#フィルタリング">フィルタリング</a></h3>
+<p>データの条件を設定してフィルタリングをおこなうことができる．フィルタリングには<code>WHERE</code>を使用する．</p>
+<pre><code class="language-sql">-- 「WHERE」を使用して値の条件を指定できる
+SELECT * FROM todo_table WHERE deadline='2021-12-31';
+
+-- 演算子の使用
+SELECT * FROM todo_table WHERE deadline &lt;= '2021-12-31';
+SELECT * FROM todo_table WHERE deadline &gt;= '2021-12-01' AND deadline &lt;= '2021-12-31';
+
+-- あいまい検索
+SELECT * FROM todo_table WHERE todo LIKE 'PHP%';
+SELECT * FROM todo_table WHERE todo LIKE '%提出';
+SELECT * FROM todo_table WHERE todo LIKE '%課題%';
+
+</code></pre>
+<h3 id="ソート"><a class="header" href="#ソート">ソート</a></h3>
+<p>並び替えには<code>ORDER BY</code>を使用する．</p>
+<ul>
+<li>基準となるカラム名を指定し，</li>
+<li>昇順（<code>ASC</code>）か降順（<code>DESC</code>）を指定する．</li>
+</ul>
+<pre><code class="language-sql">-- ORDER BYを使用した並び替え
+-- `deadline`カラムの値で降順に並び替え
+SELECT * FROM todo_table ORDER BY deadline DESC;
+-- `todo`カラムの値で昇順に並び替え
+SELECT * FROM todo_table ORDER BY todo ASC;
+
+</code></pre>
+<h3 id="取得するデータ件数の制限"><a class="header" href="#取得するデータ件数の制限">取得するデータ件数の制限</a></h3>
+<p><code>LIMIT</code>を用いてデータ件数の制限を行うことができる．最新10件，などの使い方がメジャー．</p>
+<pre><code class="language-sql">-- LIMITで表示件数の制限
+SELECT * FROM todo_table LIMIT 5;
+
+-- 並び替えとの組み合わせ
+SELECT * FROM todo_table ORDER BY deadline DESC LIMIT 5;
+
+</code></pre>
+<h2 id="updateデータの更新"><a class="header" href="#updateデータの更新">UPDATE（データの更新）</a></h2>
+<p>UPDATEは次回の講義で扱う．</p>
+<pre><code class="language-sql">-- UPDATE文の基本構造
+UPDATE テーブル名 SET 変更データ WHERE 選択データ;
+
+-- 例
+UPDATE todo_table SET todo='PHP課題' WHERE id = 1;
+-- 【重要】必ずWHEREを使用！！（忘れると全てのデータが更新されます．．！）
+
+</code></pre>
+<h2 id="deleteデータの削除"><a class="header" href="#deleteデータの削除">DELETE（データの削除）</a></h2>
+<p>DELETEは次回の講義で扱う．</p>
+<pre><code class="language-sql">-- DELETE文の基本構造
+DELETE FROM テーブル名;
+
+-- 例
+
+-- 全消去
+DELETE FROM todo_table;
+-- 指定データのみ
+DELETE FROM todo_table WHERE id = 2;
+
+-- WHEREで指定しないとテーブルのデータが全滅する！！
+-- DELETEすると復旧できないので注意！！
+
+</code></pre>
+<h2 id="参考sqlの練習"><a class="header" href="#参考sqlの練習">【参考】SQLの練習</a></h2>
+<p><a href="https://sqlzoo.net/">https://sqlzoo.net/</a></p>
+<p>初歩から応用までSQL問題が出題．当面は最初の方の基本的なデータ取得ができればOK．</p>
+<h2 id="練習-1"><a class="header" href="#練習-1">練習</a></h2>
+<p>SQLはphpmyadminの「SQLタブ」から記述&amp;実行できる．</p>
+<ol>
+<li>INSERT文を用いて<code>todo_table</code>にデータを10件程度作成しよう．</li>
+<li>SELECT文を用いて作成したデータを取り出そう．
+<ul>
+<li>WHERE, ORDER BY, LIMITを試して，想定どおりのデータを取得できるかどうか確認！</li>
+</ul>
+</li>
+</ol>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="phpとdbの連携データ作成処理"><a class="header" href="#phpとdbの連携データ作成処理">PHPとDBの連携（データ作成処理）</a></h1>
+<h2 id="必要なファイル"><a class="header" href="#必要なファイル">必要なファイル</a></h2>
+<ul>
+<li><code>todo_input.php</code>：データ入力画面．</li>
+<li><code>todo_create.php</code>：DB接続，データ作成処理を実行．</li>
+</ul>
+<h2 id="処理の流れ-1"><a class="header" href="#処理の流れ-1">処理の流れ</a></h2>
+<ol>
+<li><code>todo_input.php</code>で入力されたデータを<code>todo_create.php</code>へ送信（post）．</li>
+<li><code>todo_create.php</code>でデータを受け取り，DBへの新規データ作成．</li>
+<li>作成完了後，<code>todo_input.php</code>（入力画面）へ移動．（<code>todo_create.php</code>では画面表示なし）</li>
+</ol>
+<h2 id="送信側の処理-2"><a class="header" href="#送信側の処理-2">送信側の処理</a></h2>
+<p>フォームからデータを送信する．以下3点の漏れやスペルミスがないよう確認しよう．</p>
+<ul>
+<li>action</li>
+<li>method</li>
+<li>name</li>
+</ul>
+<pre><code class="language-php">// todo_input.php
+
+&lt;form action=&quot;todo_create.php&quot; method=&quot;POST&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;div&gt;
+      todo: &lt;input type=&quot;text&quot; name=&quot;todo&quot;&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      deadline: &lt;input type=&quot;date&quot; name=&quot;deadline&quot;&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;button&gt;submit&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+
+</code></pre>
+<h2 id="受信側の処理-2"><a class="header" href="#受信側の処理-2">受信側の処理</a></h2>
+<p>データ受け取り側では以下の処理を実装する．</p>
+<ul>
+<li>必須項目の入力チェック</li>
+<li>データの受け取り</li>
+<li>DB接続</li>
+<li>SQL作成&amp;実行</li>
+<li>SQL実行後の処理</li>
+</ul>
+<h3 id="入力チェック"><a class="header" href="#入力チェック">入力チェック</a></h3>
+<p>DBにデータを格納する場合，基本的にデータの欠損は許されない（データなしを許可する設定もある）．</p>
+<p>そのため，以下の条件に合致する場合は以降の処理を中止してエラー画面を表示する．</p>
+<ul>
+<li>必須項目（todoとdeadline）のデータが送信されていない．</li>
+<li>必須項目（todoとdeadline）が空で送信されている．</li>
+</ul>
+<pre><code class="language-php">// todo_create.php
+
+if (
+  !isset($_POST['todo']) || $_POST['todo']=='' ||
+  !isset($_POST['deadline']) || $_POST['deadline']==''
+) {
+  exit('ParamError');
+}
+
+</code></pre>
+<h3 id="参考エラーメッセージを出力する意味"><a class="header" href="#参考エラーメッセージを出力する意味">【参考】エラーメッセージを出力する意味</a></h3>
+<p>どこで失敗したのかをわかるようにする！</p>
+<ul>
+<li>PHPではエラーを見つけづらい．．．</li>
+<li>データを扱うので，異常なデータなどが作成されるとまずい．</li>
+<li>どこでエラーが出ているのかわからないと詰む．</li>
+<li>エラーにも種類がある！
+<ul>
+<li>どこでうまくいっていないのかを把握できるようにエラーの処理を記述！</li>
+</ul>
+</li>
+</ul>
+<h3 id="データ受け取り"><a class="header" href="#データ受け取り">データ受け取り</a></h3>
+<p>前回講義の場合と同様．今回はPOSTで送信しているため<code>$_POST</code>で受け取る．</p>
+<pre><code class="language-php">// todo_create.php
+
+$todo = $_POST['todo'];
+$deadline = $_POST['deadline'];
+
+</code></pre>
+<h3 id="db接続"><a class="header" href="#db接続">DB接続</a></h3>
+<p>DBに接続するコードは決まった形式（<code>PDO</code>）．</p>
+<p>接続の際には以下の情報が必要になる．今回は<code>dbname</code>のみ設定が必要．</p>
+<ul>
+<li><code>mysql</code>：DBの種類（他に<code>PostgreSQL</code>，<code>Oracle Database</code>，などが存在する）</li>
+<li><code>dbname</code>：DBの名前（今回はここを<code>dec_todo</code>に設定する！）</li>
+<li><code>port</code>：接続ポート</li>
+<li><code>host</code>：DBのホスト名</li>
+<li><code>username</code>：DB接続時のユーザ名</li>
+<li><code>password</code>：DB接続時のパスワード</li>
+</ul>
+<pre><code class="language-php">// todo_create.php
+
+// 各種項目設定
+$dbn ='mysql:dbname=YOUR_DB_NAME;charset=utf8;port=3306;host=localhost';
+$user = 'root';
+$pwd = '';
+
+// DB接続
+try {
+  $pdo = new PDO($dbn, $user, $pwd);
+} catch (PDOException $e) {
+  echo json_encode([&quot;db error&quot; =&gt; &quot;{$e-&gt;getMessage()}&quot;]);
+  exit();
+}
+
+// 「dbError:...」が表示されたらdb接続でエラーが発生していることがわかる．
+
+</code></pre>
+<h3 id="sql作成実行"><a class="header" href="#sql作成実行">SQL作成&amp;実行</a></h3>
+<p>SQL（今回はINSERT文）を実行する場合も手順が決まっている．</p>
+<ol>
+<li>SQL文の記述．</li>
+<li>バインド変数の設定．</li>
+<li>SQL実行．</li>
+</ol>
+<pre><code class="language-php">// todo_create.php
+
+// SQL作成&amp;実行
+$sql = 'INSERT INTO todo_table (id, todo, deadline, created_at, updated_at) VALUES (NULL, :todo, :deadline, now(), now())';
+
+$stmt = $pdo-&gt;prepare($sql);
+
+// バインド変数を設定
+$stmt-&gt;bindValue(':todo', $todo, PDO::PARAM_STR);
+$stmt-&gt;bindValue(':deadline', $deadline, PDO::PARAM_STR);
+
+// SQL実行（実行に失敗すると$statusにfalseが返ってくる）
+$status = $stmt-&gt;execute();
+
+</code></pre>
+<h3 id="補足バインド変数とsqlインジェクション"><a class="header" href="#補足バインド変数とsqlインジェクション">【補足】バインド変数とSQLインジェクション</a></h3>
+<p>SQLインジェクションと呼ばれるハッキング手法が存在する．</p>
+<p>例えば，下記のようにコードを記述されている場合．．．</p>
+<pre><code class="language-php">$query = &quot;SELECT * FROM user WHERE id = '$user_id'&quot;;
+</code></pre>
+<p><code>$user_id</code>に「<code>' or 'A' = 'A</code>」を入れると，下記と同じ意味になってしまう！</p>
+<pre><code class="language-sql">SELECT * FROM user;
+</code></pre>
+<p>-&gt; 不正にユーザのデータを取得できてしまう！！！</p>
+<p>バインド変数を用いることで，SQL文として実行されないようにできる！</p>
+<p>ユーザが入力した値をSQL文内で使用する場合には必ずバインド変数を使用すること．</p>
+<h3 id="sql実行時の処理"><a class="header" href="#sql実行時の処理">SQL実行時の処理</a></h3>
+<p>実行に失敗すると<code>$status</code>に<code>false</code>が返ってくるため，条件分岐して失敗を検出する．</p>
+<p><code>$stmt-&gt;errorInfo()</code>と記述することでエラー内容（配列形式）を取得することができ，2番めのデータにエラーメッセージが格納されている．</p>
+<p>SQLが正常に実行された場合は，データ入力画面に移動することとする．</p>
+<pre><code class="language-php">// todo_create.php
+
+if ($status == false) {
+  $error = $stmt-&gt;errorInfo();
+  exit('sqlError:'.$error[2]);
+} else {
+  header('Location:todo_input.php');
+}
+
+</code></pre>
+<h2 id="練習-2"><a class="header" href="#練習-2">練習</a></h2>
+<p>DBにデータを追加する処理を実装しよう！</p>
+<ol>
+<li><code>todo_input.php</code>にフォームを作成</li>
+<li><code>todo_create.php</code>で
+<ul>
+<li>データを受け取る</li>
+<li>DBに接続</li>
+<li>SQL文を書いて実行</li>
+</ul>
+</li>
+</ol>
+<p>phpmyadminでテーブルを確認し，データが作成されていればOK！</p>
+<ul>
+<li>phpmyadminの「表示」タブをクリックすると最新のデータを読み込める．</li>
+</ul>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="phpとdbの連携データ参照処理"><a class="header" href="#phpとdbの連携データ参照処理">PHPとDBの連携（データ参照処理）</a></h1>
+<h2 id="必要なファイル-1"><a class="header" href="#必要なファイル-1">必要なファイル</a></h2>
+<ul>
+<li><code>todo_read.php</code>：DBからデータを取得してデータの一覧画面を作成する．</li>
+</ul>
+<h2 id="処理の流れ-2"><a class="header" href="#処理の流れ-2">処理の流れ</a></h2>
+<ol>
+<li>表示ファイル（<code>todo_read.php</code>）へアクセス時，DB接続する．</li>
+<li>データ参照用SQL作成→実行．</li>
+<li>取得したデータをHTMLに埋め込んで画面を表示．</li>
+</ol>
+<p>※必要に応じて，並び替えやフィルタリングを実施してみよう．</p>
+<h2 id="dbデータ作成処理の実装"><a class="header" href="#dbデータ作成処理の実装">DBデータ作成処理の実装</a></h2>
+<h3 id="db接続-1"><a class="header" href="#db接続-1">DB接続</a></h3>
+<p>新規データ作成の場合と同様の処理（DB名の設定を忘れずに！）．</p>
+<pre><code class="language-php">// todo_read.php
+
+$dbn ='mysql:dbname=YOUR_DB_NAME;charset=utf8;port=3306;host=localhost';
+$user = 'root';
+$pwd = '';
+
+try {
+  $pdo = new PDO($dbn, $user, $pwd);
+} catch (PDOException $e) {
+  echo json_encode([&quot;db error&quot; =&gt; &quot;{$e-&gt;getMessage()}&quot;]);
+  exit();
+}
+
+</code></pre>
+<h3 id="sql作成実行-1"><a class="header" href="#sql作成実行-1">SQL作成&amp;実行</a></h3>
+<p>データ作成処理と同様にSQLを記述して実行する．今回は「ユーザが入力したデータ」を使用しないのでバインド変数は不要．</p>
+<p>また，<code>$status</code>には実行結果が入るが，この時点ではまだデータ自体の取得はできていない点に注意．</p>
+<pre><code class="language-php">// todo_read.php
+
+$sql = 'SELECT * FROM todo_table';
+$stmt = $pdo-&gt;prepare($sql);
+$status = $stmt-&gt;execute();
+
+</code></pre>
+<h3 id="sql実行後の処理"><a class="header" href="#sql実行後の処理">SQL実行後の処理</a></h3>
+<p>SQLの実行に失敗した場合はエラーを表示して処理を中止する．</p>
+<p>SQLが正常に実行された場合は以下の流れで処理が実行される．</p>
+<ul>
+<li><code>fetchAll()</code>関数でデータ自体を取得する．</li>
+<li>繰り返し処理を用いて，取得したデータからHTMLタグを生成する．</li>
+<li>（HTML内の任意の位置に作成したタグを設置</li>
+</ul>
+<pre><code class="language-php">// todo_read.php
+
+if ($status == false) {
+  $error = $stmt-&gt;errorInfo();
+  exit('sqlError:'.$error[2]);
+} else {
+  $result = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+  $output = &quot;&quot;;
+  foreach ($result as $record) {
+    $output .= &quot;
+      &lt;tr&gt;
+        &lt;td&gt;{$record[&quot;deadline&quot;]}&lt;/td&gt;
+        &lt;td&gt;{$record[&quot;todo&quot;]}&lt;/td&gt;
+      &lt;/tr&gt;
+    &quot;;
+  }
+}
+
+</code></pre>
+<h3 id="htmlにタグを埋め込み"><a class="header" href="#htmlにタグを埋め込み">HTMLにタグを埋め込み</a></h3>
+<pre><code class="language-php">// todo_read.php
+
+// html部分にデータを追加
+&lt;tbody&gt;
+  &lt;!-- ↓に&lt;tr&gt;&lt;td&gt;deadline&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;tr&gt;の形でデータが入る --&gt;
+  &lt;?= $output ?&gt;
+&lt;/tbody&gt;
+
+</code></pre>
+<h3 id="参考jsを用いたタグ生成"><a class="header" href="#参考jsを用いたタグ生成">【参考】JSを用いたタグ生成</a></h3>
+<p>上記では「PHP内でタグを生成 → HTML内に埋め込み」という実装を行っているが，タグ生成部分をJSで行うこともできる．</p>
+<p>どちらが正解というものではないので，自身のイメージしやすいパターンで実装すれば問題ない．</p>
+<pre><code class="language-php">&lt;?php
+
+// DB接続，SQL実行など
+
+if ($status == false) {
+  $error = $stmt-&gt;errorInfo();
+  exit('sqlError:'.$error[2]);
+} else {
+  // PHPではデータを取得するところまで実施
+  $result = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+}
+
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+  &lt;head&gt;
+    // 省略
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;table&gt;
+      &lt;tbody id=&quot;output&quot;&gt;&lt;/tbody&gt;
+    &lt;table&gt;
+
+    &lt;script&gt;
+      // PHPのデータをJSに渡す
+      const resultArray = &lt;?=json_encode($result) ?&gt;;
+      // 配列からタグ生成し，#outputに表示する
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+
+</code></pre>
+<h2 id="練習-3"><a class="header" href="#練習-3">練習</a></h2>
+<p>DBのデータを読み出して表示する処理を実装しよう！</p>
+<p><code>todo_read.php</code>で</p>
+<ul>
+<li>DBに接続</li>
+<li>SQL文を書いて実行</li>
+<li>取得したデータをHTMLに埋め込み</li>
+</ul>
+<p>テーブルのデータが画面に一覧で表示されればOK！</p>
+<p>できた人はSQL文を編集してフィルタリングやソートなどを実装してみよう．</p>
 
                     </main>
 

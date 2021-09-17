@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>開発の手順 - web-application-bootcamp</title>
+        <title>PHPとDBの連携2（データ参照処理） - web-application-bootcamp</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html" class="active"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php02/index.html"><strong aria-hidden="true">5.</strong> Day02</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php02/about-db.html"><strong aria-hidden="true">5.1.</strong> DBの基本</a></li><li class="chapter-item expanded "><a href="../../php/php02/start-db.html"><strong aria-hidden="true">5.2.</strong> DB / テーブルの作成</a></li><li class="chapter-item expanded "><a href="../../php/php02/db-sql.html"><strong aria-hidden="true">5.3.</strong> SQLによるDB操作</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-create.html"><strong aria-hidden="true">5.4.</strong> PHPとDBの連携1（データ作成処理）</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-read.html"><strong aria-hidden="true">5.5.</strong> PHPとDBの連携2（データ参照処理）</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php02/index.html"><strong aria-hidden="true">5.</strong> Day02</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php02/about-db.html"><strong aria-hidden="true">5.1.</strong> DBの基本</a></li><li class="chapter-item expanded "><a href="../../php/php02/start-db.html"><strong aria-hidden="true">5.2.</strong> DB / テーブルの作成</a></li><li class="chapter-item expanded "><a href="../../php/php02/db-sql.html"><strong aria-hidden="true">5.3.</strong> SQLによるDB操作</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-create.html"><strong aria-hidden="true">5.4.</strong> PHPとDBの連携1（データ作成処理）</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-read.html" class="active"><strong aria-hidden="true">5.5.</strong> PHPとDBの連携2（データ参照処理）</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,61 +165,139 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="php基礎"><a class="header" href="#php基礎">PHP基礎</a></h1>
-<h2 id="サーバサイド言語での開発"><a class="header" href="#サーバサイド言語での開発">サーバサイド言語での開発</a></h2>
-<p>PHP（及び他のサーバサイド言語）を動作させるには「サーバ」が必要となる．</p>
-<p>しかし，自身のPCで開発を行う場合に都度サーバを用意することは効率的ではない．</p>
-<p>このような場合に自身のPC内で擬似的なサーバを用意してPHPを動作させることができるのが「xampp」である．</p>
-<p>xamppは以下の役割を提供する．</p>
+                        <h1 id="phpとdbの連携データ参照処理"><a class="header" href="#phpとdbの連携データ参照処理">PHPとDBの連携（データ参照処理）</a></h1>
+<h2 id="必要なファイル"><a class="header" href="#必要なファイル">必要なファイル</a></h2>
 <ul>
-<li>PHPを動作させるアプリケーションサーバ（<code>Apatch web server</code>）を用意する．</li>
-<li>データを保存するためのデータベース（<code>MySQL Database</code>）を用意する．</li>
-<li>その他いろいろ（今回の開発では使用しない）．</li>
+<li><code>todo_read.php</code>：DBからデータを取得してデータの一覧画面を作成する．</li>
 </ul>
-<p><img src="./img/php_file_about_xampp.svg" alt="xampp概要" /></p>
-<h2 id="開発の手順"><a class="header" href="#開発の手順">開発の手順</a></h2>
-<p>xamppはPC内に<code>localhost</code>というサーバを用意してくれる．</p>
-<p>このサーバ内にPHPファイルを配置することでPHPのコードを動かすことができる．</p>
-<p>PC内では予め指定されたディレクトリ（<code>htdocs</code>）がサーバの役割をするよう決められているため，まずPHPファイルを指定のディレクトリに配置する作業が必要となる．</p>
-<p>サンプルフォルダを下記のディレクトリへ移動するとPHPを動かせる！</p>
-<ul>
-<li>windows : <code>C\xampp\htdocs\</code></li>
-<li>mac : <code>/Applications/xampp/xamppfiles/htdocs/</code></li>
-</ul>
-<h2 id="便利な設定"><a class="header" href="#便利な設定">便利な設定</a></h2>
-<ul>
-<li><code>htdocs</code>はよく使うのでショートカットを用意しておくと便利！！</li>
-<li><code>htdocs</code>内に講義用のフォルダを用意しておくと管理しやすい！</li>
-<li><code>htdocs</code>内の<code>index.php</code>の名前を<code>index.php.old</code>に変更しておくとブラウザ画面から<code>htdocs</code>内のファイルが確認できて便利！！</li>
-</ul>
-<h3 id="-key-point"><a class="header" href="#-key-point">💡 Key Point</a></h3>
-<blockquote>
-<p><strong>【重要】開発の手順は以下の流れとなる．</strong></p>
+<h2 id="処理の流れ"><a class="header" href="#処理の流れ">処理の流れ</a></h2>
 <ol>
-<li>xamppを起動する</li>
-<li>phpファイルが入ったフォルダをhtdocsに配置</li>
-<li>vs codeでhtdocsの上記フォルダを開く</li>
-<li>phpのコードを書く</li>
-<li>ブラウザでlocalhostにアクセスして動作確認</li>
+<li>表示ファイル（<code>todo_read.php</code>）へアクセス時，DB接続する．</li>
+<li>データ参照用SQL作成→実行．</li>
+<li>取得したデータをHTMLに埋め込んで画面を表示．</li>
 </ol>
-<p>以降，3-5の繰り返し！</p>
-<p>※一通り終わったらxamppを終了させることを推奨（次回起動でコケる）</p>
-</blockquote>
+<p>※必要に応じて，並び替えやフィルタリングを実施してみよう．</p>
+<h2 id="dbデータ作成処理の実装"><a class="header" href="#dbデータ作成処理の実装">DBデータ作成処理の実装</a></h2>
+<h3 id="db接続"><a class="header" href="#db接続">DB接続</a></h3>
+<p>新規データ作成の場合と同様の処理（DB名の設定を忘れずに！）．</p>
+<pre><code class="language-php">// todo_read.php
+
+$dbn ='mysql:dbname=YOUR_DB_NAME;charset=utf8;port=3306;host=localhost';
+$user = 'root';
+$pwd = '';
+
+try {
+  $pdo = new PDO($dbn, $user, $pwd);
+} catch (PDOException $e) {
+  echo json_encode([&quot;db error&quot; =&gt; &quot;{$e-&gt;getMessage()}&quot;]);
+  exit();
+}
+
+</code></pre>
+<h3 id="sql作成実行"><a class="header" href="#sql作成実行">SQL作成&amp;実行</a></h3>
+<p>データ作成処理と同様にSQLを記述して実行する．今回は「ユーザが入力したデータ」を使用しないのでバインド変数は不要．</p>
+<p>また，<code>$status</code>には実行結果が入るが，この時点ではまだデータ自体の取得はできていない点に注意．</p>
+<pre><code class="language-php">// todo_read.php
+
+$sql = 'SELECT * FROM todo_table';
+$stmt = $pdo-&gt;prepare($sql);
+$status = $stmt-&gt;execute();
+
+</code></pre>
+<h3 id="sql実行後の処理"><a class="header" href="#sql実行後の処理">SQL実行後の処理</a></h3>
+<p>SQLの実行に失敗した場合はエラーを表示して処理を中止する．</p>
+<p>SQLが正常に実行された場合は以下の流れで処理が実行される．</p>
+<ul>
+<li><code>fetchAll()</code>関数でデータ自体を取得する．</li>
+<li>繰り返し処理を用いて，取得したデータからHTMLタグを生成する．</li>
+<li>（HTML内の任意の位置に作成したタグを設置</li>
+</ul>
+<pre><code class="language-php">// todo_read.php
+
+if ($status == false) {
+  $error = $stmt-&gt;errorInfo();
+  exit('sqlError:'.$error[2]);
+} else {
+  $result = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+  $output = &quot;&quot;;
+  foreach ($result as $record) {
+    $output .= &quot;
+      &lt;tr&gt;
+        &lt;td&gt;{$record[&quot;deadline&quot;]}&lt;/td&gt;
+        &lt;td&gt;{$record[&quot;todo&quot;]}&lt;/td&gt;
+      &lt;/tr&gt;
+    &quot;;
+  }
+}
+
+</code></pre>
+<h3 id="htmlにタグを埋め込み"><a class="header" href="#htmlにタグを埋め込み">HTMLにタグを埋め込み</a></h3>
+<pre><code class="language-php">// todo_read.php
+
+// html部分にデータを追加
+&lt;tbody&gt;
+  &lt;!-- ↓に&lt;tr&gt;&lt;td&gt;deadline&lt;/td&gt;&lt;td&gt;todo&lt;/td&gt;&lt;tr&gt;の形でデータが入る --&gt;
+  &lt;?= $output ?&gt;
+&lt;/tbody&gt;
+
+</code></pre>
+<h3 id="参考jsを用いたタグ生成"><a class="header" href="#参考jsを用いたタグ生成">【参考】JSを用いたタグ生成</a></h3>
+<p>上記では「PHP内でタグを生成 → HTML内に埋め込み」という実装を行っているが，タグ生成部分をJSで行うこともできる．</p>
+<p>どちらが正解というものではないので，自身のイメージしやすいパターンで実装すれば問題ない．</p>
+<pre><code class="language-php">&lt;?php
+
+// DB接続，SQL実行など
+
+if ($status == false) {
+  $error = $stmt-&gt;errorInfo();
+  exit('sqlError:'.$error[2]);
+} else {
+  // PHPではデータを取得するところまで実施
+  $result = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+}
+
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+  &lt;head&gt;
+    // 省略
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;table&gt;
+      &lt;tbody id=&quot;output&quot;&gt;&lt;/tbody&gt;
+    &lt;table&gt;
+
+    &lt;script&gt;
+      // PHPのデータをJSに渡す
+      const resultArray = &lt;?=json_encode($result) ?&gt;;
+      // 配列からタグ生成し，#outputに表示する
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+
+</code></pre>
+<h2 id="練習"><a class="header" href="#練習">練習</a></h2>
+<p>DBのデータを読み出して表示する処理を実装しよう！</p>
+<p><code>todo_read.php</code>で</p>
+<ul>
+<li>DBに接続</li>
+<li>SQL文を書いて実行</li>
+<li>取得したデータをHTMLに埋め込み</li>
+</ul>
+<p>テーブルのデータが画面に一覧で表示されればOK！</p>
+<p>できた人はSQL文を編集してフィルタリングやソートなどを実装してみよう．</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../../php/php01/about-php.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../php/php02/sql-create.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="../../php/php01/php-start.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -229,15 +307,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../../php/php01/about-php.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../php/php02/sql-create.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a rel="next" href="../../php/php01/php-start.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
