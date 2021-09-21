@@ -185,6 +185,7 @@ if ($status == false) {
   exit('sqlError:'.$error[2]);
 } else {
   header('Location:todo_input.php');
+  exit();
 }
 
 ```

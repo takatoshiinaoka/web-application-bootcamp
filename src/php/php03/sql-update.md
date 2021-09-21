@@ -30,8 +30,7 @@ if (
   !isset($_POST['deadline']) || $_POST['deadline'] == '' ||
   !isset($_POST['id']) || $_POST['id'] == ''
 ) {
-  echo json_encode(["error_msg" => "no input"]);
-  exit();
+  exit('paramError');
 }
 
 $todo = $_POST['todo'];
