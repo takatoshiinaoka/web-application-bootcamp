@@ -1,6 +1,84 @@
 # 認証処理の実装1（ログインとログアウト）
 
-## 必要なファイル
+## ユーザテーブルの準備
+
+ユーザのデータを格納するテーブルが必要になるため，下記のSQL文を実行して`users_table`を作成しよう．
+
+`phpmyadmin`画面で`dec_todo`のデータベースを選択し，`SQL`タブから実行する．
+
+```sql
+CREATE TABLE users_table(
+  id int(12) not null primary key auto_increment,
+  username varchar(128) not null,
+  password varchar(128) not null,
+  is_admin int(1) not null,
+  is_deleted int(1) not null,
+  created_at datetime not null,
+  updated_at datetime not null
+)
+;
+INSERT INTO users_table(
+  id,
+  username,
+  password,
+  is_admin,
+  is_deleted,
+  created_at,
+  updated_at
+)
+VALUES(
+  NULL,
+  'testuser01',
+  '111111',
+  1,
+  0,
+  now(),
+  now()
+),
+(
+  NULL,
+  'testuser02',
+  '222222',
+  0,
+  0,
+  now(),
+  now()
+),
+(
+  NULL,
+  'testuser03',
+  '333333',
+  0,
+  0,
+  now(),
+  now()
+),
+(
+  NULL,
+  'testuser04',
+  '444444',
+  0,
+  0,
+  now(),
+  now()
+)
+;
+
+```
+
+### 【確認用】カラム構造
+
+|カラム名|データ型|長さ|その他設定項目|
+|---|---|---|---|
+|`id`|INT|12|インデックスを「PRIMARY」に設定．</br>「A_I」にチェック．|
+|`username`|VARCHAR|128||
+|`password`|VARCHAR|128||
+|`is_admin`|INT|1|管理者ユーザと一般ユーザの識別に使用|
+|`is_deleted`|INT|1|論理削除に使用|
+|`created_at`|DATETIME|-||
+|`updated_at`|DATETIME|-||
+
+## 処理に必要なファイル
 
 ログイン処理に`todo_login.php`と`todo_login.php`，ログアウト処理に`todo_logout.php`を使用する．
 
@@ -23,6 +101,8 @@
     - 失敗時（DBにユーザのデータが存在しなかった場合）
         - `todo_login.php`に戻るリンクを表示する（ログイン失敗）
 
+## ログイン画面の実装
+
 ログインフォームに`action`，`method`，`name`を設定する．
 
 データを`todo_login_act.php`に送信する．
@@ -33,10 +113,10 @@
 <form action="todo_login_act.php" method="POST">
   // ...
   <div>
-    username: <input type="text" name="username">	// name属性
+    username: <input type="text" name="username">
   </div>
   <div>
-    password: <input type="text" name="password">	// name属性
+    password: <input type="text" name="password">
   </div>
   <div>
     <button>Login</button>
@@ -45,6 +125,8 @@
 </form>
 
 ```
+
+## データ受け取り → ログイン処理
 
 データを受け取ったら，ユーザのテーブルに該当するデータが存在するかどうかを確認する．
 
@@ -134,7 +216,6 @@ exit();
 3. ログアウト処理を実装！（`todo_logout.php`）
 
 以下の動作が確認できればOK．
-- 存在するユーザのusernameとpasswordを入力して一覧ページが表示される．
-- 存在しないユーザのusernameとpasswordを入力してログインページへのリンクが表示される．
+- 存在するユーザの username と password を入力して一覧ページが表示される．
+- 存在しないユーザの username と password を入力してログインページへのリンクが表示される．
 
-ユーザデータがない場合は適当なデータを入れておこう．
