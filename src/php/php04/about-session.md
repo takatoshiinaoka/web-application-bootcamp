@@ -34,7 +34,8 @@
       <td rowspan="3">
         $_SESSION['number'] = 100;<br>
         $_SESSION['keyword'] = 'ジーズ';<br>
-        $_SESSION['array'] = ['JavaScript', 'PHP', 'Swift', 'Rust'];</td>
+        $_SESSION['array'] = ['JavaScript', 'PHP', 'Swift', 'Rust'];
+      </td>
     </tr>
     <tr>
       <td>fuga.php</td>
@@ -106,8 +107,8 @@ session_regenerate_id(true);
 $new_session_id = session_id();
 
 // 新旧のidを画面に表示して更新されていることを確認
-echo '<p>旧id' . $old_session_id . '</p>';
-echo '<p>新id' . $new_session_id . '</p>';
+echo "<p>旧id: {$old_session_id}</p>";
+echo "<p>新id: {$new_session_id}</p>";
 exit();
 
 ?>

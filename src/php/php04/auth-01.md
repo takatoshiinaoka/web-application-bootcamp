@@ -2,7 +2,20 @@
 
 ## ユーザテーブルの準備
 
-ユーザのデータを格納するテーブルが必要になるため，下記のSQL文を実行して`users_table`を作成しよう．
+ユーザのデータを格納するテーブルが必要になる．テーブルの構成は以下のとおりである．
+
+|カラム名|データ型|長さ|その他設定項目|
+|---|---|---|---|
+|`id`|INT|12|インデックスを「PRIMARY」に設定．</br>「A_I」にチェック．|
+|`username`|VARCHAR|128||
+|`password`|VARCHAR|128||
+|`is_admin`|INT|1|管理者ユーザと一般ユーザの識別に使用|
+|`is_deleted`|INT|1|論理削除に使用|
+|`created_at`|DATETIME|-||
+|`updated_at`|DATETIME|-||
+
+
+テーブルを数件のテストデータを作成するため，下記のSQL文を実行する．
 
 `phpmyadmin`画面で`dec_todo`のデータベースを選択し，`SQL`タブから実行する．
 
@@ -66,17 +79,6 @@ VALUES(
 
 ```
 
-### 【確認用】カラム構造
-
-|カラム名|データ型|長さ|その他設定項目|
-|---|---|---|---|
-|`id`|INT|12|インデックスを「PRIMARY」に設定．</br>「A_I」にチェック．|
-|`username`|VARCHAR|128||
-|`password`|VARCHAR|128||
-|`is_admin`|INT|1|管理者ユーザと一般ユーザの識別に使用|
-|`is_deleted`|INT|1|論理削除に使用|
-|`created_at`|DATETIME|-||
-|`updated_at`|DATETIME|-||
 
 ## 処理に必要なファイル
 
