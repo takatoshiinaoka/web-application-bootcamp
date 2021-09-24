@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PHPとDBの連携5（データ削除処理） - web-application-bootcamp</title>
+        <title>認証処理の実装2（認証状態の確認） - web-application-bootcamp</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php02/index.html"><strong aria-hidden="true">5.</strong> Day02</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php02/about-db.html"><strong aria-hidden="true">5.1.</strong> DBの基本</a></li><li class="chapter-item expanded "><a href="../../php/php02/start-db.html"><strong aria-hidden="true">5.2.</strong> DB / テーブルの作成</a></li><li class="chapter-item expanded "><a href="../../php/php02/db-sql.html"><strong aria-hidden="true">5.3.</strong> SQLによるDB操作</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-create.html"><strong aria-hidden="true">5.4.</strong> PHPとDBの連携1（データ作成処理）</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-read.html"><strong aria-hidden="true">5.5.</strong> PHPとDBの連携2（データ参照処理）</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php03/index.html"><strong aria-hidden="true">6.</strong> Day03</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php03/function-db-connect.html"><strong aria-hidden="true">6.1.</strong> DB接続関数の作成</a></li><li class="chapter-item expanded "><a href="../../php/php03/sql-edit.html"><strong aria-hidden="true">6.2.</strong> PHPとDBの連携3（編集画面の作成）</a></li><li class="chapter-item expanded "><a href="../../php/php03/sql-update.html"><strong aria-hidden="true">6.3.</strong> PHPとDBの連携4（データ更新処理の作成）</a></li><li class="chapter-item expanded "><a href="../../php/php03/sql-delete.html" class="active"><strong aria-hidden="true">6.4.</strong> PHPとDBの連携5（データ削除処理）</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php04/index.html"><strong aria-hidden="true">7.</strong> Day04</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php04/about-session.html"><strong aria-hidden="true">7.1.</strong> セッションとは</a></li><li class="chapter-item expanded "><a href="../../php/php04/session-variables.html"><strong aria-hidden="true">7.2.</strong> セッション変数</a></li><li class="chapter-item expanded "><a href="../../php/php04/auth-01.html"><strong aria-hidden="true">7.3.</strong> 認証処理の実装1（ログインとログアウト）</a></li><li class="chapter-item expanded "><a href="../../php/php04/auth-02.html"><strong aria-hidden="true">7.4.</strong> 認証処理の実装2（認証状態の確認）</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../work.html"><strong aria-hidden="true">2.</strong> Phase01の課題について</a></li><li class="chapter-item expanded "><a href="../../php/php_setup/index.html"><strong aria-hidden="true">3.</strong> PHP事前準備</a></li><li class="chapter-item expanded "><a href="../../php/php01/index.html"><strong aria-hidden="true">4.</strong> Day01</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php01/about-php.html"><strong aria-hidden="true">4.1.</strong> PHP概要</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-started.html"><strong aria-hidden="true">4.2.</strong> 開発の手順</a></li><li class="chapter-item expanded "><a href="../../php/php01/php-start.html"><strong aria-hidden="true">4.3.</strong> PHP基礎</a></li><li class="chapter-item expanded "><a href="../../php/php01/get-post.html"><strong aria-hidden="true">4.4.</strong> クライアント - サーバ間の通信</a></li><li class="chapter-item expanded "><a href="../../php/php01/data-select.html"><strong aria-hidden="true">4.5.</strong> パラメータ送信による検索機能の実装</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php02/index.html"><strong aria-hidden="true">5.</strong> Day02</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php02/about-db.html"><strong aria-hidden="true">5.1.</strong> DBの基本</a></li><li class="chapter-item expanded "><a href="../../php/php02/start-db.html"><strong aria-hidden="true">5.2.</strong> DB / テーブルの作成</a></li><li class="chapter-item expanded "><a href="../../php/php02/db-sql.html"><strong aria-hidden="true">5.3.</strong> SQLによるDB操作</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-create.html"><strong aria-hidden="true">5.4.</strong> PHPとDBの連携1（データ作成処理）</a></li><li class="chapter-item expanded "><a href="../../php/php02/sql-read.html"><strong aria-hidden="true">5.5.</strong> PHPとDBの連携2（データ参照処理）</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php03/index.html"><strong aria-hidden="true">6.</strong> Day03</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php03/function-db-connect.html"><strong aria-hidden="true">6.1.</strong> DB接続関数の作成</a></li><li class="chapter-item expanded "><a href="../../php/php03/sql-edit.html"><strong aria-hidden="true">6.2.</strong> PHPとDBの連携3（編集画面の作成）</a></li><li class="chapter-item expanded "><a href="../../php/php03/sql-update.html"><strong aria-hidden="true">6.3.</strong> PHPとDBの連携4（データ更新処理の作成）</a></li><li class="chapter-item expanded "><a href="../../php/php03/sql-delete.html"><strong aria-hidden="true">6.4.</strong> PHPとDBの連携5（データ削除処理）</a></li></ol></li><li class="chapter-item expanded "><a href="../../php/php04/index.html"><strong aria-hidden="true">7.</strong> Day04</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../php/php04/about-session.html"><strong aria-hidden="true">7.1.</strong> セッションとは</a></li><li class="chapter-item expanded "><a href="../../php/php04/session-variables.html"><strong aria-hidden="true">7.2.</strong> セッション変数</a></li><li class="chapter-item expanded "><a href="../../php/php04/auth-01.html"><strong aria-hidden="true">7.3.</strong> 認証処理の実装1（ログインとログアウト）</a></li><li class="chapter-item expanded "><a href="../../php/php04/auth-02.html" class="active"><strong aria-hidden="true">7.4.</strong> 認証処理の実装2（認証状態の確認）</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,85 +165,89 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="phpとdbの連携5データ削除処理"><a class="header" href="#phpとdbの連携5データ削除処理">PHPとDBの連携5（データ削除処理）</a></h1>
-<h2 id="データ削除のsql"><a class="header" href="#データ削除のsql">データ削除のSQL</a></h2>
-<pre><code class="language-sql">-- DELETE文の基本構造
-DELETE FROM テーブル名;
-
--- 例
-
--- 全消去
-DELETE FROM todo_table;
--- 指定データのみ
-DELETE FROM todo_table WHERE id = 2;
-
--- WHEREで指定しないとテーブルのデータが全滅する！！
--- DELETEすると復旧できないので注意！！
-
-</code></pre>
-<h2 id="処理の流れ"><a class="header" href="#処理の流れ">処理の流れ</a></h2>
-<ol>
-<li>✅ 一覧画面に削除ページへのリンクを作成（urlにidを追加<code>todo_delete.php?id=**</code>）</li>
-<li>削除処理の作成（<code>todo_delete.php</code>）</li>
-<li>テーブルのデータを削除したら一覧画面に戻る</li>
-</ol>
-<h2 id="削除の実装"><a class="header" href="#削除の実装">削除の実装</a></h2>
-<p>削除に必要なのは<code>id</code>のみである．編集画面に移動する場合と同様にGETで<code>id</code>を受け取る．</p>
-<p>データを受け取ったら，下記の順で処理を記述する．</p>
+                        <h1 id="認証処理の実装2認証状態の確認"><a class="header" href="#認証処理の実装2認証状態の確認">認証処理の実装2（認証状態の確認）</a></h1>
+<p>todoリストの機能はログインしているときのみアクセスできるようにしたい！</p>
+<p>現状では，ログアウトした状態でもURLを手打ちするとアクセスできてしまう．．．</p>
 <ul>
-<li>DB接続</li>
-<li>SQL実行（DELETE文）</li>
-<li>一覧画面へ移動</li>
+<li>登録画面，一覧画面などはログイン済ユーザのみ見られるようにする</li>
+<li>ログインをチェックし，ログインしていない状態ならログイン画面に移動</li>
 </ul>
-<h3 id="-key-point"><a class="header" href="#-key-point">💡 Key Point</a></h3>
-<blockquote>
-<p>⚠️ DELETE文を実行する場合には必ずWHEREで<code>id</code>を指定すること．</p>
-</blockquote>
-<pre><code class="language-php">$id = $_GET['id'];
+<h2 id="ログインしているとはなにか"><a class="header" href="#ログインしているとはなにか">「ログインしている」とはなにか</a></h2>
+<p>以下の2つの状態を「ログインしていない」とみなす！！</p>
+<ul>
+<li>「セッション変数に<code>session_id</code>を持っていない」</li>
+<li>「idが最新ではない」はログインしていない状態</li>
+</ul>
+<h2 id="関数の定義"><a class="header" href="#関数の定義">関数の定義</a></h2>
+<p>上記2条件を用いてログインの有無を判断する関数を作成する．</p>
+<p>関数の役割は</p>
+<ol>
+<li>ログインしていない場合はログインページへ強制送還．</li>
+<li>ログインしている場合は<code>session_id</code>を更新してセッション変数に保存する．
+<ul>
+<li>セッション変数には常に最新の<code>session_id</code>が入っている状態にする．</li>
+</ul>
+</li>
+</ol>
+<p>複数のファイルでチェックを行うため，関数ファイルに記述しよう！</p>
+<pre><code class="language-php">// functions.php
 
-include('functions.php');
-$pdo = connect_to_db();
-
-$sql = 'DELETE FROM todo_table WHERE id=:id';
-
-$stmt = $pdo-&gt;prepare($sql);
-$stmt-&gt;bindValue(':id', $id, PDO::PARAM_STR);
-$status = $stmt-&gt;execute();
-
-if ($status == false) {
-  $error = $stmt-&gt;errorInfo();
-  echo json_encode([&quot;error_msg&quot; =&gt; &quot;{$error[2]}&quot;]);
-  exit();
-} else {
-  header(&quot;Location:todo_read.php&quot;);
-  exit();
+function check_session_id()
+{
+  if (!isset($_SESSION[&quot;session_id&quot;]) ||$_SESSION[&quot;session_id&quot;] != session_id()) {
+    header('Location:todo_login.php');
+    exit();
+  } else {
+    session_regenerate_id(true);
+    $_SESSION[&quot;session_id&quot;] = session_id();
+  }
 }
 
 </code></pre>
+<h2 id="関数の実行"><a class="header" href="#関数の実行">関数の実行</a></h2>
+<p>あとは定義した関数を「ログインしていないときに動いてほしくないPHPファイル」で実行しよう．</p>
+<p>セッションの機能を使用するため，<code>session_start();</code>を忘れないように注意！</p>
+<p>下記ファイルで実行すると良き．</p>
+<ul>
+<li><code>todo_input.php</code></li>
+<li><code>todo_read.php</code></li>
+<li><code>todo_edit.php</code></li>
+<li><code>todo_create.php</code></li>
+<li><code>todo_create.php</code></li>
+<li><code>todo_update.php</code></li>
+<li><code>todo_delete.php</code></li>
+</ul>
+<pre><code class="language-php">// ログインしていないときに動いてほしくないPHPファイル
+
+&lt;?php
+session_start();
+include('functions.php');
+check_session_id();
+
+</code></pre>
+<h3 id="-key-point"><a class="header" href="#-key-point">💡 Key Point</a></h3>
+<blockquote>
+<p>「ログインしているユーザだけがアクセスできる画面」と「誰でもアクセスできる画面」がそれぞれどの画面なのかを明確にすることが大切．</p>
+<p>同様に管理者ユーザのみがアクセス可能な画面を切り分けることも同様の方法で可能．</p>
+</blockquote>
 <h2 id="練習"><a class="header" href="#練習">練習</a></h2>
-<p>以下の処理を実装しよう！</p>
-<ol>
-<li>✅ 一覧画面に<code>todo_delete.php</code>へのリンクを追加！</li>
-<li><code>todo_delete.php</code>ではデータをIDで検索し，該当するデータを削除！</li>
-<li>完了したら<code>todo_read.php</code>へ戻る．</li>
-</ol>
-<p>削除処理実行後，一覧ページでデータが削除されていればOK！</p>
-<p>（phpmyadminでも確認しよう）</p>
+<p>メインのコンテンツは未ログインだとアクセスできないようにしよう！</p>
+<ul>
+<li>ログイン状態を確認する関数をつくろう！（functions.php）</li>
+<li>コンテンツのページで上記関数を実行しよう！</li>
+</ul>
+<p>ログアウトした状態で各ページにアクセスできない状態（ログインページに移動）になればOK！</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../../php/php03/sql-update.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../php/php04/auth-01.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="../../php/php04/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -253,15 +257,11 @@ if ($status == false) {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../../php/php03/sql-update.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../php/php04/auth-01.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a rel="next" href="../../php/php04/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
