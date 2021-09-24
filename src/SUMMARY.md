@@ -49,12 +49,12 @@
   - [Like機能の実装4（データの結合）](./php/php05/like-join.md) -->
   <!-- - [課題](./php/php05/work.md) -->
 
-<!-- - [Laravel事前準備](./laravel/laravel_setup/README.md)
+- [Laravel事前準備](./laravel/laravel_setup/README.md)
 
     - [【Mac編】環境構築](./laravel/laravel_setup/setup-for-mac.md)
     - [【Windows編】環境構築](./laravel/laravel_setup/setup-for-windows.md)
     - [Laravelプロジェクト作成](./laravel/laravel_setup/create-project.md)
-    - [ライブラリ準備](./laravel/laravel_setup/add-laravel-breeze.md)
+    <!-- - [ライブラリ準備](./laravel/laravel_setup/add-laravel-breeze.md)
     - [データベース準備](./laravel/laravel_setup/setup-db.md)
     - [phpmyadminの追加](./laravel/laravel_setup/phpmyadmin.md) -->
 

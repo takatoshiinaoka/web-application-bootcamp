@@ -4,15 +4,16 @@ Mac の人は「ターミナル」，Windowsの人は「Windows ターミナル�
 
 （Windows の人は Ubuntu 20.04 で動かしている状態でコマンドを実行する必要があるので，適宜前項の「Docker の動作確認」を確認しておく．）
 
-下記コマンドでプロジェクトのファイルができる．`laravel_todo`部分がプロジェクト名となる．
+下記コマンドでプロジェクトのファイルができる．`laratter`部分がプロジェクト名となる．
 
 ```bash
-$ curl -s https://laravel.build/laravel_todo | bash
+$ curl -s https://laravel.build/laratter | bash
 ```
 
-実行結果
 
-```bash
+実行結果
+```
+
  _                               _
 | |                             | |
 | |     __ _ _ __ __ ___   _____| |
@@ -21,22 +22,26 @@ $ curl -s https://laravel.build/laravel_todo | bash
 |______\__,_|_|  \__,_| \_/ \___|_|
 
 Warning: TTY mode requires /dev/tty to be read/writable.
-    Creating a "laravel/laravel" project at "./laravel_todo"
-    Installing laravel/laravel (v8.5.20)
-      - Downloading laravel/laravel (v8.5.20)
-      - Installing laravel/laravel (v8.5.20): Extracting archive
+    Creating a "laravel/laravel" project at "./laratter"
+    Installing laravel/laravel (v8.6.2)
+      - Downloading laravel/laravel (v8.6.2)
+      - Installing laravel/laravel (v8.6.2): Extracting archive
+    Created project in /opt/laratter
+    > @php -r "file_exists('.env') || copy('.env.example', '.env');"
+    Loading composer repositories with package information
+    Updating dependencies
 ...
+
 ```
 
 途中，Laravel側でいろいろ実行するためPCのログインパスワードを求められるので入力する．
 
 ```bash
-...
 Please provide your password so we can make some final adjustments to your application's permissions.
 
 [sudo] password for taroosg:
 
-Thank you! We hope you build something incredible. Dive in with: cd laravel_todo && ./vendor/bin/sail up
+Thank you! We hope you build something incredible. Dive in with: cd laratter && ./vendor/bin/sail up
 
 ```
 
@@ -46,7 +51,7 @@ Thank you! We hope you build something incredible. Dive in with: cd laravel_todo
 この方法でプロジェクトを作成するとエディタで操作する場合に権限で引っかかる場合があるので権限を変更する．
 
 ```bash
-$ sudo chmod -R 777 laravel_todo
+$ sudo chmod -R 777 laratter
 ```
 
 権限が変更できない場合は下記URLの設定を行い再度コマンドを実行する．
@@ -58,23 +63,23 @@ $ sudo chmod -R 777 laravel_todo
 早速仮想コンテナを立ち上げる．
 
 ```bash
-$ cd laravel_todo
+$ cd laratter
 $ ./vendor/bin/sail up -d
 ```
 
 実行結果
 
 ```bash
-Creating network "laravel_todo_sail" with driver "bridge"
-Creating volume "laravel_todo_sailmysql" with local driver
-Creating volume "laravel_todo_sailredis" with local driver
-Creating volume "laravel_todo_sailmeilisearch" with local driver
-Creating laravel_todo_mailhog_1     ... done
-Creating laravel_todo_meilisearch_1 ... done
-Creating laravel_todo_redis_1       ... done
-Creating laravel_todo_selenium_1    ... done
-Creating laravel_todo_mysql_1       ... done
-Creating laravel_todo_laravel.test_1 ... done
+Creating network "laratter_sail" with driver "bridge"
+Creating volume "laratter_sailmysql" with local driver
+Creating volume "laratter_sailredis" with local driver
+Creating volume "laratter_sailmeilisearch" with local driver
+Creating laratter_mailhog_1     ... done
+Creating laratter_redis_1       ... done
+Creating laratter_mysql_1       ... done
+Creating laratter_selenium_1    ... done
+Creating laratter_meilisearch_1 ... done
+Creating laratter_laravel.test_1 ... done
 ```
 
 
