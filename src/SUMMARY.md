@@ -59,8 +59,9 @@
     - [phpmyadminの追加](./laravel/laravel_setup/phpmyadmin.md) -->
 
 <!-- - [Day06](./laravel/laravel01/readme.md)
-  - [MVCとは]()
-  - [ルーティング（必要な画面）]()
+  - [LaravelとMVCフレームワーク](./laravel/laravel01/about-laravel-and-mvc.md)
+  - [マイグレーションによるテーブル作成](./laravel/laravel01/migration.md) -->
+  <!-- - [ルーティング（必要な画面）]()
   - [Create]()
   - [Read]() -->
 

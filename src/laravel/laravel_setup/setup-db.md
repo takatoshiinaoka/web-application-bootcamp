@@ -2,7 +2,7 @@
 
 ## MySQLの準備
 
-今回のtodoリストアプリケーションでは，DBとしてMySQLを使用する．
+今回のSNSアプリケーションでは，DBとしてMySQLを使用する．
 
 すでにMySQL自体は動作する状態になっているが，Laravelから扱うにはいくつかの設定が必要となる．下記手順を実行し，MySQLにログインする．
 
@@ -41,7 +41,7 @@ mysql>
 
 ## DB状況の確認
 
-すでに今回のアプリケーションで使用するデータベースを作成されている．データベース名は `laravel_todo`（プロジェクト名を同じ）．
+すでに今回のアプリケーションで使用するデータベースを作成されている．データベース名は `laratter`（プロジェクト名を同じ）．
 
 下記コマンドを実行してデータベースの一覧を表示する．
 
@@ -51,7 +51,7 @@ mysql> show databases;
 | Database           |
 +--------------------+
 | information_schema |
-| laravel_todo       |
+| laratter           |
 +--------------------+
 2 rows in set (0.03 sec)
 ```
@@ -68,13 +68,13 @@ Bye
 
 続いて，LaravelからMySQLにアクセスするための設定を行う．今回はプロジェクト作成の時点で設定されているため項目の確認のみ行う．
 
-エディタから`.env`ファイルを開く．`.env`ファイルは`laravel_todo`ディレクトリの直下に配置されている．
+エディタから`.env`ファイルを開く．`.env`ファイルは`laratter`ディレクトリの直下に配置されている．
 
 ```env
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
-DB_DATABASE=laravel_todo
+DB_DATABASE=laratter
 DB_USERNAME=sail
 DB_PASSWORD=password
 ```

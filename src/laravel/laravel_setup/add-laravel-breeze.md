@@ -75,11 +75,11 @@ webpack compiled successfully
 
 以下の画面が表示されればOK（右上に`Login`と`register`が表示される）．
 
-![breezeインストール確認](../img/20210104-breeze-installed.png)
+![breezeインストール確認](./img/breeze-installed.png)
 
 右上の`register`をクリックするとユーザ登録画面に移動するが，まだこの段階ではユーザ登録機能は動作しない．ユーザ登録画面が表示されればOK．
 
-![register画面](../img/20210104-register.png)
+![register画面](./img/register.png)
 
 ここまででライブラリの準備は完了．
 
