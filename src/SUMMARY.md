@@ -60,7 +60,10 @@
 
 <!-- - [Day06](./laravel/laravel01/readme.md)
   - [LaravelとMVCフレームワーク](./laravel/laravel01/about-laravel-and-mvc.md)
-  - [マイグレーションによるテーブル作成](./laravel/laravel01/migration.md) -->
+  - [マイグレーションによるテーブル作成](./laravel/laravel01/migration.md)
+  - [ルーティングとコントローラ](./laravel/laravel01/route-and-controller.md)
+  - [必要な画面の作成と動作確認](./laravel/laravel01/views.md) -->
+
   <!-- - [ルーティング（必要な画面）]()
   - [Create]()
   - [Read]() -->
