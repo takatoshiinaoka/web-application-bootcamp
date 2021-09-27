@@ -66,19 +66,16 @@
   - [tweet作成処理の実装](./laravel/laravel01/create.md)
   - [tweet一覧画面の実装](./laravel/laravel01/read.md) -->
 
-
-  <!-- - [ルーティング（必要な画面）]()
-  - [Create]()
-  - [Read]() -->
-
 <!-- - [Day07](./laravel/laravel02/readme.md)
-  - [Update]()
-  - [Delete]() -->
+  - [tweet詳細画面の実装](./laravel/laravel02/show.md)
+  - [tweet削除処理の実装](./laravel/laravel02/delete.md)
+  - [tweet更新処理の実装](./laravel/laravel02/update.md)
+  - [tweetとユーザ認証の連携](./laravel/laravel02/auth.md) -->
 
 <!-- - [Day08](./laravel/laravel03/readme.md)
-  - [認証とルーティング連携]()
-  - [1対多の実装]()
-  - [Like機能]()
-  - [多対多の実装]() -->
-
+  - [マイページ機能の実装（1対多のデータ）](./laravel/laravel03/mypage.md)
+  ↑済
+  - [投稿者名の表示（多対1のデータ）](./laravel/laravel03/auther.md)
+  - [Favorite機能1（多対多のデータ・中間テーブル）](./laravel/laravel03/favorite01.md)
+  - [Favorite機能2（各処理の実装）](./laravel/laravel03/favorite02.md) -->
 

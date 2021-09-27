@@ -29,9 +29,9 @@ Controller created successfully.
 
 これでコントローラファイルが作成された．続いてルーティングを作成する．
 
-**ルーティングファイルは`laratter/routes`以下に配置される．**
+**ルーティングファイルは`routes`以下に配置される．**
 
-`/laratter/routes/web.php`を以下のように編集する．
+`routes/web.php`を以下のように編集する．
 
 ```php
 // routes/web.php
@@ -40,7 +40,7 @@ Controller created successfully.
 
 use Illuminate\Support\Facades\Route;
 // ↓追加
-use App\Http\Controllers\TodoController;
+use App\Http\Controllers\TweetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ use App\Http\Controllers\TodoController;
 */
 
 // ↓追加
-Route::resource('tweet', TodoController::class);
+Route::resource('tweet', TweetController::class);
 
 Route::get('/', function () {
     return view('welcome');

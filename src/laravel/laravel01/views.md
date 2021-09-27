@@ -47,7 +47,7 @@ tweetの入力や編集など複数の画面で必要となるため，共通の
 
 `resources/views/layouts/navigation.blade.php`の内容を以下のように編集する．
 
-全部で4箇所追記があるので注意．
+全部で4箇所追記があるので注意．長いので全コピペ推奨．
 
 ```php
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
