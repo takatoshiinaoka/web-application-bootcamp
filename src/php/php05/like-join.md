@@ -36,7 +36,7 @@ JOINを使う場合の書式は以下のとおり．この場合は以下の条�
 
 ### category_table
 
-category_id|category_name|
+|category_id|category_name|
 |-:|-|
 |1|ファントムブラッド|
 |2|戦闘潮流|
