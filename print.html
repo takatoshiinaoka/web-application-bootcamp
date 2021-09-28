@@ -2662,8 +2662,20 @@ FROM
 
 $sql = 'SELECT * FROM todo_table LEFT OUTER JOIN (SELECT todo_id, COUNT(id) AS like_count FROM like_table GROUP BY todo_id) AS result_table ON todo_table.id = result_table.todo_id';
 
-// 省略
-$output .= &quot;&lt;td&gt;&lt;a href='like_create.php?user_id={$user_id}&amp;todo_id={$record[&quot;id&quot;]}'&gt;like{$record['like_count']}&lt;/a&gt;&lt;/td&gt;&quot;;
+// タグ生成部分
+
+foreach ($result as $record) {
+  $output .= &quot;
+    &lt;tr&gt;
+      &lt;td&gt;{$record[&quot;deadline&quot;]}&lt;/td&gt;
+      &lt;td&gt;{$record[&quot;todo&quot;]}&lt;/td&gt;
+      // ↓ここに`$record[&quot;like_count&quot;]`を追加！
+      &lt;td&gt;&lt;a href='like_create.php?user_id={$user_id}&amp;todo_id={$record[&quot;id&quot;]}'&gt;like{$record[&quot;like_count&quot;]}&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href='todo_edit.php?id={$record[&quot;id&quot;]}'&gt;edit&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href='todo_delete.php?id={$record[&quot;id&quot;]}'&gt;delete&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &quot;;
+}
 
 </code></pre>
 <h2 id="練習-14"><a class="header" href="#練習-14">練習</a></h2>
