@@ -79,7 +79,7 @@ if (!$val) {
 ```php
 // todo_read.php
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 // ↓タグ生成部分
 foreach ($result as $record) {
