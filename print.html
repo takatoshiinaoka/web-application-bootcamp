@@ -2357,7 +2357,7 @@ if (!$val) {
 <p><code>user_id</code>と<code>todo_id</code>を<code>like_create.php</code>にGETで送信する．</p>
 <pre><code class="language-php">// todo_read.php
 
-$user_id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 // ↓タグ生成部分
 foreach ($result as $record) {
