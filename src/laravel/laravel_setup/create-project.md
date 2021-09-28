@@ -115,6 +115,14 @@ XAMPP が動いていると立ち上がらない場合があるため，一度 X
 
 また，Laravel の仮想コンテナが立ち上がっていると XAMPP が動かない場合があるので，XAMPP で開発を行う場合には仮想コンテナを終了させておく．
 
+### PC再起動
+
+PC を再起動すると解決する場合が多い．
+
+### Docker Desktopのバージョンアップ
+
+Docker Desktop を以前からインストールしていた場合，バージョンが古いと起動しない場合はあるので最新バージョンにアップデートを行う．
+
 ### M1のMacで`ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries`が出る
 
 `docker-compoes.yml`に下記を追加する，
@@ -135,9 +143,9 @@ mysql:
 
 ### M1のMacで`laravel.test failed`的なエラーが出る
 
-エディタで`laravel_todo/vendor/laravel/sail/runtimes/8.0/Dockerfile`を開き．34行目と35行目をコメントアウトする．
+エディタで`laratter/vendor/laravel/sail/runtimes/8.0/Dockerfile`を開き．34行目と35行目をコメントアウトする．
 
-↓この2行をコメントアウトする
+↓この2行をコメントアウトする（バージョンによって異なるので，該当ファイルの記述内容をよく確認すること）
 
 ```
 && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
