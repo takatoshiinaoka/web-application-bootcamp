@@ -200,15 +200,27 @@
 </ul>
 <h2 id="wsl2-のダウンロードインストールと設定"><a class="header" href="#wsl2-のダウンロードインストールと設定">WSL2 のダウンロード，インストールと設定</a></h2>
 <ol>
+<li>下記のURLから必要なファイルをダウンロードする．</li>
+</ol>
+<p><a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></p>
+<blockquote>
+<p>注意</p>
+<p>ARM64 マシンを使用している場合は，代わりに<a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi</a>をダウンロードする．</p>
+</blockquote>
+<ol start="2">
 <li>
-<p>下記の URL の「Step 4」と「Step 5」を実行する．</p>
-<ul>
-<li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package">https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package</a></li>
-</ul>
+<p>ダウンロードしたファイルをダブルクリックして実行する．管理者特権のアクセス許可を求めるメッセージが表示される．<code>はい</code> を選択して，インストールを進める．</p>
 </li>
 <li>
-<p>PC を再起動する．（↑で再起動している場合は必要なし）</p>
+<p>PowerShell を開いて次のコマンドを実行し，新しい Linux ディストリビューションをインストールする際の既定のバージョンとして WSL 2 を設定する．</p>
 </li>
+</ol>
+<pre><code class="language-bash">wsl --set-default-version 2
+</code></pre>
+<!-- 1. 下記の URL の「Step 4」と「Step 5」を実行する．
+    - [https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package) -->
+<ol start="4">
+<li>PC を再起動する．</li>
 </ol>
 <h2 id="docker-の動作確認"><a class="header" href="#docker-の動作確認">Docker の動作確認</a></h2>
 <ol>
@@ -216,7 +228,7 @@
 <p>Docker Desktop を起動する．</p>
 </li>
 <li>
-<p>「<code>Setting</code>（画面上部の⚙アイコン）」 -&gt; 「<code>General</code>」 -&gt; 「<code>Use the WSL2 based engine</code>」にチェックを入れる．</p>
+<p>「<code>Setting</code>（画面上部の⚙アイコン）」 -&gt; 「<code>General</code>」 -&gt; 「<code>Use the WSL2 based engine</code>」にチェックを入れる．すでにチェックが入っていてユーザが操作できない状態となっている場合があるが，その場合はそのままでOK．</p>
 </li>
 </ol>
 <p><img src="./img/docker_setting01.PNG" alt="docker 設定画面01" /></p>
