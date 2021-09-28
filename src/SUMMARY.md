@@ -40,13 +40,13 @@
   - [認証処理の実装2（認証状態の確認）](./php/php04/auth-02.md)
   <!-- - [課題](./php/php04/work.md) -->
 
-<!-- - [Day05](./php/php05/README.md)
+- [Day05](./php/php05/README.md)
 
   - [RDBの構造](./php/php05/about-rdb.md)
   - [Like機能の実装1（データの追加1）](./php/php05/like-add.md)
   - [Like機能の実装2（データの追加2）](./php/php05/like-delete.md)
   - [Like機能の実装3（データの集計）](./php/php05/like-groupby.md)
-  - [Like機能の実装4（データの結合）](./php/php05/like-join.md) -->
+  - [Like機能の実装4（データの結合）](./php/php05/like-join.md)
   <!-- - [課題](./php/php05/work.md) -->
 
 - [Laravel事前準備](./laravel/laravel_setup/README.md)
