@@ -157,8 +157,20 @@ FROM
 
 $sql = 'SELECT * FROM todo_table LEFT OUTER JOIN (SELECT todo_id, COUNT(id) AS like_count FROM like_table GROUP BY todo_id) AS result_table ON todo_table.id = result_table.todo_id';
 
-// 省略
-$output .= "<td><a href='like_create.php?user_id={$user_id}&todo_id={$record["id"]}'>like{$record['like_count']}</a></td>";
+// タグ生成部分
+
+foreach ($result as $record) {
+  $output .= "
+    <tr>
+      <td>{$record["deadline"]}</td>
+      <td>{$record["todo"]}</td>
+      // ↓ここに`$record["like_count"]`を追加！
+      <td><a href='like_create.php?user_id={$user_id}&todo_id={$record["id"]}'>like{$record["like_count"]}</a></td>
+      <td><a href='todo_edit.php?id={$record["id"]}'>edit</a></td>
+      <td><a href='todo_delete.php?id={$record["id"]}'>delete</a></td>
+    </tr>
+  ";
+}
 
 ```
 
