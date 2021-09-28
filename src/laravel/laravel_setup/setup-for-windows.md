@@ -32,16 +32,32 @@ Docker を使用するための準備を進めていく．
 
 ## WSL2 のダウンロード，インストールと設定
 
-1. 下記の URL の「Step 4」と「Step 5」を実行する．
-    - [https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
+1. 下記のURLから必要なファイルをダウンロードする．
 
-2. PC を再起動する．（↑で再起動している場合は必要なし）
+[https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+
+>注意
+>
+>ARM64 マシンを使用している場合は，代わりに[https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi)をダウンロードする．
+
+2. ダウンロードしたファイルをダブルクリックして実行する．管理者特権のアクセス許可を求めるメッセージが表示される．`はい` を選択して，インストールを進める．
+
+3. PowerShell を開いて次のコマンドを実行し，新しい Linux ディストリビューションをインストールする際の既定のバージョンとして WSL 2 を設定する．
+
+```bash
+wsl --set-default-version 2
+```
+
+<!-- 1. 下記の URL の「Step 4」と「Step 5」を実行する．
+    - [https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package) -->
+
+4. PC を再起動する．
 
 ## Docker の動作確認
 
 1. Docker Desktop を起動する．
 
-2. 「`Setting`（画面上部の⚙アイコン）」 -> 「`General`」 -> 「`Use the WSL2 based engine`」にチェックを入れる．
+2. 「`Setting`（画面上部の⚙アイコン）」 -> 「`General`」 -> 「`Use the WSL2 based engine`」にチェックを入れる．すでにチェックが入っていてユーザが操作できない状態となっている場合があるが，その場合はそのままでOK．
 
 ![docker 設定画面01](./img/docker_setting01.PNG)
 
