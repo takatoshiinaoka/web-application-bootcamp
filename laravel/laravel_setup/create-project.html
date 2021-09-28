@@ -238,6 +238,10 @@ Creating laratter_laravel.test_1 ... done
 <h3 id="xampp-が動いている"><a class="header" href="#xampp-が動いている">XAMPP が動いている</a></h3>
 <p>XAMPP が動いていると立ち上がらない場合があるため，一度 XAMPP を終了させてから再度コマンドを実行する．</p>
 <p>また，Laravel の仮想コンテナが立ち上がっていると XAMPP が動かない場合があるので，XAMPP で開発を行う場合には仮想コンテナを終了させておく．</p>
+<h3 id="pc再起動"><a class="header" href="#pc再起動">PC再起動</a></h3>
+<p>PC を再起動すると解決する場合が多い．</p>
+<h3 id="docker-desktopのバージョンアップ"><a class="header" href="#docker-desktopのバージョンアップ">Docker Desktopのバージョンアップ</a></h3>
+<p>Docker Desktop を以前からインストールしていた場合，バージョンが古いと起動しない場合はあるので最新バージョンにアップデートを行う．</p>
 <h3 id="m1のmacでerror-no-matching-manifest-for-linuxarm64v8-in-the-manifest-list-entriesが出る"><a class="header" href="#m1のmacでerror-no-matching-manifest-for-linuxarm64v8-in-the-manifest-list-entriesが出る">M1のMacで<code>ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries</code>が出る</a></h3>
 <p><code>docker-compoes.yml</code>に下記を追加する，</p>
 <pre><code class="language-yml">platform: 'linux/x86_64'
@@ -249,8 +253,8 @@ Creating laratter_laravel.test_1 ... done
 </code></pre>
 <p><a href="https://neoighodaro.com/posts/3-running-laravel-and-docker-on-the-apple-mac-m1">参考：https://neoighodaro.com/posts/3-running-laravel-and-docker-on-the-apple-mac-m1</a></p>
 <h3 id="m1のmacでlaraveltest-failed的なエラーが出る"><a class="header" href="#m1のmacでlaraveltest-failed的なエラーが出る">M1のMacで<code>laravel.test failed</code>的なエラーが出る</a></h3>
-<p>エディタで<code>laravel_todo/vendor/laravel/sail/runtimes/8.0/Dockerfile</code>を開き．34行目と35行目をコメントアウトする．</p>
-<p>↓この2行をコメントアウトする</p>
+<p>エディタで<code>laratter/vendor/laravel/sail/runtimes/8.0/Dockerfile</code>を開き．34行目と35行目をコメントアウトする．</p>
+<p>↓この2行をコメントアウトする（バージョンによって異なるので，該当ファイルの記述内容をよく確認すること）</p>
 <pre><code>&amp;&amp; curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 &amp;&amp; echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; &gt; /etc/apt/sources.list.d/yarn.list \
 </code></pre>
