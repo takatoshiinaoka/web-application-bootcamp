@@ -74,7 +74,6 @@
 
 <!-- - [Day08](./laravel/laravel03/readme.md)
   - [マイページ機能の実装（1対多のデータ）](./laravel/laravel03/mypage.md)
-  ↑済
   - [投稿者名の表示（多対1のデータ）](./laravel/laravel03/auther.md)
   - [Favorite機能1（多対多のデータ・中間テーブル）](./laravel/laravel03/favorite01.md)
   - [Favorite機能2（各処理の実装）](./laravel/laravel03/favorite02.md) -->
