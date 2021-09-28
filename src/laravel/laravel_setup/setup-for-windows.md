@@ -32,8 +32,8 @@ Docker を使用するための準備を進めていく．
 
 ## WSL2 のダウンロード，インストールと設定
 
-1. 下記の URL の「手順 4」と「手順 5」を実行する．
-    - [https://docs.microsoft.com/ja-jp/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package](https://docs.microsoft.com/ja-jp/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package)
+1. 下記の URL の「Step 4」と「Step 5」を実行する．
+    - [https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
 
 2. PC を再起動する．（↑で再起動している場合は必要なし）
 
