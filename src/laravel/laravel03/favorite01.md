@@ -1,6 +1,13 @@
 # Favorite機能1（多対多のデータ・中間テーブル）
 
 
+>📦 **Laravelコンテナ内の操作**
+>
+>```bash
+>$ docker-compose exec laravel.test bash
+>root@8544d96d2334:/var/www/html#
+>```
+
 ```txt
 users
     id - integer
@@ -45,6 +52,14 @@ Migrated:  2021_09_24_072924_create_tweet_user_table (451.37ms)
 ```
 
 テーブルを確認する
+
+>📦 **MySQLコンテナ内の操作**
+>
+>```bash
+>$ docker-compose exec mysql bash
+>root@d984f6614597:/#
+>```
+
 
 ```bash
 $ docker-compose exec mysql bash

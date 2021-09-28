@@ -1,7 +1,18 @@
 # Favorite機能2（各処理の実装）
 
 コントローラ生成
+
+>📦 **Laravelコンテナ内の操作**
+>
+>```bash
+>$ docker-compose exec laravel.test bash
+>root@8544d96d2334:/var/www/html#
+>```
+
+
 Laravelコンテナ内
+
+
 ```bash
 root@915eac578a6a:/var/www/html# php artisan make:controller FavoriteController --resource
 Controller created successfully.
