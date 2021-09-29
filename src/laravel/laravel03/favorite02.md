@@ -1,31 +1,42 @@
-# Favorite機能2（各処理の実装）
+# Favorite 機能 2（各処理の実装）
 
-コントローラ生成
+データ連携の準備ができたので，各処理を実装していく．
 
->📦 **Laravelコンテナ内の操作**
+## コントローラ生成
+
+まずは，favorite 処理用のコントローラを作成する．
+
+> 📦**Laravel コンテナ内の操作**
 >
->```bash
->$ docker-compose exec laravel.test bash
->root@8544d96d2334:/var/www/html#
->```
+> ```bash
+> $ docker-compose exec laravel.testbash
+> root@8544d96d2334: /var/www/html #
+> ```
 
-
-Laravelコンテナ内
-
+下記のコマンドを実行する．
 
 ```bash
-root@915eac578a6a:/var/www/html# php artisan make:controller FavoriteController --resource
+$ php artisan make:controller FavoriteController --resource
+
+# 実行結果
 Controller created successfully.
+
 ```
 
-ルーティング
+## ルーティングの設定
+
+続いてルーティングを設定する．
+
+今回は`favorite`と`unfavorite`の URI を設定し，FavoriteController の`store()`関数と`destroy()`関数をそれぞれ利用する．
 
 ```php
+// routes/web.php
+
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TweetController;
-use App\Http\Controllers\FavoriteController;
+useIlluminate\Support\Facades\Route;
+useApp\Http\Controllers\TweetController;
+useApp\Http\Controllers\FavoriteController;
 
 // ↓追加
 Route::post('tweet/{tweet}/favorites', [FavoriteController::class, 'store'])->name('favorites');
@@ -49,9 +60,17 @@ require __DIR__ . '/auth.php';
 
 ```
 
-コントローラ
+## コントローラの処理を実装
+
+ルーティングで設定した`store()`関数と`destroy()`関数の中身を実装する．
+
+`app/Http/Controllers/FavoriteController.php`を以下のように編集する．
+
+`attach()`で中間テーブルへのデータの追加，`detach()`で中間テーブルからのデータ削除が実行される．
 
 ```php
+// app/Http/Controllers/FavoriteController.php
+
 <?php
 
 namespace App\Http\Controllers;
@@ -74,8 +93,6 @@ class FavoriteController extends Controller
     return redirect()->route('tweet.index');
   }
 
-  // 省略
-
   // ↓編集
   public function destroy(Tweet $tweet)
   {
@@ -84,12 +101,21 @@ class FavoriteController extends Controller
   }
 }
 
-
 ```
 
-ビュー
-index
+## 一覧画面への反映
+
+中間テーブルへのデータ追加及び削除の処理を実装したので，最後に favorite 数を一覧画面に反映させて完成となる．
+
+まず，`$tweet->users()->where('user_id', Auth::id())->exists()`でログインしているユーザが favorite しているかどうかを判定する．
+
+既 favorite の場合は unfavorite するボタンを，未 favorite の場合は favorite するボタンを条件分岐で表示する．
+
+それぞれのボタン部分では favorite 件数を表示する．`$tweet->users()->count()` で中間テーブルのデータ件数を取得することができる．
+
 ```php
+// resources/views/tweet/index.blade.php
+
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -117,7 +143,9 @@ index
                   </a>
                   <div class="flex">
                     <!-- ↓追加 -->
+                    // favorite 状態で条件分岐
                     @if($tweet->users()->where('user_id', Auth::id())->exists())
+                    // unfavorite ボタン
                     <form action="{{ route('unfavorites',$tweet) }}" method="POST" class="text-left">
                       @csrf
                       <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
@@ -128,6 +156,7 @@ index
                       </button>
                     </form>
                     @else
+                    // favorite ボタン
                     <form action="{{ route('favorites',$tweet) }}" method="POST" class="text-left">
                       @csrf
                       <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-black py-1 px-2 focus:outline-none focus:shadow-outline">
@@ -173,5 +202,11 @@ index
 </x-app-layout>
 
 ```
+
+## 動作確認
+
+下図のように favorite ボタンが表示され，favorite 件数が表示されていれば OK．
+
+ここまでで Twitter ライクな SNS アプリケーションの実装は完了である．
 
 ![favorite機能追加](./img/laratter_index_add_favorite.png)

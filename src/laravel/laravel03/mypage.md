@@ -1,10 +1,10 @@
-# マイページ機能の実装（1対多のデータ）
+# マイページ機能の実装（1 対多のデータ）
 
-## 1対多のデータ連携
+## 1 対多のデータ連携
 
-今回の場合，ユーザとtweetが「1対多」の関係となっている．
+今回の場合，ユーザと tweet が「1 対多」の関係となっている．
 
-Laravelでは，このような場合に親となるデータから子のデータを取得する方法が準備されている．
+Laravel では，このような場合に親となるデータから子のデータを取得する方法が準備されている．
 
 `app/Models/User.php`に以下のように編集する．
 
@@ -26,9 +26,9 @@ class User extends Authenticatable
 
 ```
 
-ここで，UserとTweetを連携させるためには，子（Tweet）のカラムに「`親_id`」（<- 今回は`user_id`）を用意しておく必要がある（前項で実施）．
+ここで，User と Tweet を連携させるためには，子（Tweet）のカラムに「`親_id`」（<- 今回は`user_id`）を用意しておく必要がある（前項で実施）．
 
-これで`User`モデルを用いて，特定のユーザが投稿したtweetを取得できるようになる．
+これで`User`モデルを用いて，特定のユーザが投稿した tweet を取得できるようになる．
 
 ## マイページのルーティング
 
@@ -65,7 +65,7 @@ require __DIR__ . '/auth.php';
 
 `app/Http/Controllers/TweetController.php`の`index()`を内容を以下のように編集する．
 
-`class TweetController extends Controller{ ... }`内の最後に`mydata()`関数を追加すればOK．
+`class TweetController extends Controller{ ... }`内の最後に`mydata()`関数を追加すれば OK．
 
 ```php
 // app/Http/Controllers/TweetController.php
@@ -107,7 +107,6 @@ class TweetController extends Controller
 `resources/views/layouts/navigation.blade.php`の内容を以下のように編集する．
 
 長いので全コピペ推奨．
-
 
 ```php
 // resources/views/layouts/navigation.blade.php
@@ -257,7 +256,6 @@ class TweetController extends Controller
 
 ![マイページへのリンク](./img/laratter_mypage.png)
 
-
 ## 一覧ページでログインユーザの投稿のみ編集削除できるようにする
 
 現状，一覧ページでは全ての投稿に対して編集や削除が行える状態である．これを下記のようにしたい．
@@ -333,9 +331,8 @@ class TweetController extends Controller
 
 ```
 
-自分の投稿のみ編集ボタンと削除ボタンが表示されればOK！
+自分の投稿のみ編集ボタンと削除ボタンが表示されれば OK！
 
 phpmyadmin で `user_id` カラムを適当に編集しながら確認すると良いだろう．
 
 ![編集削除ボタンの表示非表示適用](./img/laratter_index_switch_edit_remove.png)
-

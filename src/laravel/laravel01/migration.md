@@ -1,19 +1,19 @@
 # マイグレーションによるテーブル作成
 
-プロダクトの実装を進める上で，Laravelコンテナ内やDBコンテナ内など「実行場所」を確認すること．
+プロダクトの実装を進める上で，Laravel コンテナ内や DB コンテナ内など「実行場所」を確認すること．
 
 ## テーブル設計（マイグレーションファイル）
 
->**📦 Laravelコンテナ内の操作**
+> **📦 Laravel コンテナ内の操作**
 >
->```bash
->$ docker-compose exec laravel.test bash
->root@8544d96d2334:/var/www/html#
->```
+> ```bash
+> $ docker-compose exec laravel.test bash
+> root@8544d96d2334:/var/www/html#
+> ```
 
-今回のアプリケーションはtwitterライクなSNSなので「tweets」テーブルを作成する．
+今回のアプリケーションは twitter ライクな SNS なので「tweets」テーブルを作成する．
 
-Laravelでは「マイグレーション」という仕組みを使用してテーブルの管理を行う．また，テーブル内のデータは「Model」を使用して操作する．Laravelでは`Eroquent Model`と呼ばれるORMを使用する．
+Laravel では「マイグレーション」という仕組みを使用してテーブルの管理を行う．また，テーブル内のデータは「Model」を使用して操作する．Laravel では`Eroquent Model`と呼ばれる ORM を使用する．
 
 > 【解説 / マイグレーション】
 >
@@ -22,15 +22,15 @@ Laravelでは「マイグレーション」という仕組みを使用してテ�
 
 > 【解説 / Eloquent Model】
 >
-> - Eloquent ModelはLaravel標準のORM（object-relational mapper）である．
-> - ORMとは，DBのレコードをオブジェクトとして直感的に扱えるようにしたもので，SQLを意識せずにプログラムで処理を記述することができる．
-> - Eloquent Modelは定義された「Model」を用いることで簡単にDBへのデータ保存・取得などを行える．
-> - 1つのモデルが1つのテーブルに対応する．例えば，`tweets`テーブルに対して`Tweet`のようにモデルを定義すると自動的に対応する．モデル内に明示的に対応を記述することもできる．
-> - テーブルに対してデータ操作を行う場合，対応するモデルに対して処理を実行することでDB操作を行うことができる．
+> - Eloquent Model は Laravel 標準の ORM（object-relational mapper）である．
+> - ORM とは，DB のレコードをオブジェクトとして直感的に扱えるようにしたもので，SQL を意識せずにプログラムで処理を記述することができる．
+> - Eloquent Model は定義された「Model」を用いることで簡単に DB へのデータ保存・取得などを行える．
+> - 1 つのモデルが 1 つのテーブルに対応する．例えば，`tweets`テーブルに対して`Tweet`のようにモデルを定義すると自動的に対応する．モデル内に明示的に対応を記述することもできる．
+> - テーブルに対してデータ操作を行う場合，対応するモデルに対して処理を実行することで DB 操作を行うことができる．
 
-Modelとマイグレーションファイルは一度に両方とも作成することができる．
+Model とマイグレーションファイルは一度に両方とも作成することができる．
 
-下記コマンドはModelを作成するコマンドだが（`Tweet`がモデル名），`-m`をつけることでマイグレーションファイルも同時に作成できる．この手法を用いることで，Model名とマイグレーションファイル内のテーブル名が自動的に対応する．
+下記コマンドは Model を作成するコマンドだが（`Tweet`がモデル名），`-m`をつけることでマイグレーションファイルも同時に作成できる．この手法を用いることで，Model 名とマイグレーションファイル内のテーブル名が自動的に対応する．
 
 早速実行．
 
@@ -47,7 +47,7 @@ Created Migration: 2021_09_23_130915_create_tweets_table
 
 `laratter/database/migration/2021_09_23_130915_create_tweets_table.php`を開く．これがマイグレーションファイルである．
 
-カラムを追加するため，下記にように編集する．今回は`tweet`，`description`の2カラムを追加する．
+カラムを追加するため，下記にように編集する．今回は`tweet`，`description`の 2 カラムを追加する．
 
 カラムを追加するときはデータ型も設定する．`tweet`は文字列（`string`），`description`はテキスト（`text`）を設定している．
 
@@ -101,14 +101,14 @@ class CreateTweetsTable extends Migration
 
 ## 文字列最大長の変更
 
-これでテーブルの設計は完了だが，MySQLのバージョンによってはエラーが発生するため，次の設定を行う．
+これでテーブルの設計は完了だが，MySQL のバージョンによってはエラーが発生するため，次の設定を行う．
 
-`/laratter/app/Providers/AppServiceProvider.php`の内容を以下のように編集する．`string`型の最大長を191に変更する．
+`/laratter/app/Providers/AppServiceProvider.php`の内容を以下のように編集する．`string`型の最大長を 191 に変更する．
 
 > 【解説】
 >
-> - この設定が必要かどうかはMySQLのバージョンによる．MySQLのバージョンが`5.7.7`以下の場合は必要となる．
-> - Laravelのマイグレーションでは文字列の最大長が`255`として実行するが，MySQL5.7.7以下では最大長が`191`となっているためである．
+> - この設定が必要かどうかは MySQL のバージョンによる．MySQL のバージョンが`5.7.7`以下の場合は必要となる．
+> - Laravel のマイグレーションでは文字列の最大長が`255`として実行するが，MySQL5.7.7 以下では最大長が`191`となっているためである．
 
 ```php
 <?php
@@ -142,15 +142,14 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
-
 ## マイグレーション実行
 
->📦 **Laravelコンテナ内の操作**
+> 📦 **Laravel コンテナ内の操作**
 >
->```bash
->$ docker-compose exec laravel.test bash
->root@8544d96d2334:/var/www/html#
->```
+> ```bash
+> $ docker-compose exec laravel.test bash
+> root@8544d96d2334:/var/www/html#
+> ```
 
 マイグレーションを実行するとテーブルが作成される．以下のコマンドを実行する．
 
@@ -185,17 +184,16 @@ $ php artisan migrate:fresh
 > - `:fresh`をつけることで，存在しているテーブルを一旦削除し，再度マイグレーションを実行することができる．
 > - マイグレーションに失敗した場合はエラーが発生するまでに実行された部分はテーブルが作成される．しかし，マイグレーション実行時に，すでに同名のテーブルが存在している場合はエラーになるため，既存テーブルを削除する必要がある．
 
-
 ## テーブル確認
 
->📦 **MySQLコンテナ内の操作**
+> 📦 **MySQL コンテナ内の操作**
 >
->```bash
->$ docker-compose exec mysql bash
->root@d984f6614597:/#
->```
+> ```bash
+> $ docker-compose exec mysql bash
+> root@d984f6614597:/#
+> ```
 
-うまくいったら，mysqlにログインしてテーブルを確認する．パスワードは`password`．
+うまくいったら，mysql にログインしてテーブルを確認する．パスワードは`password`．
 
 ```bash
 $ mysql -u sail -p
@@ -238,18 +236,18 @@ Bye
 
 ## テストユーザーデータの作成
 
->📦 **Laravelコンテナ内の操作**
+> 📦 **Laravel コンテナ内の操作**
 >
->```bash
->$ docker-compose exec laravel.test bash
->root@8544d96d2334:/var/www/html#
->```
+> ```bash
+> $ docker-compose exec laravel.test bash
+> root@8544d96d2334:/var/www/html#
+> ```
 
 この段階で，ユーザテーブルなどの認証に使用するテーブルも用意された状態となる．
 
-Laravelには「seeder」という機能があり，テスト用のデータを簡単に作成することができる．
+Laravel には「seeder」という機能があり，テスト用のデータを簡単に作成することができる．
 
-今回はダミーデータを10件作成する．`database/seeders/DatabaseSeeder.php`を以下のように編集する．
+今回はダミーデータを 10 件作成する．`database/seeders/DatabaseSeeder.php`を以下のように編集する．
 
 ```php
 // database/seeders/DatabaseSeeder.php
@@ -283,7 +281,7 @@ $ php artisan db:seed
 Database seeding completed successfully.
 ```
 
-コマンドを実行したらphpmyadminでユーザーデータを確認する．パスワードはハッシュ化されているが全員`password`となっている．
+コマンドを実行したら phpmyadmin でユーザーデータを確認する．パスワードはハッシュ化されているが全員`password`となっている．
 
 ブラウザの画面からメールアドレスとパスワードでログインできることを確認しよう．
 

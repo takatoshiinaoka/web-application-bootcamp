@@ -1,12 +1,16 @@
-# Favorite機能1（多対多のデータ・中間テーブル）
+# Favorite 機能 1（多対多のデータ・中間テーブル）
 
+ここからは SNS においてメジャーな機能である「Favorite 機能」を実装していく．
 
->📦 **Laravelコンテナ内の操作**
->
->```bash
->$ docker-compose exec laravel.test bash
->root@8544d96d2334:/var/www/html#
->```
+Favorite は多対多のデータ構造となるため，新たに中間テーブルを作成する必要がある．
+
+## 多対多のデータ構造
+
+Laravel では中間テーブルの命名を「関連するテーブル A の単数形\_関連するテーブル B の単数形（テーブル名はアルファベット順）」とする規則がある．
+
+したがって，今回の中間テーブル名は `tweet_user` となる．
+
+↓ テーブルの構造（主要なもののみ記載）
 
 ```txt
 users
@@ -16,6 +20,7 @@ users
 tweets
     id - integer
     tweet - string
+    description - string
 
 tweet_user
     user_id - integer
@@ -23,13 +28,26 @@ tweet_user
 
 ```
 
-中間テーブルの作成
+> 📦 **Laravel コンテナ内の操作**
+>
+> ```bash
+> $ docker-compose exec laravel.test bash
+> root@8544d96d2334:/var/www/html#
+> ```
+
+## マイグレーションファイルの作成
+
+テーブルの作成はマイグレーションで行う．まずはマイグレーションファイルを作成する．
 
 ```bash
 $ php artisan make:migration create_tweet_user_table
 ```
 
+マイグレーションファイル（`database/migrations/2021_09_24_072924_create_tweet_user_table.php`）を開き，`up()` 関数を以下のように編集する．
+
 ```php
+// database/migrations/2021_09_24_072924_create_tweet_user_table.php
+
 public function up()
 {
   Schema::create('tweet_user', function (Blueprint $table) {
@@ -45,25 +63,45 @@ public function up()
 
 ```
 
+## 【補足】マイグレーションファイルの設定項目について
+
+| 関数           | 意味                                                                         |
+| -------------- | ---------------------------------------------------------------------------- |
+| `foreign()`    | 引数のカラムが外部キー制約であることを示す．                                 |
+| `references()` | ↑ で参照する外部キーを設定する．                                             |
+| `on()`         | ↑ で参照するテーブルを設定する．                                             |
+| `onDelete()`   | ↑ で参照しているデータが削除された場合に中間テーブルのデータも削除する設定． |
+
+上記をまとめると「中間テーブルの `user_id` は `users` テーブルの `id` を参照していて，`users` テーブルのデータが削除されると中間テーブルのデータも削除される」となる．
+
+## マイグレーションの実行
+
+マイグレーションファイルを作成したらマイグレーションを実行する．
+
 ```bash
-# php artisan migrate
+$ php artisan migrate
+
+# 実行結果
 Migrating: 2021_09_24_072924_create_tweet_user_table
 Migrated:  2021_09_24_072924_create_tweet_user_table (451.37ms)
+
 ```
 
-テーブルを確認する
+## テーブルの確認
 
->📦 **MySQLコンテナ内の操作**
+phpmyadmin で，`tweet_user` テーブルが作成されていることを確認する．
+
+以下にコマンドで確認する場合も示す．
+
+> 📦 **MySQL コンテナ内の操作**
 >
->```bash
->$ docker-compose exec mysql bash
->root@d984f6614597:/#
->```
-
+> ```bash
+> $ docker-compose exec mysql bash
+> root@d984f6614597:/#
+> ```
 
 ```bash
-$ docker-compose exec mysql bash
-root@2989c482f70d:/# mysql -u sail -p
+$  mysql -u sail -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 347
@@ -111,11 +149,13 @@ mysql> desc tweet_user;
 mysql>
 ```
 
+## モデルに多対多の連携を設定
 
-ユーザモデル
+User モデルに `belongsToMany` を設定して，User モデルは Tweet モデルと多対多の連携をすることを示す．
 
 ```php
 // app/Http/Models/User.php
+
 <?php
 
 namespace App\Models;
@@ -130,40 +170,7 @@ class User extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable;
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var string[]
-   */
-  protected $fillable = [
-    'name',
-    'email',
-    'password',
-  ];
-
-  /**
-   * The attributes that should be hidden for serialization.
-   *
-   * @var array
-   */
-  protected $hidden = [
-    'password',
-    'remember_token',
-  ];
-
-  /**
-   * The attributes that should be cast.
-   *
-   * @var array
-   */
-  protected $casts = [
-    'email_verified_at' => 'datetime',
-  ];
-
-  public function mytweets()
-  {
-    return $this->hasMany(Tweet::class)->orderBy('updated_at', 'desc');
-  }
+  // 省略
 
   // ↓追加
   public function tweets()
@@ -174,8 +181,11 @@ class User extends Authenticatable
 
 ```
 
-tweetもでる
+同様に Tweet モデルにも `belongsToMany` を設定する．
+
 ```php
+// app/Http/Models/Tweet.php
+
 <?php
 
 namespace App\Models;
@@ -187,24 +197,7 @@ class Tweet extends Model
 {
   use HasFactory;
 
-  // アプリケーション側でcreateなどできない値を記述する
-  // ↓以下の処理を記述
-
-  protected $guarded = [
-    'id',
-    'created_at',
-    'updated_at',
-  ];
-
-  public static function getAllOrderByDeadline()
-  {
-    return self::orderBy('updated_at', 'desc')->get();
-  }
-
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }
+  // 省略
 
   // ↓追加
   public function users()
@@ -213,6 +206,6 @@ class Tweet extends Model
   }
 }
 
-
 ```
 
+ここまでで，データを連携させる設定は完了となる．

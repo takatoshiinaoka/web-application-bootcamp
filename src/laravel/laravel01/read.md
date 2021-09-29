@@ -1,10 +1,10 @@
-# tweet一覧画面の実装
+# tweet 一覧画面の実装
 
 一覧画面では締切が早い順にソートしてデータを表示する．
 
-### Modelの処理
+### Model の処理
 
-まず，上記の条件でデータを取得する関数を Modelに作成する．
+まず，上記の条件でデータを取得する関数を Model に作成する．
 
 `app/Models/Tweet.php`に以下の関数を作成する．
 
@@ -32,11 +32,11 @@ class Tweet extends Model
 
 > 【解説】
 >
-> - `self`は Tweetモデルのこと．
-> - `orderBy()`はSQLのものと同じ理解でOK．
+> - `self`は Tweet モデルのこと．
+> - `orderBy()`は SQL のものと同じ理解で OK．
 > - 最後の`get()`がないと実行されないので注意．
 
-## Controllerを編集
+## Controller を編集
 
 `app/Http/Controllers/TweetController.php`の`index()`を内容を以下のように編集する．
 
@@ -54,7 +54,7 @@ public function index()
 
 ```
 
-tweet作成画面でデータを入力して送信すると．．．
+tweet 作成画面でデータを入力して送信すると．．．
 
 ![データ作成](./img/laratter_create_adding.png)
 
@@ -62,7 +62,6 @@ tweet作成画面でデータを入力して送信すると．．．
 
 ![データ1件追加](./img/laratter_index_added_one.png)
 
-自分が入力したデータが表示されていればOK．何件かデータを入れておこう．
+自分が入力したデータが表示されていれば OK．何件かデータを入れておこう．
 
 ![データ複数件追加](./img/laratter_index_added_some.png)
-

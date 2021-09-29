@@ -1,6 +1,6 @@
-# tweetとユーザ認証の連携
+# tweet とユーザ認証の連携
 
-はじめのほうで，ユーザ認証を行うbreezeライブラリをインストールしたため，これを利用してユーザ管理を行う．
+はじめのほうで，ユーザ認証を行う breeze ライブラリをインストールしたため，これを利用してユーザ管理を行う．
 
 まず，認証ユーザのみがアプリケーションの機能を利用できるように処理を変更する．
 
@@ -36,7 +36,7 @@ class TodoController extends Controller
 
 ```
 
-一旦ログアウトした状態で，URL直打ち（`localhost/tweet`）してtweet画面にアクセスできずにログイン画面に戻されればOK！
+一旦ログアウトした状態で，URL 直打ち（`localhost/tweet`）して tweet 画面にアクセスできずにログイン画面に戻されれば OK！
 
 > 【解説】
 >
@@ -44,17 +44,16 @@ class TodoController extends Controller
 > - `__construct()`関数は，その他の関数が実行される場合にその前に実行される．
 > - `middleware(['auth'])`はログイン状況を確認して，ログインしていない状態ならログインページに戻す処理を実行する．
 
-一旦ログアウトしてURL直打ちするとログイン画面に戻される状態になっていればOK．
+一旦ログアウトして URL 直打ちするとログイン画面に戻される状態になっていれば OK．
 
+## tweet テーブルにユーザ ID カラムを追加する
 
-## tweetテーブルにユーザIDカラムを追加する
-
->📦 **Laravelコンテナ内の操作**
+> 📦 **Laravel コンテナ内の操作**
 >
->```bash
->$ docker-compose exec laravel.test bash
->root@8544d96d2334:/var/www/html#
->```
+> ```bash
+> $ docker-compose exec laravel.test bash
+> root@8544d96d2334:/var/www/html#
+> ```
 
 ### マイグレーションファイルの作成
 
@@ -74,7 +73,7 @@ Created Migration: 2021_09_24_061716_add_user_id_to_tweets_table
 `database/migration/2021_09_24_061716_add_user_id_to_tweets_table.php`を開く．
 下記にように編集する．
 
->他のテーブルとrelationさせるためには，カラム名を「`モデル名小文字_id`」とする必要がある．
+> 他のテーブルと relation させるためには，カラム名を「`モデル名小文字_id`」とする必要がある．
 
 ```php
 // database/migrations/2021_09_24_061716_add_user_id_to_tweets_table.php
@@ -100,17 +99,16 @@ Migrating: 2021_09_24_061716_add_user_id_to_tweets_table
 Migrated:  2021_09_24_061716_add_user_id_to_tweets_table (102.98ms)
 ```
 
-
 ## テーブルの確認
 
-※ phpmyadmin を準備している場合は phpmyadmin から確認でOK．
+※ phpmyadmin を準備している場合は phpmyadmin から確認で OK．
 
->📦 **MySQLコンテナ内の操作**
+> 📦 **MySQL コンテナ内の操作**
 >
->```bash
->$ docker-compose exec mysql bash
->root@d984f6614597:/#
->```
+> ```bash
+> $ docker-compose exec mysql bash
+> root@d984f6614597:/#
+> ```
 
 うまくいったら，mysql にログインしてテーブルを確認する．パスワードは`password`．
 
@@ -153,12 +151,11 @@ mysql>
 
 ```
 
-`user_id`カラムが追加されていればOK．
+`user_id`カラムが追加されていれば OK．
 
+## データ追加時に user_id を追加
 
-## データ追加時にuser_idを追加
-
-tweetのデータを作成する際に，「誰が作成したのか」がわかるように，データにログインユーザのIDを追加する．
+tweet のデータを作成する際に，「誰が作成したのか」がわかるように，データにログインユーザの ID を追加する．
 
 `app/Http/Controllers/TweetController.php`の`store()`を内容を以下のように編集する．
 
@@ -190,12 +187,10 @@ public function store(Request $request)
 
 ```
 
-適当なデータを追加し，テーブルにユーザIDが一緒に入っていればOK．
+適当なデータを追加し，テーブルにユーザ ID が一緒に入っていれば OK．
 
 > 【解説】
 >
-> - `$request->merge()`でユーザIDを追加している．
-> - `Auth::user()->id`で現在ログインしているユーザのIDを取得することができる（`Auth::id()`でも可）．
+> - `$request->merge()`でユーザ ID を追加している．
+> - `Auth::user()->id`で現在ログインしているユーザの ID を取得することができる（`Auth::id()`でも可）．
 > - `Auth::user()`には他にもデータが入っているので，`dd()`などで確認してみると良いだろう．
-
-

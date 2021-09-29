@@ -1,6 +1,6 @@
-# Laravelプロジェクト作成
+# Laravel プロジェクト作成
 
-Mac の人は「ターミナル」，Windowsの人は「Windows ターミナル」を起動する．
+Mac の人は「ターミナル」，Windows の人は「Windows ターミナル」を起動する．
 
 （Windows の人は Ubuntu 20.04 で動かしている状態でコマンドを実行する必要があるので，適宜前項の「Docker の動作確認」を確認しておく．）
 
@@ -12,8 +12,8 @@ Mac の人は「ターミナル」，Windowsの人は「Windows ターミナル�
 $ curl -s https://laravel.build/laratter | bash
 ```
 
-
 実行結果
+
 ```
 
  _                               _
@@ -36,7 +36,7 @@ Warning: TTY mode requires /dev/tty to be read/writable.
 
 ```
 
-途中，Laravel側でいろいろ実行するためPCのログインパスワードを求められるので入力する．
+途中，Laravel 側でいろいろ実行するため PC のログインパスワードを求められるので入力する．
 
 ```bash
 Please provide your password so we can make some final adjustments to your application's permissions.
@@ -47,7 +47,6 @@ Thank you! We hope you build something incredible. Dive in with: cd laratter && 
 
 ```
 
-
 ## 権限の変更
 
 この方法でプロジェクトを作成するとエディタで操作する場合に権限で引っかかる場合があるので権限を変更する．
@@ -56,9 +55,9 @@ Thank you! We hope you build something incredible. Dive in with: cd laratter && 
 $ sudo chmod -R 777 laratter
 ```
 
-権限が変更できない場合は下記URLの設定を行い再度コマンドを実行する．
+権限が変更できない場合は下記 URL の設定を行い再度コマンドを実行する．
 
-[参考URL](https://gori.me/mac/mac-tips/112082)
+[参考 URL](https://gori.me/mac/mac-tips/112082)
 
 ## 起動
 
@@ -84,17 +83,15 @@ Creating laratter_meilisearch_1 ... done
 Creating laratter_laravel.test_1 ... done
 ```
 
-
 ## 動作確認
 
-ブラウザで`localhost`にアクセスし，下記画面が表示されればOK．
+ブラウザで`localhost`にアクセスし，下記画面が表示されれば OK．
 
 ![トップ画面](./img/laravel-firstview.png)
 
-**！！！この画面が表示されたらOK！次項の「終了するとき」を実行して事前準備は完了！！！**
+**！！！この画面が表示されたら OK！次項の「終了するとき」を実行して事前準備は完了！！！**
 
 コマンド実行時にエラーが出る場合や，画面が表示されない場合は以下の「エラーが出る場合」を確認しよう．
-
 
 ## 終了するとき
 
@@ -106,7 +103,6 @@ Creating laratter_laravel.test_1 ... done
 $ ./vendor/bin/sail down
 ```
 
-
 ## エラーが出る場合
 
 ### XAMPP が動いている
@@ -115,37 +111,37 @@ XAMPP が動いていると立ち上がらない場合があるため，一度 X
 
 また，Laravel の仮想コンテナが立ち上がっていると XAMPP が動かない場合があるので，XAMPP で開発を行う場合には仮想コンテナを終了させておく．
 
-### PC再起動
+### PC 再起動
 
 PC を再起動すると解決する場合が多い．
 
-### Docker Desktopのバージョンアップ
+### Docker Desktop のバージョンアップ
 
 Docker Desktop を以前からインストールしていた場合，バージョンが古いと起動しない場合はあるので最新バージョンにアップデートを行う．
 
-### M1のMacで`ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries`が出る
+### M1 の Mac で`ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries`が出る
 
 `docker-compoes.yml`に下記を追加する，
 
 ```yml
-platform: 'linux/x86_64'
+platform: "linux/x86_64"
 ```
 
 追記場所はこのへん．
 
 ```yml
 mysql:
-    image: 'mysql:8.0'
-    platform: 'linux/x86_64'
+  image: "mysql:8.0"
+  platform: "linux/x86_64"
 ```
 
 [参考：https://neoighodaro.com/posts/3-running-laravel-and-docker-on-the-apple-mac-m1](https://neoighodaro.com/posts/3-running-laravel-and-docker-on-the-apple-mac-m1)
 
-### M1のMacで`laravel.test failed`的なエラーが出る
+### M1 の Mac で`laravel.test failed`的なエラーが出る
 
-エディタで`laratter/vendor/laravel/sail/runtimes/8.0/Dockerfile`を開き．34行目と35行目をコメントアウトする．
+エディタで`laratter/vendor/laravel/sail/runtimes/8.0/Dockerfile`を開き．34 行目と 35 行目をコメントアウトする．
 
-↓この2行をコメントアウトする（バージョンによって異なるので，該当ファイルの記述内容をよく確認すること）
+↓ この 2 行をコメントアウトする（バージョンによって異なるので，該当ファイルの記述内容をよく確認すること）
 
 ```
 && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -154,6 +150,4 @@ mysql:
 
 ## いけてそうだけどブラウザで表示できない
 
-アクセスするときのURLを`https://localhost`から`http://localhost`に変更
-
-
+アクセスするときの URL を`https://localhost`から`http://localhost`に変更
