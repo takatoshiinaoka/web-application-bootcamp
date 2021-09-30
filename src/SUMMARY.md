@@ -54,7 +54,8 @@
   - [【Mac 編】環境構築](./laravel/laravel_setup/setup-for-mac.md)
   - [【Windows 編】環境構築](./laravel/laravel_setup/setup-for-windows.md)
   - [Laravel プロジェクト作成](./laravel/laravel_setup/create-project.md)
-  <!-- - [ライブラリ準備](./laravel/laravel_setup/add-laravel-breeze.md)
+  <!-- - [【補足】Docker と Docker Compose の解説](./laravel/laravel_setup/about-docker-and-docker-compose.md)
+  - [ライブラリ準備](./laravel/laravel_setup/add-laravel-breeze.md)
   - [データベース準備](./laravel/laravel_setup/setup-db.md)
   - [phpmyadmin の追加](./laravel/laravel_setup/phpmyadmin.md) -->
 
