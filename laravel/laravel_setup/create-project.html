@@ -242,8 +242,10 @@ Creating laratter_laravel.test_1 ... done
 <p>PC を再起動すると解決する場合が多い．</p>
 <h3 id="docker-desktop-のバージョンアップ"><a class="header" href="#docker-desktop-のバージョンアップ">Docker Desktop のバージョンアップ</a></h3>
 <p>Docker Desktop を以前からインストールしていた場合，バージョンが古いと起動しない場合はあるので最新バージョンにアップデートを行う．</p>
+<h3 id="ファイヤーウォールを無効化する"><a class="header" href="#ファイヤーウォールを無効化する">ファイヤーウォールを無効化する</a></h3>
+<p>途中でエラーが出る場合はファイヤーウォールで必要なファイルのダウンロードができていない場合がある．その場合は一旦ファイヤーウォールを無効化して，再度プロジェクト作成コマンドを実行する．</p>
 <h3 id="m1-の-mac-でerror-no-matching-manifest-for-linuxarm64v8-in-the-manifest-list-entriesが出る"><a class="header" href="#m1-の-mac-でerror-no-matching-manifest-for-linuxarm64v8-in-the-manifest-list-entriesが出る">M1 の Mac で<code>ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries</code>が出る</a></h3>
-<p><code>docker-compoes.yml</code>に下記を追加する，</p>
+<p>エディタなどで<code>docker-compoes.yml</code>を開き，下記を追加する，</p>
 <pre><code class="language-yml">platform: &quot;linux/x86_64&quot;
 </code></pre>
 <p>追記場所はこのへん．</p>
