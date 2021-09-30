@@ -34,9 +34,13 @@ Controller created successfully.
 
 <?php
 
-useIlluminate\Support\Facades\Route;
-useApp\Http\Controllers\TweetController;
-useApp\Http\Controllers\FavoriteController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TweetController;
+
+// ↓追加
+use App\Http\Controllers\FavoriteController;
+
+// 省略
 
 // ↓追加
 Route::post('tweet/{tweet}/favorites', [FavoriteController::class, 'store'])->name('favorites');
@@ -114,7 +118,7 @@ class FavoriteController extends Controller
 それぞれのボタン部分では favorite 件数を表示する．`$tweet->users()->count()` で中間テーブルのデータ件数を取得することができる．
 
 ```php
-// resources/views/tweet/index.blade.php
+<!-- resources/views/tweet/index.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -143,9 +147,9 @@ class FavoriteController extends Controller
                   </a>
                   <div class="flex">
                     <!-- ↓追加 -->
-                    // favorite 状態で条件分岐
+                    <!-- favorite 状態で条件分岐 -->
                     @if($tweet->users()->where('user_id', Auth::id())->exists())
-                    // unfavorite ボタン
+                    <!-- unfavorite ボタン -->
                     <form action="{{ route('unfavorites',$tweet) }}" method="POST" class="text-left">
                       @csrf
                       <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
@@ -156,7 +160,7 @@ class FavoriteController extends Controller
                       </button>
                     </form>
                     @else
-                    // favorite ボタン
+                    <!-- favorite ボタン -->
                     <form action="{{ route('favorites',$tweet) }}" method="POST" class="text-left">
                       @csrf
                       <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-black py-1 px-2 focus:outline-none focus:shadow-outline">

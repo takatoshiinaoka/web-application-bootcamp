@@ -7,7 +7,7 @@
 `resources/views/tweet/index.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/index.blade.php
+<!-- resources/views/tweet/index.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -65,6 +65,8 @@
 > - 削除の処理を行うには`DELETE`メソッドでリクエストを送る必要があるが，form からは GET または POST でしか送れない．
 > - `@method('delete')`を記述することで，`DELETE`メソッドで送信できる．
 
+## 動作確認（削除ボタンの設置）
+
 一覧画面を確認し，削除ボタンが表示されていれば OK．
 
 ![削除ボタン追加](./img/laratter_index_added_delete_button.png)
@@ -85,5 +87,7 @@ public function destroy($id)
 }
 
 ```
+
+## 動作確認（削除処理）
 
 動作させて確認する．削除ボタンをクリックし，該当するデータが削除されれば OK．

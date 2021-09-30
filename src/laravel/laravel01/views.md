@@ -185,7 +185,7 @@ tweet の入力や編集など複数の画面で必要となるため，共通�
 
 ## tweet 作成画面の作成
 
-まず，`latavel_tweet/resources/views`の中に`tweet`フォルダを作成する．
+まず，`resources/views`の中に`tweet`フォルダを作成する．
 
 続いて，`tweet`フォルダの中に以下のファイルを作成する．今後必要になる画面のファイルも合わせて作成している．
 
@@ -197,7 +197,7 @@ tweet の入力や編集など複数の画面で必要となるため，共通�
 ファイルを作成したら`create.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/create.blade.php
+<!-- resources/views/tweet/create.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -238,6 +238,8 @@ tweet の入力や編集など複数の画面で必要となるため，共通�
 > - `route('tweet.store')`は`TweetController`の`store()`関数にデータを送ることを示している．
 > - `@csrf`はセキュリティ対策．フォームからデータを送信するときには必ず記述すること．
 
+## 動作確認（作成画面）
+
 編集したらブラウザから`localhost/tweet/create`にアクセスして動作確認．
 下記画面になっていれば OK．
 
@@ -248,7 +250,7 @@ tweet の入力や編集など複数の画面で必要となるため，共通�
 続いて，`index.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/index.blade.php
+<!-- resources/views/tweet/index.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -316,6 +318,8 @@ public function index()
 }
 
 ```
+
+## 動作確認
 
 編集したらブラウザから`localhost/tweet`にアクセスして動作確認．
 下記画面になっていれば OK．

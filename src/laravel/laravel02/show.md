@@ -13,7 +13,7 @@
 `resources/views/tweet/index.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/index.php
+<!-- resources/views/tweet/index.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -80,7 +80,7 @@ public function show($id)
 詳細画面の`resources/views/tweet/show.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/show.php`
+<!-- resources/views/tweet/index.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -117,6 +117,8 @@ public function show($id)
 </x-app-layout>
 
 ```
+
+## 動作確認
 
 一覧画面で各 tweet をクリックし，下記のように詳細画面が表示されれば OK．
 

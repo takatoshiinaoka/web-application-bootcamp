@@ -54,6 +54,8 @@ public function index()
 
 ```
 
+## 動作確認
+
 tweet 作成画面でデータを入力して送信すると．．．
 
 ![データ作成](./img/laratter_create_adding.png)

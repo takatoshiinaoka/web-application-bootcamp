@@ -119,9 +119,13 @@ PC を再起動すると解決する場合が多い．
 
 Docker Desktop を以前からインストールしていた場合，バージョンが古いと起動しない場合はあるので最新バージョンにアップデートを行う．
 
+### ファイヤーウォールを無効化する
+
+途中でエラーが出る場合はファイヤーウォールで必要なファイルのダウンロードができていない場合がある．その場合は一旦ファイヤーウォールを無効化して，再度プロジェクト作成コマンドを実行する．
+
 ### M1 の Mac で`ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries`が出る
 
-`docker-compoes.yml`に下記を追加する，
+エディタなどで`docker-compoes.yml`を開き，下記を追加する，
 
 ```yml
 platform: "linux/x86_64"

@@ -1,21 +1,21 @@
-# データベース準備
+# 【今回は不要】データベース準備
 
-## MySQLの準備
+## MySQL の状態を確認
 
-今回のSNSアプリケーションでは，DBとしてMySQLを使用する．
+今回の SNS アプリケーションでは，DB として MySQL を使用する．
 
-すでにMySQL自体は動作する状態になっているが，Laravelから扱うにはいくつかの設定が必要となる．下記手順を実行し，MySQLにログインする．
+すでに MySQL 自体は動作する状態になっているが，自分で確認したい場合もある．下記手順を実行し，MySQL にログインする．
 
 **コンテナへログインしている場合は一旦`exit`で通常のターミナルに戻って実行すること**
 
-## DB用のコンテナへログイン
+### DB 用のコンテナへログイン
 
 ```bash
 $ docker-compose exec mysql bash
 root@d984f6614597:/#
 ```
 
-## MySQLへログイン
+### MySQL へログイン
 
 ユーザ名`sail`，パスワード`password`でログインできる．
 
@@ -39,7 +39,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ```
 
-## DB状況の確認
+### DB 状況の確認
 
 すでに今回のアプリケーションで使用するデータベースを作成されている．データベース名は `laratter`（プロジェクト名を同じ）．
 
@@ -63,10 +63,9 @@ mysql> exit;
 Bye
 ```
 
+## Laravel から DB に接続するための設定
 
-## LaravelからDBに接続するための準備
-
-続いて，LaravelからMySQLにアクセスするための設定を行う．今回はプロジェクト作成の時点で設定されているため項目の確認のみ行う．
+続いて，Laravel から MySQL にアクセスするための設定を行う．今回はプロジェクト作成の時点で設定されているため項目の確認のみ行う．
 
 エディタから`.env`ファイルを開く．`.env`ファイルは`laratter`ディレクトリの直下に配置されている．
 
@@ -81,20 +80,20 @@ DB_PASSWORD=password
 
 それぞれ下記の意味となっている．デプロイする場合などはサービス提供者側からそれぞれ情報が提供されるため，必要に応じて編集する．
 
-|項目|意味|
-|-|-|
-|DB_CONNECTION|DBの種類|
-|DB_HOST|DBのホスト名|
-|DB_PORT|DBのポート|
-|DB_DATABASE|DB名|
-|DB_USERNAME|DBにログインするときのユーザ名|
-|DB_PASSWORD|DBにログインするときのパスワード|
+| 項目          | 意味                              |
+| ------------- | --------------------------------- |
+| DB_CONNECTION | DB の種類                         |
+| DB_HOST       | DB のホスト名                     |
+| DB_PORT       | DB のポート                       |
+| DB_DATABASE   | DB 名                             |
+| DB_USERNAME   | DB にログインするときのユーザ名   |
+| DB_PASSWORD   | DB にログインするときのパスワード |
 
 もし`.env`ファイルを更新する場合はキャッシュをクリアする．
 
 > 設定ファイルはサーバ起動時にキャッシュに保存されるため，変更した場合は「キャッシュをクリアする」「コンテナを立ち上げ直す」のどちらかが必要になる．
 >
->キャッシュクリアのコマンドを実行する場合はLaravelの仮想コンテナにログインした状態で行うこと．
+> キャッシュクリアのコマンドを実行する場合は Laravel の仮想コンテナにログインした状態で行うこと．
 
 ```bash
 $ php artisan config:cache
@@ -106,4 +105,3 @@ $ php artisan config:cache
 Configuration cache cleared!
 Configuration cached successfully!
 ```
-

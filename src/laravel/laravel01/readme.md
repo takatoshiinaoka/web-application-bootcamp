@@ -16,13 +16,13 @@ $ ./vendor/bin/sail up -d
 $ ./vendor/bin/sail down
 ```
 
-### Laravelコンテナへログインする
+### Laravel コンテナへログインする
 
 ```bash
 $ docker-compose exec laravel.test bash
 ```
 
-### MySQLコンテナへログインする
+### MySQL コンテナへログインする
 
 ```bash
 $ docker-compose exec mysql bash
@@ -33,4 +33,3 @@ $ docker-compose exec mysql bash
 ```bash
 $ exit
 ```
-

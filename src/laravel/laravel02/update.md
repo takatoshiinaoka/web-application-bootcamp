@@ -11,7 +11,7 @@
 `resources/views/tweet/index.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/index.blade.php
+<!-- resources/views/tweet/index.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -71,11 +71,13 @@
 
 ```
 
+## 動作確認（編集ボタンの設置）
+
 一覧画面に編集ボタンが表示されていれば OK．
 
 ![編集ボタン追加](./img/laratter_index_added_edit_button.png)
 
-## 更新画面に移動する処理の作成
+## 編集画面に移動する処理の作成
 
 `app/Http/Controllers/TweetController.php`の`edit()`を内容を以下のように編集する．
 
@@ -92,12 +94,12 @@ public function edit($id)
 
 やっていることは`create()`関数と同様．
 
-## 更新画面の作成
+## 編集画面の作成
 
 `resources/views/tweet/edit.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/edit.blade.php
+<!-- resources/views/tweet/edit.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -139,7 +141,9 @@ public function edit($id)
 
 ```
 
-一覧画面の更新ボタンをクリックし，現在のデータが表示されていれば OK．
+## 動作確認（編集画面）
+
+一覧画面の編集ボタンをクリックし，現在のデータが表示されていれば OK．
 
 ![編集画面](./img/laratter_edit.png)
 
@@ -175,6 +179,8 @@ public function update(Request $request, $id)
 }
 
 ```
+
+## 動作確認（更新処理）
 
 一覧画面のデータが，編集画面で書き換えたデータに更新されれば OK．
 

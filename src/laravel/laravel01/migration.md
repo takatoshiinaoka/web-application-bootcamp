@@ -36,16 +36,14 @@ Model とマイグレーションファイルは一度に両方とも作成す�
 
 ```bash
 $ php artisan make:model Tweet -m
-```
 
-実行結果（日付時刻は毎回変わる）
-
-```bash
+# 実行結果（日付時刻は毎回変わる）
 Model created successfully.
 Created Migration: 2021_09_23_130915_create_tweets_table
+
 ```
 
-`laratter/database/migration/2021_09_23_130915_create_tweets_table.php`を開く．これがマイグレーションファイルである．
+`database/migration/2021_09_23_130915_create_tweets_table.php`を開く．これがマイグレーションファイルである．
 
 カラムを追加するため，下記にように編集する．今回は`tweet`，`description`の 2 カラムを追加する．
 
@@ -103,7 +101,7 @@ class CreateTweetsTable extends Migration
 
 これでテーブルの設計は完了だが，MySQL のバージョンによってはエラーが発生するため，次の設定を行う．
 
-`/laratter/app/Providers/AppServiceProvider.php`の内容を以下のように編集する．`string`型の最大長を 191 に変更する．
+`app/Providers/AppServiceProvider.php`の内容を以下のように編集する．`string`型の最大長を 191 に変更する．
 
 > 【解説】
 >
@@ -116,7 +114,8 @@ class CreateTweetsTable extends Migration
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;  // 追記
+// ↓ 1行追加
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -137,7 +136,8 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot()
   {
-    Schema::defaultStringLength(191); // 追記
+    // 1行追加
+    Schema::defaultStringLength(191);
   }
 }
 ```
@@ -155,11 +155,8 @@ class AppServiceProvider extends ServiceProvider
 
 ```bash
 $ php artisan migrate
-```
 
-実行結果
-
-```bash
+# 実行結果
 Migration table created successfully.
 Migrating: 2014_10_12_000000_create_users_table
 Migrated:  2014_10_12_000000_create_users_table (88.55ms)
@@ -171,6 +168,7 @@ Migrating: 2019_12_14_000001_create_personal_access_tokens_table
 Migrated:  2019_12_14_000001_create_personal_access_tokens_table (155.49ms)
 Migrating: 2021_09_23_130915_create_tweets_table
 Migrated:  2021_09_23_130915_create_tweets_table (57.06ms)
+
 ```
 
 エラーになる場合はマイグレーションファイルの内容が間違っていることが多い．修正して以下のコマンドを実行する．
@@ -185,6 +183,22 @@ $ php artisan migrate:fresh
 > - マイグレーションに失敗した場合はエラーが発生するまでに実行された部分はテーブルが作成される．しかし，マイグレーション実行時に，すでに同名のテーブルが存在している場合はエラーになるため，既存テーブルを削除する必要がある．
 
 ## テーブル確認
+
+phpmyadmin でテーブルの状況を確認する．`tweets`が以下の内容で作成されていれば OK．
+
+```txt
++-------------+-----------------+------+-----+---------+----------------+
+| Field       | Type            | Null | Key | Default | Extra          |
++-------------+-----------------+------+-----+---------+----------------+
+| id          | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| tweet       | varchar(191)    | NO   |     | NULL    |                |
+| description | text            | YES  |     | NULL    |                |
+| created_at  | timestamp       | YES  |     | NULL    |                |
+| updated_at  | timestamp       | YES  |     | NULL    |                |
++-------------+-----------------+------+-----+---------+----------------+
+```
+
+【今回は不要】コマンドで確認する場合は以下の手順で行う．
 
 > 📦 **MySQL コンテナ内の操作**
 >
@@ -278,7 +292,10 @@ class DatabaseSeeder extends Seeder
 
 ```bash
 $ php artisan db:seed
+
+# 実行結果
 Database seeding completed successfully.
+
 ```
 
 コマンドを実行したら phpmyadmin でユーザーデータを確認する．パスワードはハッシュ化されているが全員`password`となっている．

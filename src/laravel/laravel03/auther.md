@@ -1,6 +1,6 @@
 # 投稿者名の表示（多対 1 のデータ）
 
-前項で一覧ページでログインユーザのみが編集と削除を行えるようにしたが，このままでは tweet がどのユーザによって行われたのかを画面から判別できない．
+一覧ページでログインユーザのみが編集と削除を行えるようにしたが，このままでは tweet がどのユーザによって行われたのかを画面から判別できない．
 
 そこで，各 tweet にユーザ名を表示して tweet の識別ができるようにする．
 
@@ -58,7 +58,7 @@ class Tweet extends Model
 `resources/views/tweet/index.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/index.blade.php
+<!-- resources/views/tweet/index.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">

@@ -1,5 +1,7 @@
 # マイページ機能の実装（1 対多のデータ）
 
+現在，一覧ページにはユーザ関係なく全てのデータが表示された状態となっている．ユーザが自分の投稿を確認して編集できるように，マイページ機能を実装する．
+
 ## 1 対多のデータ連携
 
 今回の場合，ユーザと tweet が「1 対多」の関係となっている．
@@ -109,7 +111,7 @@ class TweetController extends Controller
 長いので全コピペ推奨．
 
 ```php
-// resources/views/layouts/navigation.blade.php
+<!-- resources/views/layouts/navigation.blade.php -->
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
   <!-- Primary Navigation Menu -->
@@ -248,11 +250,17 @@ class TweetController extends Controller
 
 ```
 
+## tweet データの編集
+
+tweets テーブルのデータを確認し，レコード毎に`user_id`が異なるよう調整しておく．
+
+## 動作確認（マイページ）
+
 下図のようにマイページへのリンクが表示される．
 
 ![マイページへのリンク](./img/laratter_index_add_mypage_nav.png)
 
-マイページを表示させ，ログインしているユーザのデータのみ表示されることを確認する．異なるユーザでログインし，個別にデータが表示されることを確認すると良いだろう．
+マイページを表示させ，ログインしているユーザのデータのみ表示されることを確認する．異なるユーザでログインし，個別にデータが表示されることを確認しても良いだろう．
 
 ![マイページへのリンク](./img/laratter_mypage.png)
 
@@ -268,7 +276,7 @@ class TweetController extends Controller
 `resources/views/tweet/index.blade.php`を以下のように編集する．
 
 ```php
-// resources/views/tweet/index.blade.php
+<!-- resources/views/tweet/index.blade.php -->
 
 <x-app-layout>
   <x-slot name="header">
@@ -295,7 +303,7 @@ class TweetController extends Controller
                     <h3 class="text-left font-bold text-lg text-grey-dark">{{$tweet->tweet}}</h3>
                   </a>
                   <div class="flex">
-                    // ↓条件分岐でログインしているユーザが投稿したtweetのみ編集ボタンと削除ボタンが表示される
+                    <!-- ↓条件分岐でログインしているユーザが投稿したtweetのみ編集ボタンと削除ボタンが表示される -->
                     @if ($tweet->user_id === Auth::user()->id)
                     <!-- 更新ボタン -->
                     <form action="{{ route('tweet.edit',$tweet->id) }}" method="GET" class="text-left">
@@ -330,6 +338,8 @@ class TweetController extends Controller
 </x-app-layout>
 
 ```
+
+## 動作確認（編集削除ボタンの表示非表示）
 
 自分の投稿のみ編集ボタンと削除ボタンが表示されれば OK！
 

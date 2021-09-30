@@ -2,7 +2,7 @@
 
 はじめのほうで，ユーザ認証を行う breeze ライブラリをインストールしたため，これを利用してユーザ管理を行う．
 
-まず，認証ユーザのみがアプリケーションの機能を利用できるように処理を変更する．
+まず，認証ユーザのみがアプリケーションの機能を利用できるように処理を変更する．現状ではログインしていない状態でも一覧画面などにアクセスできてしまう（実際はユーザ情報が不足しているためエラー画面となる）．
 
 ## ログインしていないユーザはアプリケーションにアクセスできないようにする．
 
@@ -36,6 +36,8 @@ class TodoController extends Controller
 
 ```
 
+## 動作確認（ログイン必須）
+
 一旦ログアウトした状態で，URL 直打ち（`localhost/tweet`）して tweet 画面にアクセスできずにログイン画面に戻されれば OK！
 
 > 【解説】
@@ -43,8 +45,6 @@ class TodoController extends Controller
 > - ユーザの認証情報を使用するため，`use Auth;`を記述している．
 > - `__construct()`関数は，その他の関数が実行される場合にその前に実行される．
 > - `middleware(['auth'])`はログイン状況を確認して，ログインしていない状態ならログインページに戻す処理を実行する．
-
-一旦ログアウトして URL 直打ちするとログイン画面に戻される状態になっていれば OK．
 
 ## tweet テーブルにユーザ ID カラムを追加する
 
@@ -59,6 +59,9 @@ class TodoController extends Controller
 
 カラムの変更はマイグレーションで行う．
 
+> - 本来はカラムはテーブル作成時点で決定しておくことが望ましい．
+> - マイグレーションは実行した内容を取り消せる（ロールバック）ため，不具合が生じても対応できる場合が多い．
+
 下記コマンドを実行する．
 
 ```bash
@@ -66,6 +69,7 @@ $ php artisan make:migration add_user_id_to_tweets_table --table=tweets
 
 # 実行結果
 Created Migration: 2021_09_24_061716_add_user_id_to_tweets_table
+
 ```
 
 ### マイグレーションファイルの編集
@@ -81,6 +85,7 @@ Created Migration: 2021_09_24_061716_add_user_id_to_tweets_table
 public function up()
 {
   Schema::table('tweets', function (Blueprint $table) {
+    // ↓ 1行追加
     $table->integer('user_id')->after('id');
   });
 }
@@ -97,11 +102,27 @@ $ php artisan migrate
 # 実行結果
 Migrating: 2021_09_24_061716_add_user_id_to_tweets_table
 Migrated:  2021_09_24_061716_add_user_id_to_tweets_table (102.98ms)
+
 ```
 
 ## テーブルの確認
 
-※ phpmyadmin を準備している場合は phpmyadmin から確認で OK．
+phpmyadmin でテーブルの構造を確認する．`user_id` カラムが追加されていれば OK．
+
+```txt
++-------------+-----------------+------+-----+---------+----------------+
+| Field       | Type            | Null | Key | Default | Extra          |
++-------------+-----------------+------+-----+---------+----------------+
+| id          | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| user_id     | int             | NO   |     | NULL    |                |
+| tweet       | varchar(191)    | NO   |     | NULL    |                |
+| description | text            | YES  |     | NULL    |                |
+| created_at  | timestamp       | YES  |     | NULL    |                |
+| updated_at  | timestamp       | YES  |     | NULL    |                |
++-------------+-----------------+------+-----+---------+----------------+
+```
+
+【今回は不要】コマンドで確認する場合は以下の手順で行う．
 
 > 📦 **MySQL コンテナ内の操作**
 >
@@ -110,7 +131,7 @@ Migrated:  2021_09_24_061716_add_user_id_to_tweets_table (102.98ms)
 > root@d984f6614597:/#
 > ```
 
-うまくいったら，mysql にログインしてテーブルを確認する．パスワードは`password`．
+mysql にログインしてテーブルを確認する．パスワードは`password`．
 
 ```bash
 $ mysql -u sail -p
@@ -151,8 +172,6 @@ mysql>
 
 ```
 
-`user_id`カラムが追加されていれば OK．
-
 ## データ追加時に user_id を追加
 
 tweet のデータを作成する際に，「誰が作成したのか」がわかるように，データにログインユーザの ID を追加する．
@@ -187,10 +206,14 @@ public function store(Request $request)
 
 ```
 
-適当なデータを追加し，テーブルにユーザ ID が一緒に入っていれば OK．
-
 > 【解説】
 >
 > - `$request->merge()`でユーザ ID を追加している．
 > - `Auth::user()->id`で現在ログインしているユーザの ID を取得することができる（`Auth::id()`でも可）．
 > - `Auth::user()`には他にもデータが入っているので，`dd()`などで確認してみると良いだろう．
+
+## 動作確認
+
+適当なデータを追加し，phpmyadmin で確認する．
+
+tweets テーブルのデータにユーザ ID が一緒に入っていれば OK．既存データの user_id カラムに 0 が入っているので，ログインユーザの ID に変更しておこう．

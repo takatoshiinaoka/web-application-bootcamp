@@ -52,11 +52,13 @@ public function up()
 {
   Schema::create('tweet_user', function (Blueprint $table) {
     $table->id();
+    // ↓ ここから追加
     $table->unsignedBigInteger('user_id');
     $table->unsignedBigInteger('tweet_id');
     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
     $table->foreign('tweet_id')->references('id')->on('tweets')->onDelete('cascade');
     $table->unique(['user_id', 'tweet_id']);
+    // ↑ ここまで追加
     $table->timestamps();
   });
 }
@@ -91,7 +93,19 @@ Migrated:  2021_09_24_072924_create_tweet_user_table (451.37ms)
 
 phpmyadmin で，`tweet_user` テーブルが作成されていることを確認する．
 
-以下にコマンドで確認する場合も示す．
+```txt
++------------+-----------------+------+-----+---------+----------------+
+| Field      | Type            | Null | Key | Default | Extra          |
++------------+-----------------+------+-----+---------+----------------+
+| id         | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| user_id    | bigint unsigned | NO   | MUL | NULL    |                |
+| tweet_id   | bigint unsigned | NO   | MUL | NULL    |                |
+| created_at | timestamp       | YES  |     | NULL    |                |
+| updated_at | timestamp       | YES  |     | NULL    |                |
++------------+-----------------+------+-----+---------+----------------+
+```
+
+【今回は不要】以下にコマンドで確認する場合も示す．
 
 > 📦 **MySQL コンテナ内の操作**
 >

@@ -4,7 +4,7 @@
 
 作成するアプリケーションでライブラリを使用する場合はコマンドでインストールを行う．今回は認証を実装するための`Laravel Breeze`をインストールする．
 
-Laravelのプロジェクト内でコマンドを実行する場合には，下記コマンドで仮想コンテナにログインする必要がある．
+Laravel のプロジェクト内でコマンドを実行する場合には，下記コマンドで仮想コンテナにログインする必要がある．
 
 ```bash
 $ docker-compose exec laravel.test bash
@@ -22,7 +22,6 @@ $
 **以降のコマンドは仮想コンテナにログインした状態（ターミナルが`/var/www/html# `になっている状態）で行うこと**
 
 下記コマンドを実行し，必要なファイルをダウンロードする．
-
 
 ```bash
 $ composer require laravel/breeze --dev
@@ -52,7 +51,7 @@ Breeze scaffolding installed successfully.
 Please execute the "npm install && npm run dev" command to build your assets.
 ```
 
-下記コマンドを実行し，その他必要なパッケージをインストールしてビルドする（ここでNode.jsが動く）．
+下記コマンドを実行し，その他必要なパッケージをインストールしてビルドする（ここで Node.js が動く）．
 
 ```bash
 $ npm install && npm run dev
@@ -71,15 +70,14 @@ $ npm install && npm run dev
 webpack compiled successfully
 ```
 
-ブラウザでlocalhostにアクセスし，動作を確認する．
+ブラウザで localhost にアクセスし，動作を確認する．
 
-以下の画面が表示されればOK（右上に`Login`と`register`が表示される）．
+以下の画面が表示されれば OK（右上に`Login`と`register`が表示される）．
 
 ![breezeインストール確認](./img/breeze-installed.png)
 
-右上の`register`をクリックするとユーザ登録画面に移動するが，まだこの段階ではユーザ登録機能は動作しない．ユーザ登録画面が表示されればOK．
+右上の`register`をクリックするとユーザ登録画面に移動するが，まだこの段階ではユーザ登録機能は動作しない．ユーザ登録画面が表示されれば OK．
 
 ![register画面](./img/register.png)
 
 ここまででライブラリの準備は完了．
-
