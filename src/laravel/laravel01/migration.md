@@ -97,7 +97,7 @@ class CreateTweetsTable extends Migration
 
 ```
 
-## 文字列最大長の変更
+<!-- ## 【今回は不要】文字列最大長の変更
 
 これでテーブルの設計は完了だが，MySQL のバージョンによってはエラーが発生するため，次の設定を行う．
 
@@ -140,7 +140,7 @@ class AppServiceProvider extends ServiceProvider
     Schema::defaultStringLength(191);
   }
 }
-```
+``` -->
 
 ## マイグレーション実行
 
