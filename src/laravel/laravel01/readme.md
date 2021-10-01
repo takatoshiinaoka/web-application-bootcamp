@@ -1,5 +1,25 @@
 # Day06
 
+## コンテナの起動と vs code の準備
+
+laratter ディレクトリに移動して下記コマンドでコンテナを起動！
+
+```bash
+$ ./vendor/bin/sail up -d
+```
+
+↓ 起動したときのターミナル
+
+![コンテナ起動時のターミナル](./img/laratter_start_terminal.png)
+
+↓ ブラウザは `localhost` にアクセス！
+
+![localhost画面](./img/laratter_start_browser.png)
+
+↓ vs code で laratter フォルダを開く（エディタ画面左のディレクトリ構成を確認）！
+
+![vs code 画面](./img/laratter_start_vscode.png)
+
 ## 本日の内容
 
 - MVC フレームワークについての解説．
