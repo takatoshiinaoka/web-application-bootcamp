@@ -24,7 +24,7 @@ class Tweet extends Model
   // ↓追加
   public static function getAllOrderByUpdated_at()
   {
-    return self::orderBy('updated_at', 'asc')->get();
+    return self::orderBy('updated_at', 'desc')->get();
   }
 }
 

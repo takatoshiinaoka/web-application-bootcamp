@@ -54,19 +54,19 @@
   - [【Mac 編】環境構築](./laravel/laravel_setup/setup-for-mac.md)
   - [【Windows 編】環境構築](./laravel/laravel_setup/setup-for-windows.md)
   - [Laravel プロジェクト作成](./laravel/laravel_setup/create-project.md)
-  <!-- - [【補足】Docker と Docker Compose の解説](./laravel/laravel_setup/about-docker-and-docker-compose.md)
+  - [【補足】Docker と Docker Compose の解説](./laravel/laravel_setup/about-docker-and-docker-compose.md)
   - [ライブラリ準備](./laravel/laravel_setup/add-laravel-breeze.md)
   - [データベース準備](./laravel/laravel_setup/setup-db.md)
-  - [phpmyadmin の追加](./laravel/laravel_setup/phpmyadmin.md) -->
+  - [phpmyadmin の追加](./laravel/laravel_setup/phpmyadmin.md)
 
-<!-- - [Day06](./laravel/laravel01/readme.md)
+- [Day06](./laravel/laravel01/readme.md)
 
   - [Laravel と MVC フレームワーク](./laravel/laravel01/about-laravel-and-mvc.md)
   - [マイグレーションによるテーブル作成](./laravel/laravel01/migration.md)
   - [ルーティングとコントローラ](./laravel/laravel01/route-and-controller.md)
   - [必要な画面の作成と動作確認](./laravel/laravel01/views.md)
   - [tweet 作成処理の実装](./laravel/laravel01/create.md)
-  - [tweet 一覧画面の実装](./laravel/laravel01/read.md) -->
+  - [tweet 一覧画面の実装](./laravel/laravel01/read.md)
 
 <!-- - [Day07](./laravel/laravel02/readme.md)
 
