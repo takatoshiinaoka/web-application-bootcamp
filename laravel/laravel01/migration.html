@@ -253,17 +253,19 @@ class CreateTweetsTable extends Migration
 }
 
 </code></pre>
-<h2 id="文字列最大長の変更"><a class="header" href="#文字列最大長の変更">文字列最大長の変更</a></h2>
-<p>これでテーブルの設計は完了だが，MySQL のバージョンによってはエラーが発生するため，次の設定を行う．</p>
-<p><code>app/Providers/AppServiceProvider.php</code>の内容を以下のように編集する．<code>string</code>型の最大長を 191 に変更する．</p>
-<blockquote>
-<p>【解説】</p>
-<ul>
-<li>この設定が必要かどうかは MySQL のバージョンによる．MySQL のバージョンが<code>5.7.7</code>以下の場合は必要となる．</li>
-<li>Laravel のマイグレーションでは文字列の最大長が<code>255</code>として実行するが，MySQL5.7.7 以下では最大長が<code>191</code>となっているためである．</li>
-</ul>
-</blockquote>
-<pre><code class="language-php">&lt;?php
+<!-- ## 【今回は不要】文字列最大長の変更
+
+これでテーブルの設計は完了だが，MySQL のバージョンによってはエラーが発生するため，次の設定を行う．
+
+`app/Providers/AppServiceProvider.php`の内容を以下のように編集する．`string`型の最大長を 191 に変更する．
+
+> 【解説】
+>
+> - この設定が必要かどうかは MySQL のバージョンによる．MySQL のバージョンが`5.7.7`以下の場合は必要となる．
+> - Laravel のマイグレーションでは文字列の最大長が`255`として実行するが，MySQL5.7.7 以下では最大長が`191`となっているためである．
+
+```php
+<?php
 
 namespace App\Providers;
 
@@ -294,7 +296,7 @@ class AppServiceProvider extends ServiceProvider
     Schema::defaultStringLength(191);
   }
 }
-</code></pre>
+``` -->
 <h2 id="マイグレーション実行"><a class="header" href="#マイグレーション実行">マイグレーション実行</a></h2>
 <blockquote>
 <p>📦 <strong>Laravel コンテナ内の操作</strong></p>
