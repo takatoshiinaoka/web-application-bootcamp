@@ -82,9 +82,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Tweet;
-// ↓ 2行追加
-use App\Models\User;
 use Auth;
+
+// ↓ 追加
+use App\Models\User;
 
 class TweetController extends Controller
 {

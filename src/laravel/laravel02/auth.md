@@ -179,27 +179,47 @@ tweet のデータを作成する際に，「誰が作成したのか」がわ�
 ```php
 // app/Http/Controllers/TweetController.php
 
-public function store(Request $request)
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use Validator;
+use App\Models\Tweet;
+
+// ↓ 追加
+use Auth;
+
+class TweetController extends Controller
 {
-  // バリデーション
-  $validator = Validator::make($request->all(), [
-    'tweet' => 'required | max:191',
-    'description' => 'required',
-  ]);
-  // バリデーション:エラー
-  if ($validator->fails()) {
-    return redirect()
-      ->route('tweet.create')
-      ->withInput()
-      ->withErrors($validator);
+
+  // 省略
+
+  public function store(Request $request)
+  {
+    // バリデーション
+    $validator = Validator::make($request->all(), [
+      'tweet' => 'required | max:191',
+      'description' => 'required',
+    ]);
+    // バリデーション:エラー
+    if ($validator->fails()) {
+      return redirect()
+        ->route('tweet.create')
+        ->withInput()
+        ->withErrors($validator);
+    }
+
+    // ↓編集 フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
+    $data = $request->merge(['user_id' => Auth::user()->id])->all();
+    $result = Tweet::create($data);
+
+    // tweet.index」にリクエスト送信（一覧ページに移動）
+    return redirect()->route('tweet.index');
   }
 
-  // ↓編集 フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
-  $data = $request->merge(['user_id' => Auth::user()->id])->all();
-  $result = Tweet::create($data);
-
-  // tweet.index」にリクエスト送信（一覧ページに移動）
-  return redirect()->route('tweet.index');
+  // 省略
 }
 
 ```
