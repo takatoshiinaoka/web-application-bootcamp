@@ -244,14 +244,17 @@ Migrated:  2021_09_24_072924_create_tweet_user_table (451.37ms)
 | updated_at | timestamp       | YES  |     | NULL    |                |
 +------------+-----------------+------+-----+---------+----------------+
 </code></pre>
-<p>【今回は不要】以下にコマンドで確認する場合も示す．</p>
-<blockquote>
-<p>📦 <strong>MySQL コンテナ内の操作</strong></p>
-<pre><code class="language-bash">$ docker-compose exec mysql bash
-root@d984f6614597:/#
-</code></pre>
-</blockquote>
-<pre><code class="language-bash">$  mysql -u sail -p
+<!-- 【今回は不要】以下にコマンドで確認する場合も示す．
+
+> 📦 **MySQL コンテナ内の操作**
+>
+> ```bash
+> $ docker-compose exec mysql bash
+> root@d984f6614597:/#
+> ```
+
+```bash
+$  mysql -u sail -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 347
@@ -265,12 +268,12 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql&gt; use laratter;
+mysql> use laratter;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
 Database changed
-mysql&gt; show tables;
+mysql> show tables;
 +------------------------+
 | Tables_in_laratter     |
 +------------------------+
@@ -284,7 +287,7 @@ mysql&gt; show tables;
 +------------------------+
 7 rows in set (0.00 sec)
 
-mysql&gt; desc tweet_user;
+mysql> desc tweet_user;
 +------------+-----------------+------+-----+---------+----------------+
 | Field      | Type            | Null | Key | Default | Extra          |
 +------------+-----------------+------+-----+---------+----------------+
@@ -296,8 +299,8 @@ mysql&gt; desc tweet_user;
 +------------+-----------------+------+-----+---------+----------------+
 5 rows in set (0.01 sec)
 
-mysql&gt;
-</code></pre>
+mysql>
+``` -->
 <h2 id="モデルに多対多の連携を設定"><a class="header" href="#モデルに多対多の連携を設定">モデルに多対多の連携を設定</a></h2>
 <p>User モデルに <code>belongsToMany</code> を設定して，User モデルは Tweet モデルと多対多の連携をすることを示す．</p>
 <pre><code class="language-php">// app/Http/Models/User.php
