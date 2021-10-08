@@ -235,3 +235,7 @@ class TweetController extends Controller
 適当なデータを追加し，phpmyadmin で確認する．
 
 tweets テーブルのデータにユーザ ID が一緒に入っていれば OK．既存データの user_id カラムに 0 が入っているので，ログインユーザの ID に変更しておこう．
+
+> **💡【注意】**
+>
+> `user_id` カラムに 1 つでも `0` が入っているとエラーになってしまうので，必ず存在する数値を入れておくこと！
