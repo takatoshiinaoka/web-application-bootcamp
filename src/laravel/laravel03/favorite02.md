@@ -42,15 +42,18 @@ use App\Http\Controllers\FavoriteController;
 
 // 省略
 
-// ↓追加
-Route::post('tweet/{tweet}/favorites', [FavoriteController::class, 'store'])->name('favorites');
+// コメント省略
 
-// ↓追加
-Route::post('tweet/{tweet}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
+Route::group(['middleware' => 'auth'], function () {
+  // ↓追加
+  Route::post('tweet/{tweet}/favorites', [FavoriteController::class, 'store'])->name('favorites');
 
-Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
+  // ↓追加
+  Route::post('tweet/{tweet}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
 
-Route::resource('tweet', TweetController::class);
+  Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
+  Route::resource('tweet', TweetController::class);
+});
 
 Route::get('/', function () {
   return view('welcome');

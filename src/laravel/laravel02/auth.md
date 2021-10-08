@@ -6,33 +6,32 @@
 
 ## ログインしていないユーザはアプリケーションにアクセスできないようにする．
 
-`app/Http/Controllers/TweetController.php`を以下のように編集する．
+`app/routes/web.php`を以下のように編集する．
 
 ```php
-// app/Http/Controllers/TweetController.php
+// app/routes/web.php
 
 <?php
 
-namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TweetController;
 
-use Illuminate\Http\Request;
+// コメントは省略
 
-use Validator;
-use App\Models\Tweet;
-// ↓追加
-use Auth;
+// ↓ ここを編集
+Route::group(['middleware' => 'auth'], function () {
+  Route::resource('tweet', TweetController::class);
+});
 
-class TodoController extends Controller
-{
-  // ↓関数を作成
-  public function __construct()
-  {
-    $this->middleware(['auth']);
-  }
+Route::get('/', function () {
+  return view('welcome');
+});
 
-  // ...省略
+Route::get('/dashboard', function () {
+  return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-}
+require __DIR__ . '/auth.php';
 
 ```
 
@@ -42,9 +41,8 @@ class TodoController extends Controller
 
 > 【解説】
 >
-> - ユーザの認証情報を使用するため，`use Auth;`を記述している．
-> - `__construct()`関数は，その他の関数が実行される場合にその前に実行される．
-> - `middleware(['auth'])`はログイン状況を確認して，ログインしていない状態ならログインページに戻す処理を実行する．
+> - `['middleware' => 'auth']` を記述することで認証状態をチェックしてくれる．
+> - `{}` 内に記述したルーティングは認証必須となり，未認証（未ログイン）の場合はログイン画面に戻される．
 
 ## tweet テーブルにユーザ ID カラムを追加する
 
@@ -62,7 +60,7 @@ class TodoController extends Controller
 > - 本来はカラムはテーブル作成時点で決定しておくことが望ましい．
 > - マイグレーションは実行した内容を取り消せる（ロールバック）ため，不具合が生じても対応できる場合が多い．
 
-下記コマンドを実行する．
+カラムを追加するため，下記コマンドを実行する．
 
 ```bash
 $ php artisan make:migration add_user_id_to_tweets_table --table=tweets

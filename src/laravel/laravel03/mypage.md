@@ -46,10 +46,13 @@ class User extends Authenticatable
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TweetController;
 
-// ↓追加
-Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');;
+// コメント省略
 
-Route::resource('tweet', TweetController::class);
+Route::group(['middleware' => 'auth'], function () {
+  // ↓追加
+  Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
+  Route::resource('tweet', TweetController::class);
+});
 
 Route::get('/', function () {
   return view('welcome');
@@ -79,9 +82,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Tweet;
-use Auth;
-// ↓追加
+// ↓ 2行追加
 use App\Models\User;
+use Auth;
 
 class TweetController extends Controller
 {
