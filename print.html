@@ -4982,27 +4982,47 @@ mysql>
 <p><code>app/Http/Controllers/TweetController.php</code>の<code>store()</code>を内容を以下のように編集する．</p>
 <pre><code class="language-php">// app/Http/Controllers/TweetController.php
 
-public function store(Request $request)
+&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use Validator;
+use App\Models\Tweet;
+
+// ↓ 追加
+use Auth;
+
+class TweetController extends Controller
 {
-  // バリデーション
-  $validator = Validator::make($request-&gt;all(), [
-    'tweet' =&gt; 'required | max:191',
-    'description' =&gt; 'required',
-  ]);
-  // バリデーション:エラー
-  if ($validator-&gt;fails()) {
-    return redirect()
-      -&gt;route('tweet.create')
-      -&gt;withInput()
-      -&gt;withErrors($validator);
+
+  // 省略
+
+  public function store(Request $request)
+  {
+    // バリデーション
+    $validator = Validator::make($request-&gt;all(), [
+      'tweet' =&gt; 'required | max:191',
+      'description' =&gt; 'required',
+    ]);
+    // バリデーション:エラー
+    if ($validator-&gt;fails()) {
+      return redirect()
+        -&gt;route('tweet.create')
+        -&gt;withInput()
+        -&gt;withErrors($validator);
+    }
+
+    // ↓編集 フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
+    $data = $request-&gt;merge(['user_id' =&gt; Auth::user()-&gt;id])-&gt;all();
+    $result = Tweet::create($data);
+
+    // tweet.index」にリクエスト送信（一覧ページに移動）
+    return redirect()-&gt;route('tweet.index');
   }
 
-  // ↓編集 フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
-  $data = $request-&gt;merge(['user_id' =&gt; Auth::user()-&gt;id])-&gt;all();
-  $result = Tweet::create($data);
-
-  // tweet.index」にリクエスト送信（一覧ページに移動）
-  return redirect()-&gt;route('tweet.index');
+  // 省略
 }
 
 </code></pre>
@@ -5082,9 +5102,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Tweet;
-// ↓ 2行追加
-use App\Models\User;
 use Auth;
+
+// ↓ 追加
+use App\Models\User;
 
 class TweetController extends Controller
 {
